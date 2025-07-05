@@ -1,5 +1,5 @@
 import {  useEffect } from 'react';
-import { BrowserRouter as Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
 
@@ -414,28 +414,30 @@ function App() {
   );
 
   return (
-    <div className="min-h-screen transition-colors duration-300 dark">
-      <SEO />
-      
-      {/* Add custom CSS for gradient animation */}
-      <style>{`
-        @keyframes gradient-shift {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-      `}</style>
-      
-      {/* Navigation */}
-      <Navigation />
-      {/* Routes */}
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about-thomaz" element={<AboutThomazPageWithLayout />} />
-        <Route path="/resume" element={<AboutThomazPageWithLayout />} />
-      </Routes>
-
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <div className="min-h-screen transition-colors duration-300 dark">
+        <SEO />
+        
+        {/* Add custom CSS for gradient animation */}
+        <style>{`
+          @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+          }
+        `}</style>
+        
+        {/* Navigation */}
+        <Navigation />
+        {/* Routes */}
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about-thomaz" element={<AboutThomazPageWithLayout />} />
+          <Route path="/resume" element={<AboutThomazPageWithLayout />} />
+        </Routes>
+    
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 
