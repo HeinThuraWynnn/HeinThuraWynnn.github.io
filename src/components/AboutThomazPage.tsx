@@ -426,7 +426,7 @@ const AboutThomazPage: React.FC = () => {
                 },
                 {
                   title: "Senior Web Developer",
-                  company: "TV Solutions",
+                  company: "TY Solutions",
                   period: "2018 - 2020",
                   description: "Developed new features for Myanmar's Highway Bus Operation Management System. Focused on system security, maintenance, API development, and integration with third-party payment gateways.",
                   side: "left"
