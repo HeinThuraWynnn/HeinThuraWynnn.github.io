@@ -414,7 +414,7 @@ const AboutThomazPage: React.FC = () => {
                   title: "Senior Freelance Developer",
                   company: "Freelancer UpWork",
                   period: "2022 - 2024",
-                  description: "Remote working for Software Development. Laravel Developer for 'HuanTao Freelance working platform' - Laravel. Full Stack Developer for 'Unmura Travel & Concierge Agency' - October CMS. Renovation of the Australia Disability Advocacy Resource Unit Website (DARU) with WordPress elementor customize plugin development.",
+                  description: "Remote working for Software Development. Laravel Developer for 'HunterX Freelancer job hunting platform' - Laravel. Full Stack Developer for 'Uemura Travel & Social Event Agency' - October CMS. Renovation of the Australia Disability Advocacy Resource Unit Website (DARU) with WordPress elementor customize plugin development.",
                   side: "left"
                 },
                 {
