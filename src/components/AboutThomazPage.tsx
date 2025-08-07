@@ -775,10 +775,7 @@ const AboutThomazPage: React.FC = () => {
                   <p className={`font-semibold mb-4 bg-gradient-to-r ${ref.color} bg-clip-text text-transparent`}>
                     {ref.position}
                   </p>
-                  <div className="space-y-2 text-sm text-gray-400">
-                    <p><strong className="text-white">Phone:</strong> {ref.phone}</p>
-                    <p><strong className="text-white">Email:</strong> {ref.email}</p>
-                  </div>
+                  
                 </div>
               </motion.div>
             ))}
