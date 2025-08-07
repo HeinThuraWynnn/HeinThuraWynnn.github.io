@@ -723,23 +723,19 @@ const AboutThomazPage: React.FC = () => {
                 name: "Mr. Paing Thu Chit",
                 company: "Future Hub Myanmar/",
                 position: "Managing Director",
-                phone: "+959-420-321-613",
-                email: "paing@futurehub.com.mm",
                 color: "from-cyan-400 to-blue-500"
               },
               {
                 name: "U Htet Aung",
-                company: "Pro1 Global Home Center",
+                company: "PRO 1 Global Home Center",
                 position: "Myanmar Head of IT dept",
-                phone: "+959-777-200-797",
-                email: "devshoba@gmail.com",
+                email: "developho@gmail.com",
                 color: "from-purple-400 to-pink-500"
               },
               {
                 name: "Daw Yadana Win",
-                company: "TV Solutions Co., Ltd./",
+                company: "TY Solutions Co., Ltd./",
                 position: "Managing Director",
-                phone: "+959-777-200-797",
                 email: "yadanawin31@gmail.com",
                 color: "from-green-400 to-cyan-500"
               }
