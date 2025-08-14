@@ -78,8 +78,12 @@ const AboutThomazPage: React.FC = () => {
               className="relative mx-auto w-32 h-32 md:w-40 md:h-40"
             >
               <div className="w-full h-full rounded-full bg-gradient-to-r from-primary-400 to-accent-400 p-1">
-                <div className="w-full h-full rounded-full bg-white dark:bg-gray-800 flex items-center justify-center">
-                  <span className="text-4xl md:text-5xl font-bold gradient-text">HT</span>
+                <div className="w-full h-full rounded-full overflow-hidden bg-white dark:bg-gray-800">
+                  <img 
+                    src="/thomaz.jpeg" 
+                    alt="Hein Thura Wynn (Thomaz)" 
+                    className="w-full h-full object-cover rounded-full"
+                  />
                 </div>
               </div>
               <motion.div
@@ -87,6 +91,40 @@ const AboutThomazPage: React.FC = () => {
                 animate={{ rotate: 360 }}
                 transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
               />
+              
+              {/* Enhanced glow effect */}
+              <motion.div
+                className="absolute -inset-6 rounded-full bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 opacity-10 blur-2xl"
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  opacity: [0.1, 0.2, 0.1]
+                }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              />
+              
+              {/* Floating particles around image */}
+              {[...Array(6)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full"
+                  style={{
+                    left: '50%',
+                    top: '50%',
+                  }}
+                  animate={{
+                    x: Math.cos((i * 60) * Math.PI / 180) * 60,
+                    y: Math.sin((i * 60) * Math.PI / 180) * 60,
+                    opacity: [0, 1, 0],
+                    scale: [0.5, 1, 0.5]
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    delay: i * 0.5,
+                    ease: "easeInOut"
+                  }}
+                />
+              ))}
             </motion.div>
 
             {/* Name and Title */}
