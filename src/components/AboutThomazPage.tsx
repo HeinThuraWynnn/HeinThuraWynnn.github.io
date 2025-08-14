@@ -182,7 +182,7 @@ const AboutThomazPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Skills Section */}
+      {/* Skills Section - Update the Cloud & Databases skill icon */}
       <section id="skills" className="py-32 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -226,7 +226,13 @@ const AboutThomazPage: React.FC = () => {
               },
               {
                 title: "Cloud & Databases",
-                icon: Globe,
+                icon: () => (
+                  <img 
+                    src="/w-logo.svg" 
+                    alt="Wynn Solutions Logo" 
+                    className="w-6 h-6 filter brightness-0 invert"
+                  />
+                ),
                 color: "from-orange-400 to-red-500",
                 skills: ["AWS, DigitalOcean, Huawei Cloud", "Firebase, SQLite, PostgreSQL", "MySQL"]
               },
@@ -240,8 +246,8 @@ const AboutThomazPage: React.FC = () => {
                 title: "Leadership & Management",
                 icon: Users,
                 color: "from-indigo-400 to-purple-500",
-                skills: ["Agile/Scrum, QA Strategy", "Cross-functional Collaboration", "Project & Release Planning"]
-              },
+                skills: ["Agile/Scrum, QA Strategy", "Cross-functional Collaboration", "Project & Release Planning","Team Leadership", "Project Management", "Agile Methodologies"]
+              }
             ].map((skill, index) => (
               <motion.div
                 key={skill.title}
@@ -321,11 +327,16 @@ const AboutThomazPage: React.FC = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              "Get Started with Looker",
-              "Introduction to Cognitive Project Management in AI (CPM-AI)™",
-              "Generative AI Overview for Project Managers",
+              "Agile Metrics for Success",
+              "AI in Infrastructure & Construction Projects",
+              "AWS Educate Getting Started with Serverless",
               "AWS Educate Introduction to Generative AI",
-              "Google Project Management Training"
+              "Data Landscape of GenAI for Project Managers",
+              "Generative AI Overview for Project Managers",
+              "Get Started with Looker Skill Badge",
+              "Google Project Management Professional Certificate (v2)",
+              "Introduction to Cognitive Project Management in AI (CPM-AI)™",
+              "Talking to AI: Prompt Engineering for Project Managers"
             ].map((training, index) => (
               <motion.div
                 key={index}
@@ -720,8 +731,8 @@ const AboutThomazPage: React.FC = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                name: "Mr. Paing Thu Chit",
-                company: "Future Hub Myanmar/",
+                name: "U Paing Thu Chit",
+                company: "Future Hub Myanmar",
                 position: "Managing Director",
                 color: "from-cyan-400 to-blue-500"
               },
@@ -734,9 +745,9 @@ const AboutThomazPage: React.FC = () => {
               },
               {
                 name: "Daw Yadana Win",
-                company: "TY Solutions Co., Ltd./",
+                company: "TY Solutions Co., Ltd",
                 position: "Managing Director",
-                email: "yadanawin31@gmail.com",
+                email: "yadanawin1@gmail.com",
                 color: "from-green-400 to-cyan-500"
               }
             ].map((ref, index) => (

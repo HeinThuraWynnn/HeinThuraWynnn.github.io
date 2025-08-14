@@ -6,7 +6,6 @@ import {
   Github, 
   Linkedin, 
   Twitter,
-  Globe,
   Heart,
   ArrowUp,
   Sparkles,
@@ -172,7 +171,11 @@ const Footer = () => {
                 transition={{ duration: 0.8 }}
               >
                 <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" />
-                <Globe className="w-7 h-7 text-white relative z-10" />
+                <img 
+                  src="/w-logo.svg" 
+                  alt="Wynn Solutions Myanmar Logo" 
+                  className="w-8 h-8 relative z-10 filter brightness-0 invert"
+                />
                 
                 {/* Orbiting particles */}
                 {[...Array(8)].map((_, i) => (
@@ -250,8 +253,8 @@ const Footer = () => {
             
             <div className="space-y-4">
               {[
-                { icon: Mail, text: 'contact@wynnsolutionsmyanmar.com', color: 'text-cyan-400' },
-                { icon: Phone, text: '+95 9 123 456 789', color: 'text-purple-400' },
+                { icon: Mail, text: 'info@wynnsolutionsmyanmar.com', color: 'text-cyan-400' },
+                { icon: Phone, text: '+95 9 971 879 637', color: 'text-purple-400' },
                 { icon: MapPin, text: 'Yangon, Myanmar', color: 'text-pink-400' }
               ].map((item, index) => (
                 <motion.div
