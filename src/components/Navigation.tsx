@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Globe, Sparkles } from 'lucide-react';
+import { Menu, X, Sparkles } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
 const Navigation = () => {
@@ -111,7 +111,7 @@ const Navigation = () => {
               className="flex items-center space-x-3 group"
             >
               <motion.div
-                className="relative w-10 h-10 rounded-xl overflow-hidden"
+                className="relative w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center"
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.8 }}
                 style={{
@@ -120,7 +120,11 @@ const Navigation = () => {
                 }}
               >
                 <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" />
-                <Globe className="w-6 h-6 text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+                <img 
+                  src="/w-logo.svg" 
+                  alt="Wynn Solutions Myanmar Logo" 
+                  className="w-7 h-7 relative z-10 filter brightness-0 invert"
+                />
                 
                 {/* Floating particles around logo */}
                 {[...Array(6)].map((_, i) => (
