@@ -466,10 +466,10 @@ const Footer = () => {
                 <input
                   type="email"
                   placeholder="Your email"
-                  className="flex-1 px-3 py-2 rounded-l-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white placeholder-gray-400 bg-black/20 backdrop-blur-sm border border-cyan-500/20"
+                  className="flex-1 min-w-0 px-3 py-2 rounded-xl sm:rounded-l-xl sm:rounded-r-none text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white placeholder-gray-400 bg-black/20 backdrop-blur-sm border border-cyan-500/20"
                 />
                 <motion.button 
-                  className="px-4 py-2 rounded-r-xl transition-all duration-300 border border-cyan-500/30"
+                  className="px-4 py-2 rounded-xl sm:rounded-l-none sm:rounded-r-xl transition-all duration-300 border border-cyan-500/30 flex-shrink-0"
                   style={{
                     background: 'linear-gradient(135deg, rgba(6,182,212,0.3) 0%, rgba(168,85,247,0.3) 100%)',
                     backdropFilter: 'blur(10px)',
