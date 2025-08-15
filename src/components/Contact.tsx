@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 import { 
   Mail, 
   Phone, 
   Send, 
   Clock,
   Globe,
-  Linkedin
+  Linkedin,
+  CheckCircle,
+  XCircle
 } from 'lucide-react';
 
 const Contact = () => {
@@ -20,6 +23,7 @@ const Contact = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -32,35 +36,75 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus('idle');
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      company: '',
-      subject: '',
-      message: '',
-      projectType: 'web'
-    });
-    
-    setIsSubmitting(false);
-    alert('Thank you for your message! I\'ll get back to you soon.');
+    try {
+      // EmailJS credentials from environment variables
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const autoReplyTemplateId = import.meta.env.VITE_EMAILJS_AUTO_REPLY_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+      
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        company: formData.company,
+        subject: formData.subject,
+        message: formData.message,
+        project_type: formData.projectType,
+        to_email: 'wynnsolutionsmyanmar@gmail.com',
+        submission_date: new Date().toLocaleString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          timeZoneName: 'short'
+        })
+      };
+      
+      // Send notification email to you
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      
+      // Send auto-reply to sender (if auto-reply template is configured)
+      if (autoReplyTemplateId) {
+        try {
+          await emailjs.send(serviceId, autoReplyTemplateId, templateParams, publicKey);
+        } catch (autoReplyError) {
+          console.warn('Auto-reply failed, but main email was sent:', autoReplyError);
+        }
+      }
+      
+      // Reset form on success
+      setFormData({
+        name: '',
+        email: '',
+        company: '',
+        subject: '',
+        message: '',
+        projectType: 'web'
+      });
+      
+      setSubmitStatus('success');
+    } catch (error) {
+      console.error('Email sending failed:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email",
-      value: "heinthurawynn.developer@gmail.com",
-      link: "mailto:heinthurawynn.developer@gmail.com"
+      value: "wynnsolutionsmyanmar@gmail.com",
+      link: "mailto:wynnsolutionsmyanmar@gmail.com"
     },
     {
       icon: <Phone className="w-6 h-6" />,
       title: "Phone",
-      value: "+666-376-094-46",
+      value: "+66-637-609-446",
       link: "tel:+66637609446"
     },
     {
@@ -187,6 +231,35 @@ const Contact = () => {
             <h3 className="text-2xl font-bold text-white mb-6">
               Send a Message
             </h3>
+            
+            {/* Status Messages */}
+            {submitStatus === 'success' && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-6 p-4 bg-green-500/20 border border-green-500/30 rounded-lg text-green-400 flex items-center gap-3"
+              >
+                <CheckCircle className="w-5 h-5" />
+                <div>
+                  <p className="font-semibold">Message sent successfully!</p>
+                  <p className="text-sm opacity-90">Thank you for reaching out. I'll get back to you within 24 hours.</p>
+                </div>
+              </motion.div>
+            )}
+
+            {submitStatus === 'error' && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-6 p-4 bg-red-500/20 border border-red-500/30 rounded-lg text-red-400 flex items-center gap-3"
+              >
+                <XCircle className="w-5 h-5" />
+                <div>
+                  <p className="font-semibold">Failed to send message</p>
+                  <p className="text-sm opacity-90">Please try again or contact me directly at wynnsolutionsmyanmar@gmail.com</p>
+                </div>
+              </motion.div>
+            )}
             
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
