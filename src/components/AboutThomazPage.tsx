@@ -144,7 +144,7 @@ const AboutThomazPage: React.FC = () => {
                 transition={{ delay: 0.6 }}
                 className="text-xl md:text-2xl lg:text-3xl gradient-text font-semibold"
               >
-                Lead Software Engineer
+                Lead Software Engineer & Project Manager (PMP Candidate)
               </motion.div>
               
               <motion.p
@@ -153,11 +153,10 @@ const AboutThomazPage: React.FC = () => {
                 transition={{ delay: 0.8 }}
                 className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
               >
-                Lead Software Engineer with 9+ years of expertise in Flutter, Kotlin, and PHP, specializing in 
-                scalable mobile/web applications, CI/CD pipelines, and QA-driven development. Proven 
-                track record of reducing production defects by 30% and leading cross-functional teams to 
-                deliver high-performance solutions. Passionate about building robust systems with expertise 
-                in microservices, TDD, and UX optimization.
+                Project Manager (PMP candidate) with 9+ years of combined experience in project
+                leadership, QA governance, and software engineering. Skilled at bridging business goals and
+                technical execution in multinational and BOI corporate environments. Known for delivering
+                projects on time, improving product quality, and leading teams to high performance.
               </motion.p>
             </div>
 
@@ -170,7 +169,7 @@ const AboutThomazPage: React.FC = () => {
             >
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4" />
-                <span>+666-376-094-46</span>
+                <span>+669-557-368-03</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4" />
@@ -195,9 +194,9 @@ const AboutThomazPage: React.FC = () => {
             >
               {[
                 { icon: Mail, href: 'mailto:heinthurawynn.developer@gmail.com', label: 'Email' },
-                { icon: Phone, href: 'tel:+66637609446', label: 'Phone' },
-                { icon: Linkedin, href: '#', label: 'LinkedIn' },
-                { icon: Github, href: '#', label: 'GitHub' },
+                { icon: Phone, href: 'tel:+66955736803', label: 'Phone' },
+                { icon: Linkedin, href: 'https://linkedin.com/in/hein-thura-wynn-developer/', label: 'LinkedIn' },
+                { icon: Github, href: 'https://github.com/heinthurawynnn', label: 'GitHub' },
                 { icon: ExternalLink, href: 'https://www.credly.com/users/hein-thura-wynn', label: 'Credly' },
               ].map((social, index) => (
                 <motion.a
@@ -244,17 +243,36 @@ const AboutThomazPage: React.FC = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              {
-                title: "Core Development",
-                icon: Code,
+               {
+                title: "Project Management",
+                icon: Users,
                 color: "from-cyan-400 to-blue-500",
-                skills: ["Flutter (Provider, MVVM, BLOC)", "Kotlin, Java (MVVM, MVC)", "PHP, Laravel, RESTful APIs", "GraphQL, WordPress, October CMS", "JavaScript, jQuery"]
+                skills: ["Agile, Scrum, Waterfall", "Risk & Resource Management", "Stakeholder Communication", "Vendor & Client Management"]
               },
               {
-                title: "Testing & QA",
+                title: "Leadership & Management",
+                icon: () => (
+                  <img 
+                    src="/w-logo.svg" 
+                    alt="Wynn Solutions Logo" 
+                    className="w-6 h-6 filter brightness-0 invert"
+                  />
+                ),
+                color: "from-indigo-400 to-purple-500",
+                skills: ["Agile/Scrum, QA Strategy", "Cross-functional Collaboration",  "Performance Management", "Project & Release Planning","Team Leadership", "Project Management", "Agile Methodologies"]
+              },
+              {
+                title: "Technical Expertise",
+                icon: Code,
+                color: "from-cyan-400 to-blue-500",
+                skills: ["Flutter (Provider, MVVM, BLOC)", "Kotlin, Java (MVVM, MVC)", "PHP, Laravel, RESTful APIs", "GraphQL, WordPress, October CMS", "JavaScript, jQuery","Cloud, APIs", "Mobile Solution Delivery", "ERP Systems"]
+              },
+              {
+                title: "Quality Assurance & CI/CD",
                 icon: Shield,
                 color: "from-purple-400 to-pink-500",
-                skills: ["QA Lead, Automation", "Regression, TDD", "QA Ownership"]
+                skills: ["QA Governance", "CI/CD Pipelines", "Test Automation", "Quality Strategy"]
+
               },
               {
                 title: "Tools & Platforms",
@@ -281,11 +299,12 @@ const AboutThomazPage: React.FC = () => {
                 skills: ["Material Design, Figma", "Adobe Photoshop"]
               },
               {
-                title: "Leadership & Management",
-                icon: Users,
-                color: "from-indigo-400 to-purple-500",
-                skills: ["Agile/Scrum, QA Strategy", "Cross-functional Collaboration", "Project & Release Planning","Team Leadership", "Project Management", "Agile Methodologies"]
+                title: "Core Competencies",
+                icon: Brain,
+                color: "from-pink-400 to-purple-500",
+                skills: ["ERP & Mobile Solution Delivery", "Technical Expertise", "Business-Technical Alignment"]
               }
+              
             ].map((skill, index) => (
               <motion.div
                 key={skill.title}
@@ -690,7 +709,7 @@ const AboutThomazPage: React.FC = () => {
               {
                 title: "2015 Best Student Project Award",
                 subtitle: "Technological University (Thanlyin)",
-                achievement: "",
+                achievement: "The Best Student Project Award",
                 issuer: "Issued by Technological University (Thanlyin)",
                 color: "from-green-400 to-cyan-500"
               }
@@ -776,8 +795,8 @@ const AboutThomazPage: React.FC = () => {
               },
               {
                 name: "U Htet Aung",
-                company: "PRO 1 Global Home Center",
-                position: "Myanmar Head of IT dept",
+                company: "Pro1 Global Home Center Myanmar",
+                position: "Head of IT dept",
                 email: "developho@gmail.com",
                 color: "from-purple-400 to-pink-500"
               },
