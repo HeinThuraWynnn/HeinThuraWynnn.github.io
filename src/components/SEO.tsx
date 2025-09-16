@@ -1,55 +1,75 @@
 import React from 'react';
-
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
-const SEO: React.FC = () => {
+interface SEOProps {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  image?: string;
+  url?: string;
+}
+
+const SEO: React.FC<SEOProps> = ({ 
+  title = 'Wynn Solutions Myanmar - Lead Software Engineer & AI Solutions Provider',
+  description = 'Leading software and AI solutions provider in Myanmar. Expert in Flutter, Kotlin, PHP development with 9+ years experience. Custom web & mobile applications, QA services.',
+  keywords = 'software development myanmar, AI solutions, flutter developer, kotlin developer, PHP laravel, mobile app development, web development, QA testing, Hein Thura Wynn, Wynn Solutions',
+  image = 'https://wynnsolutionsmyanmar.com/og-image.jpg',
+  url
+}) => {
+  const location = useLocation();
+  const currentUrl = url || `https://wynnsolutionsmyanmar.com${location.pathname}`;
+
   useEffect(() => {
     // Set document title
-    document.title = 'Wynn Solutions Myanmar - Software & AI Solutions Provider';
+    document.title = title;
     
-    // Set meta description
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Leading software and AI solutions provider in Myanmar. Expert in Flutter, Kotlin, PHP development with 9+ years experience. Custom web & mobile applications, QA services.');
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = 'Leading software and AI solutions provider in Myanmar. Expert in Flutter, Kotlin, PHP development with 9+ years experience. Custom web & mobile applications, QA services.';
-      document.head.appendChild(meta);
-    }
-    
-    // Set meta keywords
-    const metaKeywords = document.querySelector('meta[name="keywords"]');
-    if (metaKeywords) {
-      metaKeywords.setAttribute('content', 'software development myanmar, AI solutions, flutter developer, kotlin developer, PHP laravel, mobile app development, web development, QA testing, Hein Thura Wynn');
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'keywords';
-      meta.content = 'software development myanmar, AI solutions, flutter developer, kotlin developer, PHP laravel, mobile app development, web development, QA testing, Hein Thura Wynn';
-      document.head.appendChild(meta);
-    }
-    
-    // Set Open Graph tags
-    const ogTags = [
-      { property: 'og:title', content: 'Wynn Solutions Myanmar - Software & AI Solutions Provider' },
-      { property: 'og:description', content: 'Leading software and AI solutions provider in Myanmar. Expert in Flutter, Kotlin, PHP development with 9+ years experience.' },
-      { property: 'og:url', content: 'https://wynnsolutionsmyanmar.com' },
-      { property: 'og:type', content: 'website' },
-      { property: 'og:image', content: 'https://wynnsolutionsmyanmar.com/og-image.jpg' }
-    ];
-    
-    ogTags.forEach(tag => {
-      let meta = document.querySelector(`meta[property="${tag.property}"]`);
+    // Set or update meta tags
+    const updateMetaTag = (name: string, content: string, isProperty = false) => {
+      const selector = isProperty ? `meta[property="${name}"]` : `meta[name="${name}"]`;
+      let meta = document.querySelector(selector) as HTMLMetaElement;
+      
       if (meta) {
-        meta.setAttribute('content', tag.content);
+        meta.setAttribute('content', content);
       } else {
         meta = document.createElement('meta');
-        meta.setAttribute('property', tag.property);
-        meta.setAttribute('content', tag.content);
+        if (isProperty) {
+          meta.setAttribute('property', name);
+        } else {
+          meta.setAttribute('name', name);
+        }
+        meta.setAttribute('content', content);
         document.head.appendChild(meta);
       }
-    });
-  }, []);
+    };
+
+    // Update basic meta tags
+    updateMetaTag('description', description);
+    updateMetaTag('keywords', keywords);
+    
+    // Update Open Graph tags
+    updateMetaTag('og:title', title, true);
+    updateMetaTag('og:description', description, true);
+    updateMetaTag('og:url', currentUrl, true);
+    updateMetaTag('og:image', image, true);
+    
+    // Update Twitter tags
+    updateMetaTag('twitter:title', title, true);
+    updateMetaTag('twitter:description', description, true);
+    updateMetaTag('twitter:image', image, true);
+    updateMetaTag('twitter:url', currentUrl, true);
+    
+    // Update canonical URL
+    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    if (canonical) {
+      canonical.setAttribute('href', currentUrl);
+    } else {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      canonical.setAttribute('href', currentUrl);
+      document.head.appendChild(canonical);
+    }
+  }, [title, description, keywords, image, currentUrl]);
 
   return null;
 };

@@ -484,7 +484,7 @@ const AboutThomazPage: React.FC = () => {
                   title: "Web Developer",
                   company: "HTET UK Group",
                   period: "2015 - 2018",
-                  description: "Contributed to projects including the development of a CYM Management System, Student Attendance System for the University of Dental Medicine, Find Property mobile application, and various portfolio websites.",
+                  description: "Contributed to projects including the development of a GYM Management System, Student Attendance System for the University of Dental Medicine, Find Property mobile application, and various portfolio websites.",
                   side: "right"
                 }
               ].map((job, index) => (
@@ -674,16 +674,16 @@ const AboutThomazPage: React.FC = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                title: "Technology & Innovation",
-                subtitle: "Marketplace 2017",
+                title: "Technology & Innovation Marketplace 2017",
+                subtitle: "(MyHealthcare)",
                 achievement: "(Top 6 Finalist)",
                 issuer: "Issued by FHI360, USAID & Phandeeyar",
                 color: "from-yellow-400 to-orange-500"
               },
               {
                 title: "Startup Challenge Myanmar 2015",
-                subtitle: "(Top Ten Finalist)",
-                achievement: "",
+                subtitle: "(UniversityLabExchangeProgram)",
+                achievement: "(Top Ten Finalist)",
                 issuer: "Issued by 2015 Startup Challenge Myanmar",
                 color: "from-purple-400 to-pink-500"
               },
