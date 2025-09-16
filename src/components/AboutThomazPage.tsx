@@ -14,7 +14,9 @@ import {
   GraduationCap,
   ExternalLink,
   BookOpen,
-  Users
+  Users,
+  PencilRulerIcon,
+  ToolCaseIcon
 } from 'lucide-react';
 
 const AboutThomazPage: React.FC = () => {
@@ -276,25 +278,19 @@ const AboutThomazPage: React.FC = () => {
               },
               {
                 title: "Tools & Platforms",
-                icon: Database,
+                icon: ToolCaseIcon,
                 color: "from-green-400 to-cyan-500",
                 skills: ["Git, Docker, Postman", "VS Code, Xcode, Android Studio", "CI/CD"]
               },
               {
                 title: "Cloud & Databases",
-                icon: () => (
-                  <img 
-                    src="/w-logo.svg" 
-                    alt="Wynn Solutions Logo" 
-                    className="w-6 h-6 filter brightness-0 invert"
-                  />
-                ),
+                icon: Database,
                 color: "from-orange-400 to-red-500",
                 skills: ["AWS, DigitalOcean, Huawei Cloud", "Firebase, SQLite, PostgreSQL", "MySQL"]
               },
               {
                 title: "Design & UX",
-                icon: Brain,
+                icon: PencilRulerIcon,
                 color: "from-pink-400 to-purple-500",
                 skills: ["Material Design, Figma", "Adobe Photoshop"]
               },
