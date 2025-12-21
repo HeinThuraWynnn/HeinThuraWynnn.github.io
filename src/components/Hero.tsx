@@ -3,6 +3,11 @@ import { motion } from 'framer-motion';
 import { ArrowDown, Github, Linkedin, Mail, Phone } from 'lucide-react';
 
 const Hero: React.FC = () => {
+  const startYear = 2015;
+  const startMonth = 11; // December
+  const now = new Date();
+  const yearsOfExperience = now.getFullYear() - startYear - (now.getMonth() < startMonth ? 1 : 0);
+
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
       {/* Animated Background */}
@@ -89,7 +94,7 @@ const Hero: React.FC = () => {
               transition={{ delay: 0.8 }}
               className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
             >
-              9+ years of expertise in Flutter, Kotlin, and PHP. Specializing in scalable mobile/web applications, 
+              {yearsOfExperience}+ years of expertise in Flutter, Kotlin, and PHP. Specializing in scalable mobile/web applications, 
               CI/CD pipelines, and QA-driven development. Building the future with cutting-edge technology.
             </motion.p>
           </div>
