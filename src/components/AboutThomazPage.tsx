@@ -20,6 +20,11 @@ import {
 } from 'lucide-react';
 
 const AboutThomazPage: React.FC = () => {
+  const startYear = 2015;
+  const startMonth = 11; // December
+  const now = new Date();
+  const yearsOfExperience = now.getFullYear() - startYear - (now.getMonth() < startMonth ? 1 : 0);
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -155,7 +160,7 @@ const AboutThomazPage: React.FC = () => {
                 transition={{ delay: 0.8 }}
                 className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
               >
-                Project Manager (PMP candidate) with 9+ years of combined experience in project
+                Project Manager (PMP candidate) with {yearsOfExperience}+ years of combined experience in project
                 leadership, QA governance, and software engineering. Skilled at bridging business goals and
                 technical execution in multinational and BOI corporate environments. Known for delivering
                 projects on time, improving product quality, and leading teams to high performance.

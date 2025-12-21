@@ -13,6 +13,11 @@ import {
 } from 'lucide-react';
 
 const Contact = () => {
+  const startYear = 2015;
+  const startMonth = 11; // December
+  const now = new Date();
+  const yearsOfExperience = now.getFullYear() - startYear - (now.getMonth() < startMonth ? 1 : 0);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -164,7 +169,7 @@ const Contact = () => {
                 Get In Touch
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mb-8">
-                With 9+ years of experience in software development, I'm passionate about 
+                With {yearsOfExperience}+ years of experience in software development, I'm passionate about 
                 creating robust, scalable solutions. Whether you need mobile apps, web applications, 
                 ERP systems, or QA services, let's discuss how we can bring your vision to life.
               </p>

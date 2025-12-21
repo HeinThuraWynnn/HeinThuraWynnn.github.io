@@ -3,6 +3,11 @@ import { motion } from 'framer-motion';
 import { Calendar, MapPin, Building } from 'lucide-react';
 
 const Experience: React.FC = () => {
+  const startYear = 2015;
+  const startMonth = 11; // December
+  const now = new Date();
+  const yearsOfExperience = now.getFullYear() - startYear - (now.getMonth() < startMonth ? 1 : 0);
+
   const experiences = [
     {
       title: "QA Lead & Test Owner",
@@ -92,7 +97,7 @@ const Experience: React.FC = () => {
             Work <span className="gradient-text">Experience</span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            9+ years of professional experience in software development and quality assurance
+            {yearsOfExperience}+ years of professional experience in software development and quality assurance
           </p>
         </motion.div>
 

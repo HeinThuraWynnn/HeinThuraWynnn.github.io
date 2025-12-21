@@ -3,6 +3,11 @@ import { motion } from 'framer-motion';
 import { Download, Mail, Phone, MapPin, Calendar } from 'lucide-react';
 
 const Resume: React.FC = () => {
+  const startYear = 2015;
+  const startMonth = 11; // December
+  const now = new Date();
+  const yearsOfExperience = now.getFullYear() - startYear - (now.getMonth() < startMonth ? 1 : 0);
+
   return (
     <section className="py-20 bg-white dark:bg-gray-900 min-h-screen">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -53,7 +58,7 @@ const Resume: React.FC = () => {
               Professional Summary
             </h2>
             <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-              Experienced Lead Software Engineer with 9+ years of expertise in mobile and web development. 
+              Experienced Lead Software Engineer with {yearsOfExperience}+ years of expertise in mobile and web development. 
               Specialized in Flutter, Kotlin, PHP, and AI integration. Proven track record in building 
               scalable applications, implementing CI/CD pipelines, and leading QA-driven development processes.
             </p>

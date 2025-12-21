@@ -3,6 +3,11 @@ import { motion } from 'framer-motion';
 import { Award, GraduationCap, Calendar } from 'lucide-react';
 
 const About: React.FC = () => {
+  const startYear = 2015;
+  const startMonth = 11; // December
+  const now = new Date();
+  const yearsOfExperience = now.getFullYear() - startYear - (now.getMonth() < startMonth ? 1 : 0);
+
   const education = [
     {
       degree: "Bachelor of Engineering",
@@ -81,7 +86,7 @@ const About: React.FC = () => {
               </h3>
               <div className="space-y-4 text-gray-600 dark:text-gray-300">
                 <p className="leading-relaxed">
-                  Lead Software Engineer with 9+ years of expertise in Flutter, Kotlin, and PHP, 
+                  Lead Software Engineer with {yearsOfExperience}+ years of expertise in Flutter, Kotlin, and PHP, 
                   specializing in scalable mobile/web applications, CI/CD pipelines, and QA-driven development.
                 </p>
                 <p className="leading-relaxed">

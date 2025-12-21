@@ -15,6 +15,10 @@ import './App.css';
 
 function App() {
   // const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const startYear = 2015;
+  const startMonth = 11; // December
+  const now = new Date();
+  const yearsOfExperience = now.getFullYear() - startYear - (now.getMonth() < startMonth ? 1 : 0);
 
   useEffect(() => {
     // Always set dark mode
@@ -224,7 +228,7 @@ function App() {
                   transition={{ delay: 0.7, duration: 1 }}
                   className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed drop-shadow-sm"
                 >
-                  Delivering cutting-edge technology solutions with 9+ years of expertise in mobile apps, 
+                  Delivering cutting-edge technology solutions with {yearsOfExperience}+ years of expertise in mobile apps, 
                   web development, AI integration, and quality assurance services.
                 </motion.p>
               </div>
