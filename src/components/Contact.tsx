@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { 
   Mail, 
   Phone, 
@@ -29,6 +30,9 @@ const Contact = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [captchaError, setCaptchaError] = useState<string | null>(null);
+  const { executeRecaptcha } = useGoogleReCaptcha();
+  const hasRecaptcha = Boolean(import.meta.env.VITE_RECAPTCHA_SITE_KEY);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -42,8 +46,24 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
-    
+    setCaptchaError(null);
+
     try {
+      let captchaToken: string | undefined;
+      if (hasRecaptcha) {
+        if (!executeRecaptcha) {
+          setCaptchaError('reCAPTCHA is not ready. Please try again.');
+          setIsSubmitting(false);
+          return;
+        }
+        captchaToken = await executeRecaptcha('contact_form');
+        if (!captchaToken) {
+          setCaptchaError('Failed to verify reCAPTCHA. Please try again.');
+          setIsSubmitting(false);
+          return;
+        }
+      }
+
       // EmailJS credentials from environment variables
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
@@ -58,6 +78,7 @@ const Contact = () => {
         message: formData.message,
         project_type: formData.projectType,
         to_email: 'wynnsolutionsmyanmar@gmail.com',
+        ...(captchaToken ? { 'g-recaptcha-response': captchaToken } : {}),
         submission_date: new Date().toLocaleString('en-US', {
           year: 'numeric',
           month: 'long',
@@ -238,6 +259,19 @@ const Contact = () => {
             </h3>
             
             {/* Status Messages */}
+            {captchaError && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-6 p-4 bg-red-500/20 border border-red-500/30 rounded-lg text-red-400 flex items-center gap-3"
+              >
+                <XCircle className="w-5 h-5" />
+                <div>
+                  <p className="font-semibold">{captchaError}</p>
+                  <p className="text-sm opacity-90">This helps prevent automated spam submissions.</p>
+                </div>
+              </motion.div>
+            )}
             {submitStatus === 'success' && (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
