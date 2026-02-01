@@ -18,6 +18,13 @@ import { useTheme } from '../context/ThemeContext';
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const { theme } = useTheme();
+  const [email, setEmail] = useState('');
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    window.location.href = `mailto:info@wynnsolutionsmyanmar.com?subject=Newsletter Subscription&body=Please subscribe me to the newsletter. Email: ${email}`;
+    setEmail('');
+  };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
