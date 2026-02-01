@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   Mail, 
@@ -479,18 +480,18 @@ const Footer = () => {
             </motion.div>
             
             <div className="flex items-center space-x-6">
-              <a
-                href="/privacy"
+              <Link
+                to="/privacy"
                 className="text-muted-foreground hover:text-cyan-400 transition-colors duration-300 text-sm"
               >
                 Privacy Policy
-              </a>
-              <a
-                href="/terms"
+              </Link>
+              <Link
+                to="/terms"
                 className="text-muted-foreground hover:text-cyan-400 transition-colors duration-300 text-sm"
               >
                 Terms of Service
-              </a>
+              </Link>
               
               <motion.button
                 onClick={scrollToTop}

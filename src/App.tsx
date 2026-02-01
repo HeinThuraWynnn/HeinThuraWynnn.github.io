@@ -11,6 +11,8 @@ import Footer from './components/Footer';
 import Navigation from './components/Navigation';
 import About from './components/About';
 import AboutThomazPage from './components/AboutThomazPage';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import TermsOfService from './components/TermsOfService';
 import './App.css';
 
 function App() {
@@ -329,6 +331,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/about-thomaz" element={<AboutThomazPageWithLayout />} />
           <Route path="/resume" element={<AboutThomazPageWithLayout />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfService />} />
         </Routes>
     
         <Footer />
