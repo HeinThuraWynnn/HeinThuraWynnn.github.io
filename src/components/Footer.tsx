@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Mail, 
@@ -410,10 +411,13 @@ const Footer = () => {
                 Tech Newsletter
               </h5>
               
-              <div className="flex">
+              <form onSubmit={handleSubscribe} className="flex">
                 <input
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="Your email"
+                  required
                   className={`flex-1 min-w-0 px-3 py-2 rounded-xl sm:rounded-l-xl sm:rounded-r-none text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 placeholder-gray-400 backdrop-blur-sm ${
                     theme === 'dark' 
                       ? 'text-white bg-black/20 border border-cyan-500/20' 
@@ -421,6 +425,7 @@ const Footer = () => {
                   }`}
                 />
                 <motion.button 
+                  type="submit"
                   className="px-4 py-2 rounded-xl sm:rounded-l-none sm:rounded-r-xl transition-all duration-300 border border-cyan-500/30 flex-shrink-0"
                   style={{
                     background: 'linear-gradient(135deg, rgba(6,182,212,0.3) 0%, rgba(168,85,247,0.3) 100%)',
@@ -434,7 +439,7 @@ const Footer = () => {
                 >
                   <Mail className="w-4 h-4" />
                 </motion.button>
-              </div>
+              </form>
             </motion.div>
           </motion.div>
         </div>

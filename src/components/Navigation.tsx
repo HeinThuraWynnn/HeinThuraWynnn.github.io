@@ -299,34 +299,6 @@ const Navigation = () => {
                   }}
                 />
               </motion.button>
-              
-              {/* AI Assistant Button */}
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="ml-2 px-4 py-2 rounded-xl text-sm font-medium text-white relative overflow-hidden group"
-                style={{
-                  background: 'linear-gradient(135deg, #06b6d4 0%, #8b5cf6 50%, #ec4899 100%)',
-                  boxShadow: '0 0 20px rgba(6,182,212,0.3)',
-                }}
-              >
-                <span className="relative z-10 flex items-center space-x-2">
-                  <Sparkles className="w-4 h-4" />
-                  <span>AI Chat</span>
-                </span>
-                
-                {/* Animated background */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-cyan-600 via-purple-600 to-pink-600"
-                  animate={{
-                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                  }}
-                />
-              </motion.button>
             </div>
 
             {/* Mobile menu button */}
@@ -450,22 +422,7 @@ const Navigation = () => {
                   );
                 })}
                 
-                {/* Mobile AI Chat Button */}
-                <motion.button
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: navItems.length * 0.1 }}
-                  className="w-full mt-4 px-4 py-3 rounded-xl text-base font-medium text-white"
-                  style={{
-                    background: 'linear-gradient(135deg, #06b6d4 0%, #8b5cf6 50%, #ec4899 100%)',
-                    boxShadow: '0 0 20px rgba(6,182,212,0.3)',
-                  }}
-                >
-                  <span className="flex items-center justify-center space-x-2">
-                    <Sparkles className="w-5 h-5" />
-                    <span>AI Chat Assistant</span>
-                  </span>
-                </motion.button>
+                {/* Mobile AI Chat Button - Removed */}
               </div>
             </motion.div>
           )}
