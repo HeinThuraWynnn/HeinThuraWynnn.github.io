@@ -14,7 +14,7 @@ const SEO: React.FC<SEOProps> = ({
   title = 'Wynn Solutions Myanmar - Lead Software Engineer & AI Solutions Provider',
   description = `Leading software and AI solutions provider in Myanmar. Expert in Flutter, Kotlin, PHP development with ${new Date().getFullYear() - 2015 - (new Date().getMonth() < 11 ? 1 : 0)}+ years experience. Custom web & mobile applications, QA services.`,
   keywords = 'software development myanmar, AI solutions, flutter developer, kotlin developer, PHP laravel, mobile app development, web development, QA testing, Hein Thura Wynn, Wynn Solutions',
-  image = 'https://wynnsolutionsmyanmar.com/og-image.jpg',
+  image = 'https://wynnsolutionsmyanmar.com/w-logo.png',
   url
 }) => {
   const location = useLocation();

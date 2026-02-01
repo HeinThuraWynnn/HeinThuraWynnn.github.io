@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import SEO from './SEO';
 import { 
   Github, 
   Linkedin, 
@@ -18,57 +19,63 @@ import {
   PencilRulerIcon,
   ToolCaseIcon
 } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 const AboutThomazPage: React.FC = () => {
   const startYear = 2015;
   const startMonth = 11; // December
   const now = new Date();
   const yearsOfExperience = now.getFullYear() - startYear - (now.getMonth() < startMonth ? 1 : 0);
+  const { theme } = useTheme();
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen transition-colors duration-300">
+      <SEO 
+        title="Hein Thura Wynn - Lead Software Engineer & Project Manager | Wynn Solutions"
+        description="Hein Thura Wynn (Thomaz) is a Lead Software Engineer and PMP Candidate with expertise in Flutter, Kotlin, PHP, and AI solutions. View portfolio, skills, and experience."
+        keywords="Hein Thura Wynn, Thomaz, Software Engineer Myanmar, Project Manager PMP, Flutter Developer, AI Solutions Expert"
+        url="https://wynnsolutionsmyanmar.com/about-thomaz"
+        image="https://wynnsolutionsmyanmar.com/thomaz.jpeg"
+      />
       {/* Hero Section */}
       <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
         {/* Animated Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-50 via-secondary-50 to-accent-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-          <div className="absolute inset-0" style={{
-            background: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-            opacity: 0.2
-          }}
-          ></div>
+        <div className="absolute inset-0 transition-colors duration-500">
+          {theme === 'dark' ? (
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+               <div className="absolute inset-0" style={{
+                background: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+                opacity: 0.2
+              }}></div>
+            </div>
+          ) : (
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100 opacity-80" />
+          )}
         </div>
 
-        {/* Floating Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          {[...Array(6)].map((_, i) => (
-            <motion.div
-            animate={{
-                backgroundImage: [
-                  "linear-gradient(45deg, #22d3ee, #a855f7)",
-                  "linear-gradient(225deg, #a855f7, #22d3ee)",
-                  "linear-gradient(45deg, #22d3ee, #a855f7)"
-                ]
-              }}
-              transition={{ duration: 3, repeat: Infinity }}
-              key={i}
-              className="absolute w-20 h-20 bg-gradient-to-r from-primary-400/20 to-accent-400/20 rounded-full blur-xl"
-            //   animate={{
-            //     x: [0, 100, 0],
-            //     y: [0, -100, 0],
-            //     scale: [1, 1.2, 1],
-            //   }}
-            //   transition={{
-            //     duration: 10 + i * 2,
-            //     repeat: Infinity,
-            //     ease: "easeInOut",
-            //   }}
-              style={{
-                right: `${10 + i * 15}%`,
-                top: `${10 + i * 10}%`,
-              }}
-            />
-          ))}
-        </div>
+        {/* Floating Elements - Dark Mode Only */}
+        {theme === 'dark' && (
+          <div className="absolute inset-0 overflow-hidden">
+            {[...Array(6)].map((_, i) => (
+              <motion.div
+                key={i}
+                animate={{
+                  backgroundImage: [
+                    "linear-gradient(45deg, #22d3ee, #a855f7)",
+                    "linear-gradient(225deg, #a855f7, #22d3ee)",
+                    "linear-gradient(45deg, #22d3ee, #a855f7)"
+                  ]
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+                className="absolute w-20 h-20 bg-gradient-to-r from-cyan-400/20 to-purple-500/20 rounded-full blur-xl"
+                style={{
+                  right: `${10 + i * 15}%`,
+                  top: `${10 + i * 10}%`,
+                }}
+              />
+            ))}
+          </div>
+        )}
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -84,8 +91,8 @@ const AboutThomazPage: React.FC = () => {
               transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
               className="relative mx-auto w-32 h-32 md:w-40 md:h-40"
             >
-              <div className="w-full h-full rounded-full bg-gradient-to-r from-primary-400 to-accent-400 p-1">
-                <div className="w-full h-full rounded-full overflow-hidden bg-white dark:bg-gray-800">
+              <div className="w-full h-full rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 p-1">
+                <div className={`w-full h-full rounded-full overflow-hidden ${theme === 'dark' ? 'bg-gray-800' : 'bg-white'}`}>
                   <img 
                     src="/thomaz.jpeg" 
                     alt="Hein Thura Wynn (Thomaz)" 
@@ -93,45 +100,48 @@ const AboutThomazPage: React.FC = () => {
                   />
                 </div>
               </div>
-              <motion.div
-                className="absolute -inset-4 rounded-full bg-gradient-to-r from-primary-400 to-accent-400 opacity-20 blur-lg"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-              />
               
-              {/* Enhanced glow effect */}
-              <motion.div
-                className="absolute -inset-6 rounded-full bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 opacity-10 blur-2xl"
-                animate={{ 
-                  scale: [1, 1.2, 1],
-                  opacity: [0.1, 0.2, 0.1]
-                }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              />
-              
-              {/* Floating particles around image */}
-              {[...Array(6)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full"
-                  style={{
-                    left: '50%',
-                    top: '50%',
-                  }}
-                  animate={{
-                    x: Math.cos((i * 60) * Math.PI / 180) * 60,
-                    y: Math.sin((i * 60) * Math.PI / 180) * 60,
-                    opacity: [0, 1, 0],
-                    scale: [0.5, 1, 0.5]
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    delay: i * 0.5,
-                    ease: "easeInOut"
-                  }}
-                />
-              ))}
+              {/* Dark Mode Glow Effects */}
+              {theme === 'dark' && (
+                <>
+                  <motion.div
+                    className="absolute -inset-4 rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 opacity-20 blur-lg"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                  />
+                  <motion.div
+                    className="absolute -inset-6 rounded-full bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 opacity-10 blur-2xl"
+                    animate={{ 
+                      scale: [1, 1.2, 1],
+                      opacity: [0.1, 0.2, 0.1]
+                    }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                  {/* Floating particles around image */}
+                  {[...Array(6)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute w-2 h-2 bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full"
+                      style={{
+                        left: '50%',
+                        top: '50%',
+                      }}
+                      animate={{
+                        x: Math.cos((i * 60) * Math.PI / 180) * 60,
+                        y: Math.sin((i * 60) * Math.PI / 180) * 60,
+                        opacity: [0, 1, 0],
+                        scale: [0.5, 1, 0.5]
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        delay: i * 0.5,
+                        ease: "easeInOut"
+                      }}
+                    />
+                  ))}
+                </>
+              )}
             </motion.div>
 
             {/* Name and Title */}
@@ -140,7 +150,7 @@ const AboutThomazPage: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white"
+                className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground transition-colors duration-300"
               >
                 Hein Thura Wynn @ Thomaz
               </motion.h1>
@@ -158,7 +168,7 @@ const AboutThomazPage: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8 }}
-                className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
+                className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed transition-colors duration-300"
               >
                 Project Manager (PMP candidate) with {yearsOfExperience}+ years of combined experience in project
                 leadership, QA governance, and software engineering. Skilled at bridging business goals and
@@ -172,7 +182,7 @@ const AboutThomazPage: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.0 }}
-              className="flex flex-wrap justify-center gap-4 text-sm text-gray-600 dark:text-gray-300"
+              className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground transition-colors duration-300"
             >
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4" />
@@ -211,7 +221,11 @@ const AboutThomazPage: React.FC = () => {
                   href={social.href}
                   target={social.href.startsWith('http') ? '_blank' : undefined}
                   rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="p-3 rounded-full bg-white/10 dark:bg-gray-800/50 backdrop-blur-sm border border-white/20 text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-all duration-300"
+                  className={`p-3 rounded-full backdrop-blur-sm border transition-all duration-300 ${
+                    theme === 'dark' 
+                      ? 'bg-white/10 border-white/20 text-gray-300 hover:text-cyan-400' 
+                      : 'bg-white border-gray-200 text-gray-600 hover:text-blue-600 hover:border-blue-200 shadow-sm hover:shadow-md'
+                  }`}
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0, y: 20 }}
@@ -226,7 +240,7 @@ const AboutThomazPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Skills Section - Update the Cloud & Databases skill icon */}
+      {/* Skills Section */}
       <section id="skills" className="py-32 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -239,10 +253,14 @@ const AboutThomazPage: React.FC = () => {
             <motion.h2 
               className="text-5xl md:text-6xl font-bold mb-6"
             >
-              <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+              <span className={`bg-clip-text text-transparent ${
+                theme === 'dark' 
+                  ? 'bg-gradient-to-r from-white to-gray-300' 
+                  : 'bg-gradient-to-r from-gray-900 to-gray-600'
+              }`}>
                 Technical 
               </span>
-              <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent ml-2">
                 Skills
               </span>
             </motion.h2>
@@ -262,7 +280,7 @@ const AboutThomazPage: React.FC = () => {
                   <img 
                     src="/w-logo.svg" 
                     alt="Wynn Solutions Logo" 
-                    className="w-6 h-6 filter brightness-0 invert"
+                    className={`w-6 h-6 ${theme === 'dark' ? 'filter brightness-0 invert' : ''}`}
                   />
                 ),
                 color: "from-indigo-400 to-purple-500",
@@ -318,7 +336,11 @@ const AboutThomazPage: React.FC = () => {
                   rotateY: 5,
                   scale: 1.02,
                 }}
-                className="group relative p-8 rounded-3xl bg-white/5 backdrop-blur-2xl border border-white/10 hover:border-white/20 transition-all duration-500"
+                className={`group relative p-8 rounded-3xl transition-all duration-500 ${
+                  theme === 'dark'
+                    ? 'bg-white/5 backdrop-blur-2xl border border-white/10 hover:border-white/20'
+                    : 'bg-white border border-gray-100 shadow-lg hover:shadow-xl'
+                }`}
                 style={{
                   transformStyle: "preserve-3d",
                   borderRadius: `${30 + Math.random() * 20}px ${40 + Math.random() * 20}px ${35 + Math.random() * 20}px ${25 + Math.random() * 20}px`,
@@ -326,7 +348,9 @@ const AboutThomazPage: React.FC = () => {
               >
                 {/* Animated Background */}
                 <motion.div
-                  className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${skill.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
+                  className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${skill.color} transition-opacity duration-500 ${
+                    theme === 'dark' ? 'opacity-0 group-hover:opacity-10' : 'opacity-0 group-hover:opacity-5'
+                  }`}
                   animate={{
                     scale: [1, 1.05, 1],
                   }}
@@ -338,7 +362,7 @@ const AboutThomazPage: React.FC = () => {
                     <div className={`p-3 rounded-2xl bg-gradient-to-r ${skill.color} mr-4`}>
                       <skill.icon className="h-6 w-6 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">
+                    <h3 className="text-xl font-bold text-foreground transition-colors">
                       {skill.title}
                     </h3>
                   </div>
@@ -349,10 +373,10 @@ const AboutThomazPage: React.FC = () => {
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.1 + skillIndex * 0.05 }}
-                        className="flex items-center text-gray-300 group-hover:text-white transition-colors"
+                        className="flex items-center text-foreground transition-colors"
                       >
                         <div className="w-2 h-2 rounded-full bg-gradient-to-r from-cyan-400 to-purple-400 mr-3 flex-shrink-0" />
-                        <span className="text-sm">{item}</span>
+                        <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">{item}</span>
                       </motion.div>
                     ))}
                   </div>
@@ -374,10 +398,14 @@ const AboutThomazPage: React.FC = () => {
             className="text-center mb-20"
           >
             <h2 className="text-5xl md:text-6xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+              <span className={`bg-clip-text text-transparent ${
+                theme === 'dark' 
+                  ? 'bg-gradient-to-r from-white to-gray-300' 
+                  : 'bg-gradient-to-r from-gray-900 to-gray-600'
+              }`}>
                 Professional 
               </span>
-              <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent ml-2">
                 Training
               </span>
             </h2>
@@ -407,7 +435,11 @@ const AboutThomazPage: React.FC = () => {
                   y: -8,
                   rotateX: 5,
                 }}
-                className="group relative p-6 rounded-3xl bg-white/5 backdrop-blur-2xl border border-white/10 hover:border-cyan-400/50 transition-all duration-500"
+                className={`group relative p-6 rounded-3xl transition-all duration-500 ${
+                  theme === 'dark'
+                    ? 'bg-white/5 backdrop-blur-2xl border border-white/10 hover:border-cyan-400/50'
+                    : 'bg-white border border-gray-100 shadow-lg hover:shadow-xl hover:border-cyan-400/30'
+                }`}
                 style={{
                   transformStyle: "preserve-3d",
                   borderRadius: `${25 + Math.random() * 15}px ${35 + Math.random() * 15}px ${30 + Math.random() * 15}px ${20 + Math.random() * 15}px`,
@@ -429,7 +461,7 @@ const AboutThomazPage: React.FC = () => {
                   <div className="p-3 rounded-2xl bg-gradient-to-r from-cyan-400 to-purple-500 mr-4 flex-shrink-0">
                     <BookOpen className="h-6 w-6 text-white" />
                   </div>
-                  <h3 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors leading-tight">
+                  <h3 className="text-lg font-bold text-foreground transition-colors leading-tight">
                     {training}
                   </h3>
                 </div>
@@ -450,10 +482,14 @@ const AboutThomazPage: React.FC = () => {
             className="text-center mb-20"
           >
             <h2 className="text-5xl md:text-6xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+              <span className={`bg-clip-text text-transparent ${
+                theme === 'dark' 
+                  ? 'bg-gradient-to-r from-white to-gray-300' 
+                  : 'bg-gradient-to-r from-gray-900 to-gray-600'
+              }`}>
                 Work 
               </span>
-              <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent ml-2">
                 Experience
               </span>
             </h2>
@@ -533,7 +569,11 @@ const AboutThomazPage: React.FC = () => {
                   
                   {/* Content Card */}
                   <motion.div
-                    className={`w-5/12 p-8 rounded-3xl bg-white/5 backdrop-blur-2xl border border-white/10 hover:border-cyan-400/50 transition-all duration-500 group ${job.side === 'left' ? 'mr-auto' : 'ml-auto'}`}
+                    className={`w-5/12 p-8 rounded-3xl transition-all duration-500 group ${job.side === 'left' ? 'mr-auto' : 'ml-auto'} ${
+                      theme === 'dark'
+                        ? 'bg-white/5 backdrop-blur-2xl border border-white/10 hover:border-cyan-400/50'
+                        : 'bg-white border border-gray-100 shadow-lg hover:shadow-xl hover:border-cyan-400/30'
+                    }`}
                     whileHover={{ 
                       scale: 1.02, 
                       y: -5,
@@ -559,18 +599,18 @@ const AboutThomazPage: React.FC = () => {
                     <div className="relative z-10">
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                         <div>
-                          <h3 className="text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">
+                          <h3 className="text-2xl font-bold text-foreground transition-colors">
                             {job.title}
                           </h3>
                           <p className="text-lg font-semibold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
                             {job.company}
                           </p>
                         </div>
-                        <div className="text-gray-400 font-medium mt-2 md:mt-0">
+                        <div className="text-muted-foreground font-medium mt-2 md:mt-0">
                           {job.period}
                         </div>
                       </div>
-                      <p className="text-gray-300 leading-relaxed group-hover:text-white transition-colors">
+                      <p className="text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors">
                         {job.description}
                       </p>
                     </div>
@@ -634,14 +674,20 @@ const AboutThomazPage: React.FC = () => {
                   rotateY: 5,
                   scale: 1.02,
                 }}
-                className="group relative p-8 rounded-3xl bg-white/5 backdrop-blur-2xl border border-white/10 hover:border-white/20 transition-all duration-500"
+                className={`group relative p-8 rounded-3xl transition-all duration-500 ${
+                  theme === 'dark'
+                    ? 'bg-white/5 backdrop-blur-2xl border border-white/10 hover:border-white/20'
+                    : 'bg-white border border-gray-100 shadow-lg hover:shadow-xl'
+                }`}
                 style={{
                   transformStyle: "preserve-3d",
                   borderRadius: `${30 + Math.random() * 20}px ${40 + Math.random() * 20}px ${35 + Math.random() * 20}px ${25 + Math.random() * 20}px`,
                 }}
               >
                 <motion.div
-                  className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${edu.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
+                  className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${edu.color} transition-opacity duration-500 ${
+                    theme === 'dark' ? 'opacity-0 group-hover:opacity-10' : 'opacity-0 group-hover:opacity-5'
+                  }`}
                   animate={{
                     scale: [1, 1.05, 1],
                   }}
@@ -654,16 +700,16 @@ const AboutThomazPage: React.FC = () => {
                       <GraduationCap className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">
+                      <h3 className="text-xl font-bold text-foreground transition-colors">
                         {edu.degree}
                       </h3>
-                      <p className="text-gray-400">{edu.field}</p>
+                      <p className="text-muted-foreground group-hover:text-foreground transition-colors">{edu.field}</p>
                     </div>
                   </div>
                   <p className={`font-semibold mb-2 bg-gradient-to-r ${edu.color} bg-clip-text text-transparent`}>
                     {edu.school}
                   </p>
-                  <p className="text-gray-400">{edu.period}</p>
+                  <p className="text-muted-foreground">{edu.period}</p>
                 </div>
               </motion.div>
             ))}
@@ -682,10 +728,14 @@ const AboutThomazPage: React.FC = () => {
             className="text-center mb-20"
           >
             <h2 className="text-5xl md:text-6xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+              <span className={`bg-clip-text text-transparent ${
+                theme === 'dark' 
+                  ? 'bg-gradient-to-r from-white to-gray-300' 
+                  : 'bg-gradient-to-r from-gray-900 to-gray-600'
+              }`}>
                 Awards & 
               </span>
-              <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent ml-2">
                 Honors
               </span>
             </h2>
@@ -726,14 +776,20 @@ const AboutThomazPage: React.FC = () => {
                   y: -8,
                   rotateX: 5,
                 }}
-                className="group relative p-8 rounded-3xl bg-white/5 backdrop-blur-2xl border border-white/10 hover:border-yellow-400/50 transition-all duration-500"
+                className={`group relative p-8 rounded-3xl transition-all duration-500 ${
+                  theme === 'dark'
+                    ? 'bg-white/5 backdrop-blur-2xl border border-white/10 hover:border-yellow-400/50'
+                    : 'bg-white border border-gray-100 shadow-lg hover:shadow-xl hover:border-yellow-400/30'
+                }`}
                 style={{
                   transformStyle: "preserve-3d",
                   borderRadius: `${30 + Math.random() * 20}px ${40 + Math.random() * 20}px ${35 + Math.random() * 20}px ${25 + Math.random() * 20}px`,
                 }}
               >
                 <motion.div
-                  className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${award.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
+                  className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${award.color} transition-opacity duration-500 ${
+                    theme === 'dark' ? 'opacity-0 group-hover:opacity-10' : 'opacity-0 group-hover:opacity-5'
+                  }`}
                   animate={{
                     background: [
                       `linear-gradient(45deg, ${award.color.split(' ')[1]}, ${award.color.split(' ')[3]})`,
@@ -750,10 +806,10 @@ const AboutThomazPage: React.FC = () => {
                       <Award className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-white group-hover:text-yellow-300 transition-colors">
+                      <h3 className="text-xl font-bold text-foreground transition-colors">
                         {award.title}
                       </h3>
-                      <p className="text-gray-400">{award.subtitle}</p>
+                      <p className="text-muted-foreground">{award.subtitle}</p>
                     </div>
                   </div>
                   {award.achievement && (
@@ -761,7 +817,7 @@ const AboutThomazPage: React.FC = () => {
                       {award.achievement}
                     </p>
                   )}
-                  <p className="text-gray-400">{award.issuer}</p>
+                  <p className="text-muted-foreground">{award.issuer}</p>
                 </div>
               </motion.div>
             ))}
@@ -820,14 +876,20 @@ const AboutThomazPage: React.FC = () => {
                   rotateY: 5,
                   scale: 1.02,
                 }}
-                className="group relative p-8 rounded-3xl bg-white/5 backdrop-blur-2xl border border-white/10 hover:border-white/20 transition-all duration-500"
+                className={`group relative p-8 rounded-3xl transition-all duration-500 ${
+                  theme === 'dark'
+                    ? 'bg-white/5 backdrop-blur-2xl border border-white/10 hover:border-white/20'
+                    : 'bg-white border border-gray-100 shadow-lg hover:shadow-xl'
+                }`}
                 style={{
                   transformStyle: "preserve-3d",
                   borderRadius: `${30 + Math.random() * 20}px ${40 + Math.random() * 20}px ${35 + Math.random() * 20}px ${25 + Math.random() * 20}px`,
                 }}
               >
                 <motion.div
-                  className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${ref.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
+                  className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${ref.color} transition-opacity duration-500 ${
+                    theme === 'dark' ? 'opacity-0 group-hover:opacity-10' : 'opacity-0 group-hover:opacity-5'
+                  }`}
                   animate={{
                     scale: [1, 1.05, 1],
                   }}
@@ -835,7 +897,7 @@ const AboutThomazPage: React.FC = () => {
                 />
                 
                 <div className="relative z-10">
-                  <h3 className="text-xl font-bold text-white group-hover:text-cyan-300 mb-2">
+                  <h3 className="text-xl font-bold text-foreground mb-2">
                     {ref.name}
                   </h3>
                   <p className={`font-semibold mb-2 bg-gradient-to-r ${ref.color} bg-clip-text text-transparent`}>

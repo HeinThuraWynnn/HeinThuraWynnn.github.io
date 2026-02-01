@@ -12,12 +12,14 @@ import {
   CheckCircle,
   XCircle
 } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 const Contact = () => {
   const startYear = 2015;
   const startMonth = 11; // December
   const now = new Date();
   const yearsOfExperience = now.getFullYear() - startYear - (now.getMonth() < startMonth ? 1 : 0);
+  const { theme } = useTheme();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -158,8 +160,40 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-20 relative overflow-hidden transition-colors duration-300">
+      {/* Background Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        {theme === 'dark' ? (
+          <>
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900/20 to-cyan-900/20 opacity-50" />
+            {/* Cyberpunk Particles */}
+            {[...Array(10)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 bg-cyan-400 rounded-full"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                }}
+                animate={{
+                  opacity: [0, 1, 0],
+                  scale: [0, 1.5, 0],
+                }}
+                transition={{
+                  duration: 2 + Math.random() * 3,
+                  repeat: Infinity,
+                  delay: Math.random() * 2,
+                }}
+              />
+            ))}
+          </>
+        ) : (
+          // Light Mode Background
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100 opacity-50" />
+        )}
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -167,10 +201,10 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
             Let's Work Together
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Ready to transform your ideas into innovative digital solutions? 
             Let's discuss your project and create something amazing together.
           </p>
@@ -186,10 +220,10 @@ const Contact = () => {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+              <h3 className="text-2xl font-bold text-foreground mb-6">
                 Get In Touch
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-8">
+              <p className="text-muted-foreground mb-8">
                 With {yearsOfExperience}+ years of experience in software development, I'm passionate about 
                 creating robust, scalable solutions. Whether you need mobile apps, web applications, 
                 ERP systems, or QA services, let's discuss how we can bring your vision to life.
@@ -206,16 +240,20 @@ const Contact = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="flex items-center p-4 bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
+                  className={`flex items-center p-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group ${
+                    theme === 'dark' 
+                      ? 'bg-white/5 border border-white/10 hover:bg-white/10' 
+                      : 'bg-white border border-gray-100 hover:border-gray-200'
+                  }`}
                 >
                   <div className="p-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg text-white mr-4 group-hover:scale-110 transition-transform duration-300">
                     {info.icon}
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900 dark:text-white">
+                    <h4 className="font-semibold text-foreground">
                       {info.title}
                     </h4>
-                    <p className="text-gray-600 dark:text-gray-300">
+                    <p className="text-muted-foreground">
                       {info.value}
                     </p>
                   </div>
@@ -229,18 +267,22 @@ const Contact = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-lg"
+              className={`rounded-xl p-6 shadow-lg ${
+                theme === 'dark'
+                  ? 'bg-white/5 border border-white/10'
+                  : 'bg-white border border-gray-100'
+              }`}
             >
               <div className="flex items-center mb-4">
                 <Clock className="w-6 h-6 text-green-500 mr-3" />
-                <h4 className="font-semibold text-gray-900 dark:text-white">
+                <h4 className="font-semibold text-foreground">
                   Availability
                 </h4>
               </div>
-              <p className="text-gray-600 dark:text-gray-300 mb-2">
+              <p className="text-foreground mb-2">
                 Currently accepting new projects
               </p>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+              <p className="text-sm text-muted-foreground">
                 Response time: Within 24 hours
               </p>
             </motion.div>
@@ -254,7 +296,7 @@ const Contact = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="glass-card rounded-2xl p-8"
           >
-            <h3 className="text-2xl font-bold text-white mb-6">
+            <h3 className="text-2xl font-bold text-foreground mb-6">
               Send a Message
             </h3>
             
@@ -303,7 +345,7 @@ const Contact = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Name *
                   </label>
                   <input
@@ -312,12 +354,12 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="glass-input w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-400 transition-all duration-300"
+                    className="glass-input w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 text-foreground placeholder-gray-400 transition-all duration-300"
                     placeholder="Your full name"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Email *
                   </label>
                   <input
@@ -326,7 +368,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="glass-input w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-400 transition-all duration-300"
+                    className="glass-input w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 text-foreground placeholder-gray-400 transition-all duration-300"
                     placeholder="your.email@example.com"
                   />
                 </div>
@@ -334,7 +376,7 @@ const Contact = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Company
                   </label>
                   <input
@@ -342,22 +384,26 @@ const Contact = () => {
                     name="company"
                     value={formData.company}
                     onChange={handleInputChange}
-                    className="glass-input w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-400 transition-all duration-300"
+                    className="glass-input w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 text-foreground placeholder-gray-400 transition-all duration-300"
                     placeholder="Your company name"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Project Type
                   </label>
                   <select
                     name="projectType"
                     value={formData.projectType}
                     onChange={handleInputChange}
-                    className="glass-input w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 text-white transition-all duration-300"
+                    className="glass-input w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 text-foreground transition-all duration-300"
                   >
                     {projectTypes.map((type) => (
-                      <option key={type.value} value={type.value} className="bg-gray-800 text-white">
+                      <option 
+                        key={type.value} 
+                        value={type.value} 
+                        className={theme === 'dark' ? "bg-gray-800 text-white" : "bg-white text-gray-900"}
+                      >
                         {type.label}
                       </option>
                     ))}
@@ -366,7 +412,7 @@ const Contact = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Subject *
                 </label>
                 <input
@@ -375,13 +421,13 @@ const Contact = () => {
                   value={formData.subject}
                   onChange={handleInputChange}
                   required
-                  className="glass-input w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-400 transition-all duration-300"
+                  className="glass-input w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 text-foreground placeholder-gray-400 transition-all duration-300"
                   placeholder="Brief description of your project"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Message *
                 </label>
                 <textarea
@@ -390,7 +436,7 @@ const Contact = () => {
                   onChange={handleInputChange}
                   required
                   rows={6}
-                  className="glass-input w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-400 transition-all duration-300 resize-none"
+                  className="glass-input w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 text-foreground placeholder-gray-400 transition-all duration-300 resize-none"
                   placeholder="Tell me more about your project, requirements, timeline, and budget..."
                 />
               </div>
@@ -400,11 +446,11 @@ const Contact = () => {
                 disabled={isSubmitting}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full glass-button bg-gradient-to-r from-blue-500/20 to-purple-600/20 hover:from-blue-500/30 hover:to-purple-600/30 text-white py-4 px-6 rounded-lg font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 border border-blue-500/30"
+                className="w-full glass-button bg-gradient-to-r from-blue-500/20 to-purple-600/20 hover:from-blue-500/30 hover:to-purple-600/30 text-foreground py-4 px-6 rounded-lg font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 border border-blue-500/30"
               >
                 {isSubmitting ? (
                   <>
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin" />
                     Sending...
                   </>
                 ) : (

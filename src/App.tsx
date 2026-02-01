@@ -1,5 +1,4 @@
 
-import {  useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
@@ -10,36 +9,35 @@ import Services from './components/Services';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Navigation from './components/Navigation';
+import About from './components/About';
 import AboutThomazPage from './components/AboutThomazPage';
 import './App.css';
 
 function App() {
-  // const [isMenuOpen, setIsMenuOpen] = useState(false);
   const startYear = 2015;
   const startMonth = 11; // December
   const now = new Date();
   const yearsOfExperience = now.getFullYear() - startYear - (now.getMonth() < startMonth ? 1 : 0);
 
-  useEffect(() => {
-    // Always set dark mode
-    document.documentElement.classList.add('dark');
-  }, []);
-
   // Homepage component with Futuristic Design
   const HomePage = () => (
     <main className="relative pt-16">
+      <SEO 
+        title="Wynn Solutions Myanmar - Leading Software & AI Solutions Provider"
+        description="Wynn Solutions Myanmar delivers cutting-edge software development, mobile apps, and AI solutions. Led by Hein Thura Wynn, we transform businesses with technology."
+        image="https://wynnsolutionsmyanmar.com/w-logo.png"
+      />
       {/* Futuristic Hero Section */}
       <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
-        {/* Cyberpunk Animated Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900/30 to-cyan-900/20">
-          {/* AI Neural Network Pattern */}
-          <div className="absolute inset-0" style={{
+        {/* Animated Background - Adapts to Theme */}
+        <div className="absolute inset-0 gradient-bg">
+          {/* AI Neural Network Pattern - Visible mainly in Dark Mode */}
+          <div className="absolute inset-0 opacity-10 dark:opacity-40 transition-opacity duration-300" style={{
             background: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='neural' x='0' y='0' width='20' height='20' patternUnits='userSpaceOnUse'%3E%3Ccircle cx='10' cy='10' r='1' fill='%2300ffff' opacity='0.3'/%3E%3Cline x1='10' y1='10' x2='20' y2='10' stroke='%2300ffff' stroke-width='0.5' opacity='0.2'/%3E%3Cline x1='10' y1='10' x2='10' y2='20' stroke='%2300ffff' stroke-width='0.5' opacity='0.2'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(%23neural)'/%3E%3C/svg%3E")`,
-            opacity: 0.4
           }}></div>
           
-          {/* Cyberpunk Grid Overlay */}
-          <div className="absolute inset-0" style={{
+          {/* Grid Overlay */}
+          <div className="absolute inset-0 opacity-10 dark:opacity-100 transition-opacity duration-300" style={{
             background: `linear-gradient(90deg, transparent 98%, rgba(0, 255, 255, 0.1) 100%), linear-gradient(0deg, transparent 98%, rgba(255, 0, 255, 0.1) 100%)`,
             backgroundSize: '50px 50px'
           }}></div>
@@ -101,8 +99,8 @@ function App() {
           ))}
         </div>
 
-        {/* AI-Inspired Geometric Morphing Shapes */}
-        <div className="absolute inset-0 overflow-hidden">
+        {/* AI-Inspired Geometric Morphing Shapes - Subtle in Light Mode */}
+        <div className="absolute inset-0 overflow-hidden opacity-30 dark:opacity-100 transition-opacity duration-300">
           {[...Array(8)].map((_, i) => (
             <motion.div
               key={`morph-${i}`}
@@ -141,8 +139,8 @@ function App() {
           ))}
         </div>
 
-        {/* Cyberpunk Floating Orbs */}
-        <div className="absolute inset-0 overflow-hidden">
+        {/* Cyberpunk Floating Orbs - Visible mainly in Dark Mode */}
+        <div className="absolute inset-0 overflow-hidden opacity-20 dark:opacity-100 transition-opacity duration-300">
           {[...Array(6)].map((_, i) => (
             <motion.div
               key={`orb-${i}`}
@@ -172,18 +170,12 @@ function App() {
         </div>
 
         <div className="relative z-10 w-full max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
-          {/* Apple Glassmorphism Container */}
+          {/* Glassmorphism Container */}
           <motion.div
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 1.2, ease: "easeOut" }}
-            className="relative backdrop-blur-2xl border border-white/20 rounded-[2rem] p-6 sm:p-8 md:p-12 lg:p-16 shadow-2xl mx-4 sm:mx-0 mb-20 overflow-hidden"
-            style={{
-              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05))',
-              backdropFilter: 'blur(40px)',
-              WebkitBackdropFilter: 'blur(40px)',
-              boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
-            }}
+            className="glass relative rounded-[2rem] p-6 sm:p-8 md:p-12 lg:p-16 mx-4 sm:mx-0 mb-20 overflow-hidden"
           >
             {/* Inner Glow Effect */}
             <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-cyan-400/10 via-transparent to-purple-400/10 pointer-events-none" />
@@ -194,12 +186,8 @@ function App() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 1 }}
-                  className="text-4xl md:text-6xl lg:text-7xl font-bold text-white drop-shadow-lg"
+                  className="text-4xl md:text-6xl lg:text-7xl font-bold gradient-text drop-shadow-lg"
                   style={{
-                    background: 'linear-gradient(45deg, #00ffff, #ff00ff, #ffff00)',
-                    backgroundSize: '200% 200%',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
                     animation: 'gradient-shift 3s ease-in-out infinite'
                   }}
                 >
@@ -210,12 +198,8 @@ function App() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5, duration: 1 }}
-                  className="text-xl md:text-2xl lg:text-3xl font-semibold"
+                  className="text-xl md:text-2xl lg:text-3xl font-semibold gradient-text"
                   style={{
-                    background: 'linear-gradient(90deg, #00ffff, #ff00ff)',
-                    backgroundSize: '200% 200%',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
                     animation: 'gradient-shift 2s ease-in-out infinite'
                   }}
                 >
@@ -226,14 +210,14 @@ function App() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.7, duration: 1 }}
-                  className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed drop-shadow-sm"
+                  className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed drop-shadow-sm"
                 >
                   Delivering cutting-edge technology solutions with {yearsOfExperience}+ years of expertise in mobile apps, 
                   web development, AI integration, and quality assurance services.
                 </motion.p>
               </div>
 
-              {/* Futuristic Call to Action Buttons */}
+              {/* Call to Action Buttons */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -243,12 +227,7 @@ function App() {
                 <motion.button
                   whileHover={{ scale: 1.05, rotateY: 5 }}
                   whileTap={{ scale: 0.95 }}
-                  className="relative px-8 py-4 font-semibold rounded-2xl border border-cyan-400/30 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
-                  style={{
-                    background: 'linear-gradient(45deg, rgba(0, 255, 255, 0.2), rgba(255, 0, 255, 0.2))',
-                    backdropFilter: 'blur(20px)',
-                    WebkitBackdropFilter: 'blur(20px)'
-                  }}
+                  className="glass-button relative px-8 py-4 font-semibold rounded-2xl overflow-hidden group text-foreground"
                   onClick={() => {
                     const element = document.querySelector('#services');
                     if (element) {
@@ -256,19 +235,14 @@ function App() {
                     }
                   }}
                 >
-                  <span className="relative z-10 text-white">Explore Services</span>
+                  <span className="relative z-10">Explore Services</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 to-purple-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </motion.button>
                 
                 <motion.button
                   whileHover={{ scale: 1.05, rotateY: -5 }}
                   whileTap={{ scale: 0.95 }}
-                  className="relative px-8 py-4 font-semibold rounded-2xl border border-purple-400/30 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
-                  style={{
-                    background: 'linear-gradient(45deg, rgba(255, 0, 255, 0.2), rgba(255, 255, 0, 0.2))',
-                    backdropFilter: 'blur(20px)',
-                    WebkitBackdropFilter: 'blur(20px)'
-                  }}
+                  className="glass-button relative px-8 py-4 font-semibold rounded-2xl overflow-hidden group text-foreground"
                   onClick={() => {
                     const element = document.querySelector('#contact');
                     if (element) {
@@ -276,14 +250,14 @@ function App() {
                     }
                   }}
                 >
-                  <span className="relative z-10 text-white">Get In Touch</span>
+                  <span className="relative z-10">Get In Touch</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-400/20 to-yellow-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </motion.button>
               </motion.div>
             </div>
           </motion.div>
 
-          {/* Futuristic Scroll Indicator */}
+          {/* Scroll Indicator */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -296,14 +270,9 @@ function App() {
                 rotateX: [0, 10, 0]
               }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="relative flex flex-col items-center space-y-3 text-white/90 cursor-pointer rounded-2xl px-6 py-4 border border-cyan-400/30 overflow-hidden group"
-              style={{
-                background: 'linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1))',
-                backdropFilter: 'blur(20px)',
-                WebkitBackdropFilter: 'blur(20px)'
-              }}
+              className="glass-button relative flex flex-col items-center space-y-3 text-muted-foreground cursor-pointer rounded-2xl px-6 py-4 overflow-hidden group"
               onClick={() => {
-                const element = document.querySelector('#company-info');
+                const element = document.querySelector('#about');
                 if (element) {
                   element.scrollIntoView({ behavior: 'smooth' });
                 }
@@ -323,84 +292,7 @@ function App() {
         </div>
       </section>
       
-      {/* Enhanced Company Information Section */}
-      <section id="company-info" className="py-20 relative overflow-hidden">
-        {/* Cyberpunk Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900/20 to-cyan-900/20">
-          <div className="absolute inset-0" style={{
-            background: `radial-gradient(circle at 25% 25%, rgba(0, 255, 255, 0.1) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(255, 0, 255, 0.1) 0%, transparent 50%)`
-          }}></div>
-        </div>
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6"
-                style={{
-                  background: 'linear-gradient(45deg, #00ffff, #ff00ff)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent'
-                }}>
-              About Wynn Solutions Myanmar
-            </h2>
-            <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-              We are a leading technology company in Myanmar, specializing in innovative software solutions 
-              and AI-powered applications. With over 9 years of combined expertise, we deliver world-class 
-              digital solutions that drive business growth and technological advancement.
-            </p>
-          </motion.div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Innovation First",
-                description: "Cutting-edge technology solutions using the latest frameworks and AI integration",
-                icon: "🚀",
-                gradient: "from-cyan-400/20 to-blue-400/20"
-              },
-              {
-                title: "Quality Assured",
-                description: "Rigorous testing and quality assurance processes ensuring reliable, scalable solutions",
-                icon: "✅",
-                gradient: "from-purple-400/20 to-pink-400/20"
-              },
-              {
-                title: "Client Focused",
-                description: "Dedicated support and customized solutions tailored to your specific business needs",
-                icon: "🎯",
-                gradient: "from-yellow-400/20 to-orange-400/20"
-              }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30, rotateY: -10 }}
-                whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
-                whileHover={{ scale: 1.05, rotateY: 5 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                className={`relative p-8 rounded-2xl text-center border border-white/20 overflow-hidden group`}
-                style={{
-                  background: `linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))`,
-                  backdropFilter: 'blur(20px)',
-                  WebkitBackdropFilter: 'blur(20px)'
-                }}
-              >
-                <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-                <div className="relative z-10">
-                  <div className="text-4xl mb-4">{item.icon}</div>
-                  <h3 className="text-2xl font-bold text-white mb-4">{item.title}</h3>
-                  <p className="text-gray-300 leading-relaxed">{item.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <About />
       
       <div id="services">
         <Services />
@@ -420,8 +312,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="min-h-screen transition-colors duration-300 dark">
-        <SEO />
+      <div className="min-h-screen transition-colors duration-300 bg-background text-foreground">
         
         {/* Add custom CSS for gradient animation */}
         <style>{`

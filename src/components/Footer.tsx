@@ -12,30 +12,33 @@ import {
   Zap,
   Star
 } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { theme } = useTheme();
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const quickLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Portfolio', href: '#portfolio' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'About', href: '/#about' },
+    { name: 'Services', href: '/#services' },
+    // { name: 'Experience', href: '/#experience' },
+    // { name: 'Skills', href: '/#skills' },
+    // { name: 'Portfolio', href: '/#portfolio' },
+    { name: 'About Thomaz', href: '/about-thomaz', type: 'internal' },
+    { name: 'Contact', href: '/#contact' }
   ];
 
   const services = [
-    { name: 'Mobile App Development', href: '#services' },
-    { name: 'Web Development', href: '#services' },
-    { name: 'AI/ML Solutions', href: '#services' },
-    { name: 'Cloud Services', href: '#services' },
-    { name: 'Technical Consulting', href: '#services' },
-    { name: 'DevOps & Deployment', href: '#services' }
+    { name: 'Mobile App Development', href: '/#services' },
+    { name: 'Web Development', href: '/#services' },
+    { name: 'AI/ML Solutions', href: '/#services' },
+    { name: 'Cloud Services', href: '/#services' },
+    { name: 'Technical Consulting', href: '/#services' },
+    { name: 'DevOps & Deployment', href: '/#services' }
   ];
 
   const socialLinks = [
@@ -60,16 +63,18 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative overflow-hidden" style={{
-      background: 'linear-gradient(135deg, #000000 0%, #0a0a0a 25%, #1a1a2e 50%, #16213e 75%, #0f3460 100%)'
+    <footer className="relative overflow-hidden transition-colors duration-300" style={{
+      background: theme === 'dark' 
+        ? 'linear-gradient(135deg, #000000 0%, #0a0a0a 25%, #1a1a2e 50%, #16213e 75%, #0f3460 100%)'
+        : 'linear-gradient(135deg, #fdfbf7 0%, #f3f4f6 100%)'
     }}>
-      {/* Animated Background Elements */}
+      {/* Animated Background Elements - Dark Mode Only or Adapted */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Floating Particles */}
         {[...Array(50)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-cyan-400/30 rounded-full"
+            className={`absolute w-1 h-1 rounded-full ${theme === 'dark' ? 'bg-cyan-400/30' : 'bg-gray-400/30'}`}
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -89,7 +94,7 @@ const Footer = () => {
           />
         ))}
         
-        {/* Morphing Bean Shapes */}
+        {/* Morphing Bean Shapes - Only visible in dark mode or subtle in light */}
         <motion.div
           className="absolute top-20 left-10 w-64 h-32 opacity-10"
           style={{
@@ -112,38 +117,17 @@ const Footer = () => {
           }}
         />
         
-        <motion.div
-          className="absolute bottom-32 right-20 w-48 h-48 opacity-10"
-          style={{
-            background: 'linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%)',
-            borderRadius: '40% 60% 60% 40% / 60% 30% 70% 40%',
-            filter: 'blur(50px)',
-          }}
-          animate={{
-            borderRadius: [
-              '40% 60% 60% 40% / 60% 30% 70% 40%',
-              '60% 40% 40% 60% / 40% 70% 30% 60%',
-              '40% 60% 60% 40% / 60% 30% 70% 40%'
-            ],
-            rotate: [360, 180, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        
-        {/* Grid Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="w-full h-full" style={{
-            backgroundImage: `
-              linear-gradient(rgba(6,182,212,0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(6,182,212,0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: '50px 50px'
-          }} />
-        </div>
+        {theme === 'dark' && (
+          <div className="absolute inset-0 opacity-5">
+            <div className="w-full h-full" style={{
+              backgroundImage: `
+                linear-gradient(rgba(6,182,212,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(6,182,212,0.1) 1px, transparent 1px)
+              `,
+              backgroundSize: '50px 50px'
+            }} />
+          </div>
+        )}
       </div>
 
       {/* Main Footer Content */}
@@ -213,60 +197,48 @@ const Footer = () => {
                 >
                   Wynn Solutions Myanmar
                 </motion.h3>
-                <span className="text-sm text-cyan-300/70">Future Tech Solutions</span>
+                <span className="text-sm text-cyan-500 dark:text-cyan-300/70">Future Tech Solutions</span>
               </div>
             </motion.div>
             
             <motion.div
               className="p-6 rounded-2xl mb-6 relative overflow-hidden"
               style={{
-                background: 'linear-gradient(135deg, rgba(6,182,212,0.1) 0%, rgba(168,85,247,0.1) 100%)',
+                background: theme === 'dark' 
+                  ? 'linear-gradient(135deg, rgba(6,182,212,0.1) 0%, rgba(168,85,247,0.1) 100%)'
+                  : 'rgba(255, 255, 255, 0.5)',
                 backdropFilter: 'blur(20px)',
-                border: '1px solid rgba(6,182,212,0.2)',
+                border: theme === 'dark' ? '1px solid rgba(6,182,212,0.2)' : '1px solid rgba(0,0,0,0.05)',
               }}
               whileHover={{
                 boxShadow: '0 0 40px rgba(6,182,212,0.2)',
                 scale: 1.02,
               }}
             >
-              <p className="text-gray-300 mb-4 leading-relaxed text-sm">
+              <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
                 Innovative software and AI solutions provider, specializing in mobile apps, 
                 web development, and cutting-edge technology implementations.
               </p>
-              
-              {/* Animated border */}
-              <motion.div
-                className="absolute inset-0 rounded-2xl"
-                style={{
-                  background: 'linear-gradient(90deg, transparent, rgba(6,182,212,0.3), transparent)',
-                }}
-                animate={{
-                  x: ['-100%', '100%'],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
             </motion.div>
             
             <div className="space-y-4">
               {[
-                { icon: Mail, text: 'info@wynnsolutionsmyanmar.com', color: 'text-cyan-400' },
-                { icon: Phone, text: '+95 9 971 879 637', color: 'text-purple-400' },
-                { icon: MapPin, text: 'Yangon, Myanmar', color: 'text-pink-400' }
+                { icon: Mail, text: 'info@wynnsolutionsmyanmar.com', color: 'text-cyan-500 dark:text-cyan-400' },
+                { icon: Phone, text: '+95 9 971 879 637', color: 'text-purple-500 dark:text-purple-400' },
+                { icon: MapPin, text: 'Yangon, Myanmar', color: 'text-pink-500 dark:text-pink-400' }
               ].map((item, index) => (
                 <motion.div
                   key={index}
-                  className="flex items-center text-gray-300 group cursor-pointer"
+                  className="flex items-center text-muted-foreground group cursor-pointer"
                   whileHover={{ x: 10, scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   <motion.div
                     className={`w-8 h-8 rounded-lg ${item.color} mr-3 flex items-center justify-center`}
                     style={{
-                      background: 'linear-gradient(135deg, rgba(6,182,212,0.2) 0%, rgba(168,85,247,0.2) 100%)',
+                      background: theme === 'dark'
+                        ? 'linear-gradient(135deg, rgba(6,182,212,0.2) 0%, rgba(168,85,247,0.2) 100%)'
+                        : 'rgba(0,0,0,0.05)',
                       backdropFilter: 'blur(10px)',
                     }}
                     whileHover={{ rotate: 360 }}
@@ -274,7 +246,7 @@ const Footer = () => {
                   >
                     <item.icon className="w-4 h-4" />
                   </motion.div>
-                  <span className="text-sm group-hover:text-white transition-colors duration-300">{item.text}</span>
+                  <span className="text-sm group-hover:text-foreground transition-colors duration-300">{item.text}</span>
                 </motion.div>
               ))}
             </div>
@@ -290,7 +262,7 @@ const Footer = () => {
           >
             <div className="flex items-center mb-6">
               <Zap className="w-5 h-5 text-cyan-400 mr-2" />
-              <h4 className="text-lg font-semibold text-white">Quick Links</h4>
+              <h4 className="text-lg font-semibold text-foreground">Quick Links</h4>
             </div>
             
             <div className="space-y-3">
@@ -304,22 +276,18 @@ const Footer = () => {
                 >
                   <motion.a
                     href={link.href}
-                    className="block p-3 rounded-xl text-gray-300 hover:text-white transition-all duration-300 group relative overflow-hidden"
+                    className="block p-3 rounded-xl text-muted-foreground hover:text-foreground transition-all duration-300 group relative overflow-hidden"
                     whileHover={{
                       x: 10,
-                      background: 'linear-gradient(135deg, rgba(6,182,212,0.1) 0%, rgba(168,85,247,0.1) 100%)',
+                      background: theme === 'dark' 
+                        ? 'linear-gradient(135deg, rgba(6,182,212,0.1) 0%, rgba(168,85,247,0.1) 100%)'
+                        : 'rgba(0,0,0,0.05)',
                     }}
                   >
                     <span className="relative z-10 text-sm flex items-center">
                       <Star className="w-3 h-3 mr-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       {link.name}
                     </span>
-                    
-                    {/* Hover effect */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      style={{ backdropFilter: 'blur(10px)' }}
-                    />
                   </motion.a>
                 </motion.div>
               ))}
@@ -335,7 +303,7 @@ const Footer = () => {
           >
             <div className="flex items-center mb-6">
               <Sparkles className="w-5 h-5 text-purple-400 mr-2" />
-              <h4 className="text-lg font-semibold text-white">Services</h4>
+              <h4 className="text-lg font-semibold text-foreground">Services</h4>
             </div>
             
             <div className="space-y-3">
@@ -349,22 +317,18 @@ const Footer = () => {
                 >
                   <motion.a
                     href={service.href}
-                    className="block p-3 rounded-xl text-gray-300 hover:text-white transition-all duration-300 group relative overflow-hidden"
+                    className="block p-3 rounded-xl text-muted-foreground hover:text-foreground transition-all duration-300 group relative overflow-hidden"
                     whileHover={{
                       x: 10,
-                      background: 'linear-gradient(135deg, rgba(168,85,247,0.1) 0%, rgba(236,72,153,0.1) 100%)',
+                      background: theme === 'dark'
+                        ? 'linear-gradient(135deg, rgba(168,85,247,0.1) 0%, rgba(236,72,153,0.1) 100%)'
+                        : 'rgba(0,0,0,0.05)',
                     }}
                   >
                     <span className="relative z-10 text-sm flex items-center">
                       <Star className="w-3 h-3 mr-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       {service.name}
                     </span>
-                    
-                    {/* Hover effect */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      style={{ backdropFilter: 'blur(10px)' }}
-                    />
                   </motion.a>
                 </motion.div>
               ))}
@@ -380,18 +344,20 @@ const Footer = () => {
           >
             <div className="flex items-center mb-6">
               <Heart className="w-5 h-5 text-pink-400 mr-2" />
-              <h4 className="text-lg font-semibold text-white">Stay Connected</h4>
+              <h4 className="text-lg font-semibold text-foreground">Stay Connected</h4>
             </div>
             
             <motion.div
               className="p-4 rounded-2xl mb-6 relative overflow-hidden"
               style={{
-                background: 'linear-gradient(135deg, rgba(236,72,153,0.1) 0%, rgba(168,85,247,0.1) 100%)',
+                background: theme === 'dark'
+                  ? 'linear-gradient(135deg, rgba(236,72,153,0.1) 0%, rgba(168,85,247,0.1) 100%)'
+                  : 'rgba(255, 255, 255, 0.5)',
                 backdropFilter: 'blur(20px)',
-                border: '1px solid rgba(236,72,153,0.2)',
+                border: theme === 'dark' ? '1px solid rgba(236,72,153,0.2)' : '1px solid rgba(0,0,0,0.05)',
               }}
             >
-              <p className="text-gray-300 text-sm mb-4">
+              <p className="text-muted-foreground text-sm mb-4">
                 Follow me on social media for the latest updates on technology trends and project insights.
               </p>
             </motion.div>
@@ -404,11 +370,13 @@ const Footer = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative p-3 rounded-xl text-gray-300 hover:text-white transition-all duration-300 group overflow-hidden"
+                  className="relative p-3 rounded-xl text-muted-foreground hover:text-foreground transition-all duration-300 group overflow-hidden"
                   style={{
-                    background: 'linear-gradient(135deg, rgba(6,182,212,0.1) 0%, rgba(168,85,247,0.1) 100%)',
+                    background: theme === 'dark'
+                      ? 'linear-gradient(135deg, rgba(6,182,212,0.1) 0%, rgba(168,85,247,0.1) 100%)'
+                      : 'rgba(0,0,0,0.05)',
                     backdropFilter: 'blur(10px)',
-                    border: '1px solid rgba(6,182,212,0.2)',
+                    border: theme === 'dark' ? '1px solid rgba(6,182,212,0.2)' : '1px solid rgba(0,0,0,0.05)',
                   }}
                   whileHover={{ 
                     scale: 1.1, 
@@ -419,28 +387,6 @@ const Footer = () => {
                   aria-label={social.name}
                 >
                   {social.icon}
-                  
-                  {/* Hover particles */}
-                  {[...Array(6)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      className="absolute w-1 h-1 bg-cyan-400 rounded-full opacity-0 group-hover:opacity-100"
-                      style={{
-                        left: '50%',
-                        top: '50%',
-                      }}
-                      animate={{
-                        x: Math.cos((i * 60) * Math.PI / 180) * 20,
-                        y: Math.sin((i * 60) * Math.PI / 180) * 20,
-                        opacity: [0, 1, 0],
-                      }}
-                      transition={{
-                        duration: 1,
-                        repeat: Infinity,
-                        delay: i * 0.1,
-                      }}
-                    />
-                  ))}
                 </motion.a>
               ))}
             </div>
@@ -449,15 +395,17 @@ const Footer = () => {
             <motion.div 
               className="p-4 rounded-2xl relative overflow-hidden"
               style={{
-                background: 'linear-gradient(135deg, rgba(6,182,212,0.1) 0%, rgba(168,85,247,0.1) 100%)',
+                background: theme === 'dark'
+                  ? 'linear-gradient(135deg, rgba(6,182,212,0.1) 0%, rgba(168,85,247,0.1) 100%)'
+                  : 'rgba(255, 255, 255, 0.5)',
                 backdropFilter: 'blur(20px)',
-                border: '1px solid rgba(6,182,212,0.2)',
+                border: theme === 'dark' ? '1px solid rgba(6,182,212,0.2)' : '1px solid rgba(0,0,0,0.05)',
               }}
               whileHover={{
                 boxShadow: '0 0 40px rgba(6,182,212,0.2)',
               }}
             >
-              <h5 className="font-medium mb-3 text-white flex items-center">
+              <h5 className="font-medium mb-3 text-foreground flex items-center">
                 <Sparkles className="w-4 h-4 mr-2 text-cyan-400" />
                 Tech Newsletter
               </h5>
@@ -466,7 +414,11 @@ const Footer = () => {
                 <input
                   type="email"
                   placeholder="Your email"
-                  className="flex-1 min-w-0 px-3 py-2 rounded-xl sm:rounded-l-xl sm:rounded-r-none text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white placeholder-gray-400 bg-black/20 backdrop-blur-sm border border-cyan-500/20"
+                  className={`flex-1 min-w-0 px-3 py-2 rounded-xl sm:rounded-l-xl sm:rounded-r-none text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 placeholder-gray-400 backdrop-blur-sm ${
+                    theme === 'dark' 
+                      ? 'text-white bg-black/20 border border-cyan-500/20' 
+                      : 'text-black bg-white/50 border border-gray-200'
+                  }`}
                 />
                 <motion.button 
                   className="px-4 py-2 rounded-xl sm:rounded-l-none sm:rounded-r-xl transition-all duration-300 border border-cyan-500/30 flex-shrink-0"
@@ -483,22 +435,6 @@ const Footer = () => {
                   <Mail className="w-4 h-4" />
                 </motion.button>
               </div>
-              
-              {/* Animated border */}
-              <motion.div
-                className="absolute inset-0 rounded-2xl"
-                style={{
-                  background: 'linear-gradient(90deg, transparent, rgba(6,182,212,0.3), transparent)',
-                }}
-                animate={{
-                  x: ['-100%', '100%'],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
             </motion.div>
           </motion.div>
         </div>
@@ -513,7 +449,7 @@ const Footer = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="flex items-center text-gray-300 text-sm mb-4 md:mb-0"
+              className="flex items-center text-muted-foreground text-sm mb-4 md:mb-0"
             >
               <span>© {currentYear} Wynn Solutions Myanmar. Made with</span>
               <motion.div
@@ -533,13 +469,13 @@ const Footer = () => {
             <div className="flex items-center space-x-6">
               <a
                 href="/privacy"
-                className="text-gray-300 hover:text-cyan-400 transition-colors duration-300 text-sm"
+                className="text-muted-foreground hover:text-cyan-400 transition-colors duration-300 text-sm"
               >
                 Privacy Policy
               </a>
               <a
                 href="/terms"
-                className="text-gray-300 hover:text-cyan-400 transition-colors duration-300 text-sm"
+                className="text-muted-foreground hover:text-cyan-400 transition-colors duration-300 text-sm"
               >
                 Terms of Service
               </a>
@@ -561,19 +497,6 @@ const Footer = () => {
                 aria-label="Scroll to top"
               >
                 <ArrowUp className="w-4 h-4 text-white relative z-10" />
-                
-                {/* Rocket trail effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-t from-cyan-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  animate={{
-                    y: [20, -20],
-                  }}
-                  transition={{
-                    duration: 0.5,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                  }}
-                />
               </motion.button>
             </div>
           </div>
