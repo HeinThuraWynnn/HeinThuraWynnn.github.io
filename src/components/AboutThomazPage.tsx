@@ -196,10 +196,6 @@ const AboutThomazPage: React.FC = () => {
                 <Globe className="h-4 w-4" />
                 <span>www.wynnsolutionsmyanmar.com</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <Linkedin className="h-4 w-4" />
-                <span>LinkedIn Profile URL</span>
-              </div>
             </motion.div>
 
             {/* Social Links */}
