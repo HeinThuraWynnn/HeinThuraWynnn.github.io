@@ -232,12 +232,31 @@ const Footer = () => {
             
             <div className="space-y-4">
               {[
-                { icon: Mail, text: 'info@wynnsolutionsmyanmar.com', color: 'text-cyan-500 dark:text-cyan-400' },
-                { icon: Phone, text: '+95 9 971 879 637', color: 'text-purple-500 dark:text-purple-400' },
-                { icon: MapPin, text: 'Yangon, Myanmar', color: 'text-pink-500 dark:text-pink-400' }
+                { 
+                  icon: Mail, 
+                  text: 'wynnsolutionsmyanmar@gmail.com', 
+                  color: 'text-cyan-500 dark:text-cyan-400',
+                  href: 'mailto:wynnsolutionsmyanmar@gmail.com'
+                },
+                { 
+                  icon: Phone, 
+                  text: '+95 9 971 879 637', 
+                  color: 'text-purple-500 dark:text-purple-400',
+                  href: 'tel:+959971879637'
+                },
+                { 
+                  icon: MapPin, 
+                  text: 'Yangon, Myanmar', 
+                  color: 'text-pink-500 dark:text-pink-400',
+                  href: 'https://maps.google.com/?q=Yangon,Myanmar',
+                  target: '_blank'
+                }
               ].map((item, index) => (
-                <motion.div
+                <motion.a
                   key={index}
+                  href={item.href}
+                  target={item.target || '_self'}
+                  rel={item.target === '_blank' ? 'noopener noreferrer' : undefined}
                   className="flex items-center text-muted-foreground group cursor-pointer"
                   whileHover={{ x: 10, scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 300 }}
@@ -256,7 +275,7 @@ const Footer = () => {
                     <item.icon className="w-4 h-4" />
                   </motion.div>
                   <span className="text-sm group-hover:text-foreground transition-colors duration-300">{item.text}</span>
-                </motion.div>
+                </motion.a>
               ))}
             </div>
           </motion.div>
