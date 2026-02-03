@@ -13,6 +13,7 @@ import About from './components/About';
 import AboutThomazPage from './components/AboutThomazPage';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
+import ScrollToTop from './components/ScrollToTop';
 import './App.css';
 
 function App() {
@@ -314,6 +315,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <div className="min-h-screen transition-colors duration-300 bg-background text-foreground">
         
         {/* Add custom CSS for gradient animation */}
