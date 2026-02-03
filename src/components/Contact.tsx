@@ -145,7 +145,7 @@ const Contact = () => {
       icon: <Linkedin className="w-6 h-6" />,
       title: "LinkedIn",
       value: "LinkedIn Profile",
-      link: "#" // Add actual LinkedIn URL here
+      link: "https://linkedin.com/in/heinthurawynn" // Add actual LinkedIn URL here
     }
   ];
 
