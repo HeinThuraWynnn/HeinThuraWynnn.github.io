@@ -565,58 +565,60 @@ const AboutThomazPage: React.FC = () => {
                   
                   {/* Content Card */}
                   <motion.div
-                    className={`w-5/12 p-8 rounded-3xl transition-all duration-500 group ${job.side === 'left' ? 'mr-auto' : 'ml-auto'} ${
-                      theme === 'dark'
-                        ? 'bg-white/5 backdrop-blur-2xl border border-white/10 hover:border-cyan-400/50'
-                        : 'bg-white border border-gray-100 shadow-lg hover:shadow-xl hover:border-cyan-400/30'
-                    }`}
-                    whileHover={{ 
-                      scale: 1.02, 
-                      y: -5,
-                      rotateY: job.side === 'left' ? 2 : -2
+                    className={`w-full md:w-5/12 p-6 md:p-8 rounded-3xl transition-all duration-500 group ${job.side === 'left' ? 'md:mr-auto' : 'md:ml-auto'} ${
+                    theme === 'dark'
+                      ? 'bg-white/5 backdrop-blur-2xl border border-white/10 hover:border-cyan-400/50'
+                      : 'bg-white border border-gray-100 shadow-lg hover:shadow-xl hover:border-cyan-400/30'
+                  }`}
+                  whileHover={{ 
+                    scale: 1.02, 
+                    y: -5,
+                    rotateY: 0
+                  }}
+                  style={{
+                    transformStyle: "preserve-3d",
+                    borderRadius: `${30 + Math.random() * 20}px ${40 + Math.random() * 20}px ${35 + Math.random() * 20}px ${25 + Math.random() * 20}px`,
+                  }}
+                >
+                  <motion.div
+                    className="absolute inset-0 rounded-3xl bg-gradient-to-br from-cyan-400/5 to-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    animate={{
+                      background: [
+                        "linear-gradient(45deg, rgba(34, 211, 238, 0.05), rgba(168, 85, 247, 0.05))",
+                        "linear-gradient(225deg, rgba(168, 85, 247, 0.05), rgba(34, 211, 238, 0.05))",
+                        "linear-gradient(45deg, rgba(34, 211, 238, 0.05), rgba(168, 85, 247, 0.05))"
+                      ]
                     }}
-                    style={{
-                      transformStyle: "preserve-3d",
-                      borderRadius: `${30 + Math.random() * 20}px ${40 + Math.random() * 20}px ${35 + Math.random() * 20}px ${25 + Math.random() * 20}px`,
-                    }}
-                  >
-                    <motion.div
-                      className="absolute inset-0 rounded-3xl bg-gradient-to-br from-cyan-400/5 to-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                      animate={{
-                        background: [
-                          "linear-gradient(45deg, rgba(34, 211, 238, 0.05), rgba(168, 85, 247, 0.05))",
-                          "linear-gradient(225deg, rgba(168, 85, 247, 0.05), rgba(34, 211, 238, 0.05))",
-                          "linear-gradient(45deg, rgba(34, 211, 238, 0.05), rgba(168, 85, 247, 0.05))"
-                        ]
-                      }}
-                      transition={{ duration: 4, repeat: Infinity }}
-                    />
-                    
-                    <div className="relative z-10">
-                      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                    transition={{ duration: 4, repeat: Infinity }}
+                  />
+                  
+                  <div className="relative z-10">
+                    <div className="flex flex-col mb-4">
+                      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
                         <div>
-                          <h3 className="text-2xl font-bold text-foreground transition-colors">
+                          <h3 className="text-xl md:text-2xl font-bold text-foreground transition-colors">
                             {job.title}
                           </h3>
-                          <p className="text-lg font-semibold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                          <p className="text-base md:text-lg font-semibold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
                             {job.company}
                           </p>
                         </div>
-                        <div className="text-muted-foreground font-medium mt-2 md:mt-0">
+                        <div className="text-sm md:text-base text-muted-foreground font-medium bg-white/5 px-3 py-1 rounded-full w-fit">
                           {job.period}
                         </div>
                       </div>
-                      <p className="text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors">
-                        {job.description}
-                      </p>
                     </div>
-                  </motion.div>
+                    <p className="text-sm md:text-base text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors">
+                      {job.description}
+                    </p>
+                  </div>
                 </motion.div>
-              ))}
-            </div>
+              </motion.div>
+            ))}
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* Education Section */}
       <section id="education" className="py-32 relative">
