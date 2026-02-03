@@ -558,7 +558,7 @@ const AboutThomazPage: React.FC = () => {
                 >
                   {/* Timeline Node */}
                   <motion.div
-                    className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 border-4 border-slate-900 z-10"
+                    className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 border-4 border-slate-900 z-1"
                     whileInView={{ scale: [0, 1.2, 1] }}
                     transition={{ duration: 0.5, delay: index * 0.2 + 0.3 }}
                   />
