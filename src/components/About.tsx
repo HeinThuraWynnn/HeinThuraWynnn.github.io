@@ -1,17 +1,40 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Rocket, 
   CheckCircle, 
   Target, 
   ArrowRight,
-  Users
+  Users,
+  Download,
+  Lock,
+  X
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 
 const About: React.FC = () => {
   const { theme } = useTheme();
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleDownload = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === 'Wynn@2024') {
+      const link = document.createElement('a');
+      link.href = '/portfolio.pdf';
+      link.download = 'Wynn_Solutions_Portfolio.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      setShowPasswordModal(false);
+      setPassword('');
+      setError('');
+    } else {
+      setError('Incorrect password. Please try again.');
+    }
+  };
 
   const features = [
     {
