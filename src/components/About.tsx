@@ -236,7 +236,7 @@ const About: React.FC = () => {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md p-6 rounded-2xl shadow-2xl z-50 ${
+              className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] sm:w-full sm:max-w-md p-6 rounded-2xl shadow-2xl z-50 ${
                 theme === 'dark' 
                   ? 'bg-gray-900 border border-white/10' 
                   : 'bg-white'
