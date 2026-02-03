@@ -21,7 +21,7 @@ const About: React.FC = () => {
 
   const handleDownload = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === 'Wynn@2024') {
+    if (password === 'enquiry4WSM') {
       const link = document.createElement('a');
       link.href = '/portfolio.pdf';
       link.download = 'Wynn_Solutions_Portfolio.pdf';
@@ -259,7 +259,9 @@ const About: React.FC = () => {
                 <p className="text-sm text-muted-foreground">
                   Please enter the password to download our portfolio.
                   <br />
-                  <span className="text-xs opacity-70">(Hint: Wynn@2024)</span>
+                  <span className="text-xs opacity-70">
+                    (Password protected. <a href="mailto:wynnsolutionsmyanmar@gmail.com?subject=Request Portfolio Password" className="underline hover:text-cyan-500">Request via email</a>)
+                  </span>
                 </p>
               </div>
 
