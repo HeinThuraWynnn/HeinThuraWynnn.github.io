@@ -21,7 +21,7 @@ const About: React.FC = () => {
 
   const handleDownload = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === 'enquiry4WSM') {
+    if (password === import.meta.env.VITE_PORTFOLIO_PASSWORD) {
       const link = document.createElement('a');
       link.href = '/portfolio.pdf';
       link.download = 'Wynn_Solutions_Portfolio.pdf';
