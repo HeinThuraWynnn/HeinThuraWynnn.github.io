@@ -150,7 +150,135 @@ const About: React.FC = () => {
             </div>
           </div>
         </motion.div>
+
+        {/* Portfolio Download Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="mt-16 text-center"
+        >
+          <div className={`inline-block p-8 rounded-3xl relative overflow-hidden ${
+            theme === 'dark' 
+              ? 'bg-gradient-to-br from-gray-900 to-gray-800 border border-white/10' 
+              : 'bg-white border border-gray-100 shadow-xl'
+          }`}>
+            <div className="relative z-10 flex flex-col items-center">
+              <div className={`w-16 h-16 rounded-2xl mb-4 flex items-center justify-center ${
+                theme === 'dark' ? 'bg-cyan-500/10 text-cyan-400' : 'bg-cyan-50 text-cyan-600'
+              }`}>
+                <Download className="w-8 h-8" />
+              </div>
+              <h3 className="text-2xl font-bold mb-2">Download Our Portfolio</h3>
+              <p className="text-muted-foreground mb-6 max-w-md">
+                Get detailed insights into our developed websites and success stories. 
+                This document is password protected.
+              </p>
+              <button
+                onClick={() => setShowPasswordModal(true)}
+                className={`group relative px-8 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                  theme === 'dark'
+                    ? 'bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white shadow-lg shadow-cyan-500/25'
+                    : 'bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white shadow-lg shadow-blue-500/25'
+                }`}
+              >
+                <span className="flex items-center gap-2">
+                  Download Portfolio <Lock className="w-4 h-4" />
+                </span>
+              </button>
+            </div>
+            
+            {/* Background decoration */}
+            <div className="absolute inset-0 opacity-30 pointer-events-none">
+              <div className="absolute -top-24 -right-24 w-48 h-48 bg-cyan-500/20 rounded-full blur-3xl" />
+              <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-purple-500/20 rounded-full blur-3xl" />
+            </div>
+          </div>
+        </motion.div>
       </div>
+
+      {/* Password Modal */}
+      <AnimatePresence>
+        {showPasswordModal && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowPasswordModal(false)}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md p-6 rounded-2xl shadow-2xl z-50 ${
+                theme === 'dark' 
+                  ? 'bg-gray-900 border border-white/10' 
+                  : 'bg-white'
+              }`}
+            >
+              <button
+                onClick={() => setShowPasswordModal(false)}
+                className="absolute top-4 right-4 text-muted-foreground hover:text-foreground"
+              >
+                <X className="w-5 h-5" />
+              </button>
+              
+              <div className="text-center mb-6">
+                <div className={`mx-auto w-12 h-12 rounded-full flex items-center justify-center mb-4 ${
+                  theme === 'dark' ? 'bg-cyan-500/10 text-cyan-400' : 'bg-cyan-50 text-cyan-600'
+                }`}>
+                  <Lock className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-bold mb-2">Protected Content</h3>
+                <p className="text-sm text-muted-foreground">
+                  Please enter the password to download our portfolio.
+                  <br />
+                  <span className="text-xs opacity-70">(Hint: Wynn@2024)</span>
+                </p>
+              </div>
+
+              <form onSubmit={handleDownload}>
+                <div className="mb-4">
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                      setError('');
+                    }}
+                    placeholder="Enter password"
+                    className={`w-full px-4 py-3 rounded-xl outline-none transition-all ${
+                      theme === 'dark'
+                        ? 'bg-gray-800 border-gray-700 focus:border-cyan-500 text-white'
+                        : 'bg-gray-50 border-gray-200 focus:border-cyan-500 text-gray-900'
+                    } border-2`}
+                    autoFocus
+                  />
+                  {error && (
+                    <p className="text-red-500 text-sm mt-2 flex items-center gap-1">
+                      <X className="w-3 h-3" /> {error}
+                    </p>
+                  )}
+                </div>
+                
+                <button
+                  type="submit"
+                  className={`w-full py-3 rounded-xl font-semibold transition-all ${
+                    theme === 'dark'
+                      ? 'bg-cyan-500 hover:bg-cyan-400 text-white'
+                      : 'bg-cyan-600 hover:bg-cyan-500 text-white'
+                  }`}
+                >
+                  Unlock & Download
+                </button>
+              </form>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
