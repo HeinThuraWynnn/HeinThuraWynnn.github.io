@@ -22,10 +22,34 @@ const Navigation = () => {
     }
   }, [location]);
 
+  const [activeSection, setActiveSection] = useState('');
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+
+      // Determine active section
+      const sections = navItems.filter(item => item.type === 'anchor').map(item => item.href.substring(1));
+      let current = '';
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 100 && rect.bottom >= 100) {
+            current = '#' + section;
+            break;
+          }
+        }
+      }
+
+      if (window.scrollY < 50) {
+        current = '/';
+      }
+      
+      setActiveSection(current);
     };
+    
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -198,7 +222,7 @@ const Navigation = () => {
               {navItems.map((item, index) => {
                 const isActive = item.type === 'internal' 
                   ? location.pathname === item.href
-                  : false;
+                  : activeSection === item.href && location.pathname === '/';
                 
                 return (
                   <motion.div
@@ -375,7 +399,7 @@ const Navigation = () => {
                 {navItems.map((item, index) => {
                   const isActive = item.type === 'internal' 
                     ? location.pathname === item.href
-                    : false;
+                    : activeSection === item.href && location.pathname === '/';
                   
                   return (
                     <motion.div
