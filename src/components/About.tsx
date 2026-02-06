@@ -92,7 +92,7 @@ const About: React.FC = () => {
           </h2>
           <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
             We are a leading technology company in Myanmar, specializing in innovative software solutions 
-            and AI-powered applications. With over 9 years of combined expertise, we deliver world-class 
+            and AI-powered applications. With over 10+ years of combined expertise, we deliver world-class 
             digital solutions that drive business growth and technological advancement.
           </p>
         </motion.div>
