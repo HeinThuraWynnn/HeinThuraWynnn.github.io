@@ -416,7 +416,11 @@ const AboutThomazPage = () => {
               "Get Started with Looker Skill Badge",
               "Google Project Management Professional Certificate (v2)",
               "Introduction to Cognitive Project Management in AI (CPM-AI)™",
-              "Talking to AI: Prompt Engineering for Project Managers"
+              "Talking to AI: Prompt Engineering for Project Managers",
+              "Disciplined Agile Essentials",
+              "PMI® Essentials: Seven AI Project Patterns",
+              "AI in Agile Delivery"
+
             ].map((training, index) => (
               <motion.div
                 key={index}
