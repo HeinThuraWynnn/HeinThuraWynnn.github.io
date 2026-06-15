@@ -1,8 +1,8 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, Github, Linkedin, Mail, Phone } from 'lucide-react';
+import { ArrowDown, Mail, Phone } from 'lucide-react';
+import { Github, Linkedin } from './BrandIcons';
 
-const Hero: React.FC = () => {
+const Hero = () => {
   const startYear = 2015;
   const startMonth = 11; // December
   const now = new Date();

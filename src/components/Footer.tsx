@@ -5,15 +5,13 @@ import {
   Mail, 
   Phone, 
   MapPin, 
-  Github, 
-  Linkedin, 
-  Twitter,
   Heart,
   ArrowUp,
   Sparkles,
   Zap,
   Star
 } from 'lucide-react';
+import { Github, Linkedin, Twitter } from './BrandIcons';
 import { useTheme } from '../context/ThemeContext';
 
 const Footer = () => {
@@ -23,7 +21,8 @@ const Footer = () => {
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
-    window.location.href = `mailto:info@wynnsolutionsmyanmar.com?subject=Newsletter Subscription&body=Please subscribe me to the newsletter. Email: ${email}`;
+    const sanitizedEmail = encodeURIComponent(email.trim());
+    window.location.href = `mailto:info@wynnsolutionsmyanmar.com?subject=${encodeURIComponent('Newsletter Subscription')}&body=${encodeURIComponent('Please subscribe me to the newsletter. Email: ')}${sanitizedEmail}`;
     setEmail('');
   };
 
@@ -302,21 +301,33 @@ const Footer = () => {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <motion.a
-                    href={link.href}
-                    className="block p-3 rounded-xl text-muted-foreground hover:text-foreground transition-all duration-300 group relative overflow-hidden"
-                    whileHover={{
-                      x: 10,
-                      background: theme === 'dark' 
-                        ? 'linear-gradient(135deg, rgba(6,182,212,0.1) 0%, rgba(168,85,247,0.1) 100%)'
-                        : 'rgba(0,0,0,0.05)',
-                    }}
-                  >
-                    <span className="relative z-10 text-sm flex items-center">
-                      <Star className="w-3 h-3 mr-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      {link.name}
-                    </span>
-                  </motion.a>
+                  {'type' in link && link.type === 'internal' ? (
+                    <Link
+                      to={link.href}
+                      className="block p-3 rounded-xl text-muted-foreground hover:text-foreground transition-all duration-300 group relative overflow-hidden"
+                    >
+                      <span className="relative z-10 text-sm flex items-center">
+                        <Star className="w-3 h-3 mr-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        {link.name}
+                      </span>
+                    </Link>
+                  ) : (
+                    <motion.a
+                      href={link.href}
+                      className="block p-3 rounded-xl text-muted-foreground hover:text-foreground transition-all duration-300 group relative overflow-hidden"
+                      whileHover={{
+                        x: 10,
+                        background: theme === 'dark' 
+                          ? 'linear-gradient(135deg, rgba(6,182,212,0.1) 0%, rgba(168,85,247,0.1) 100%)'
+                          : 'rgba(0,0,0,0.05)',
+                      }}
+                    >
+                      <span className="relative z-10 text-sm flex items-center">
+                        <Star className="w-3 h-3 mr-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        {link.name}
+                      </span>
+                    </motion.a>
+                  )}
                 </motion.div>
               ))}
             </div>

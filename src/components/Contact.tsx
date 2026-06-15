@@ -8,10 +8,10 @@ import {
   Send, 
   Clock,
   Globe,
-  Linkedin,
   CheckCircle,
   XCircle
 } from 'lucide-react';
+import { Linkedin } from './BrandIcons';
 import { useTheme } from '../context/ThemeContext';
 
 const Contact = () => {
@@ -232,33 +232,38 @@ const Contact = () => {
 
             {/* Contact Details */}
             <div className="space-y-4">
-              {contactInfo.map((info, index) => (
-                <motion.a
-                  key={index}
-                  href={info.link}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className={`flex items-center p-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group ${
-                    theme === 'dark' 
-                      ? 'bg-white/5 border border-white/10 hover:bg-white/10' 
-                      : 'bg-white border border-gray-100 hover:border-gray-200'
-                  }`}
-                >
-                  <div className="p-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg text-white mr-4 group-hover:scale-110 transition-transform duration-300">
-                    {info.icon}
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-foreground">
-                      {info.title}
-                    </h4>
-                    <p className="text-muted-foreground">
-                      {info.value}
-                    </p>
-                  </div>
-                </motion.a>
-              ))}
+              {contactInfo.map((info, index) => {
+                const isExternal = info.link.startsWith('http');
+                return (
+                  <motion.a
+                    key={index}
+                    href={info.link}
+                    target={isExternal ? '_blank' : undefined}
+                    rel={isExternal ? 'noopener noreferrer' : undefined}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className={`flex items-center p-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group ${
+                      theme === 'dark' 
+                        ? 'bg-white/5 border border-white/10 hover:bg-white/10' 
+                        : 'bg-white border border-gray-100 hover:border-gray-200'
+                    }`}
+                  >
+                    <div className="p-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg text-white mr-4 group-hover:scale-110 transition-transform duration-300">
+                      {info.icon}
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-foreground">
+                        {info.title}
+                      </h4>
+                      <p className="text-muted-foreground">
+                        {info.value}
+                      </p>
+                    </div>
+                  </motion.a>
+                );
+              })}
             </div>
 
             {/* Availability */}
@@ -354,6 +359,7 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
+                    maxLength={100}
                     className="glass-input w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 text-foreground placeholder-gray-400 transition-all duration-300"
                     placeholder="Your full name"
                   />
@@ -368,6 +374,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
+                    maxLength={254}
                     className="glass-input w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 text-foreground placeholder-gray-400 transition-all duration-300"
                     placeholder="your.email@example.com"
                   />
@@ -384,6 +391,7 @@ const Contact = () => {
                     name="company"
                     value={formData.company}
                     onChange={handleInputChange}
+                    maxLength={100}
                     className="glass-input w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 text-foreground placeholder-gray-400 transition-all duration-300"
                     placeholder="Your company name"
                   />
@@ -421,6 +429,7 @@ const Contact = () => {
                   value={formData.subject}
                   onChange={handleInputChange}
                   required
+                  maxLength={200}
                   className="glass-input w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 text-foreground placeholder-gray-400 transition-all duration-300"
                   placeholder="Brief description of your project"
                 />
@@ -436,6 +445,7 @@ const Contact = () => {
                   onChange={handleInputChange}
                   required
                   rows={6}
+                  maxLength={5000}
                   className="glass-input w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-blue-500 text-foreground placeholder-gray-400 transition-all duration-300 resize-none"
                   placeholder="Tell me more about your project, requirements, timeline, and budget..."
                 />

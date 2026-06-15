@@ -1,9 +1,6 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import SEO from './SEO';
 import { 
-  Github, 
-  Linkedin, 
   Mail, 
   Phone, 
   Award,
@@ -19,9 +16,10 @@ import {
   PencilRulerIcon,
   ToolCaseIcon
 } from 'lucide-react';
+import { Github, Linkedin } from './BrandIcons';
 import { useTheme } from '../context/ThemeContext';
 
-const AboutThomazPage: React.FC = () => {
+const AboutThomazPage = () => {
   const startYear = 2015;
   const startMonth = 11; // December
   const now = new Date();

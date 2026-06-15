@@ -11,9 +11,17 @@ const Navigation = () => {
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
 
+  const navItems = [
+    { name: 'Home', href: '/', type: 'internal' },
+    { name: 'About', href: '#about', type: 'anchor' },
+    { name: 'Services', href: '#services', type: 'anchor' },
+    { name: 'Contact', href: '#contact', type: 'anchor' },
+    { name: 'About Thomaz', href: '/about-thomaz', type: 'internal' }
+  ];
+
   useEffect(() => {
-    if (location.hash) {
-      const element = document.querySelector(location.hash);
+    if (location.hash && /^#[\w-]+$/.test(location.hash)) {
+      const element = document.getElementById(location.hash.slice(1));
       if (element) {
         setTimeout(() => {
           element.scrollIntoView({ behavior: 'smooth' });
@@ -52,15 +60,9 @@ const Navigation = () => {
     
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const navItems = [
-    { name: 'Home', href: '/', type: 'internal' },
-    { name: 'About', href: '#about', type: 'anchor' },
-    { name: 'Services', href: '#services', type: 'anchor' },
-    { name: 'Contact', href: '#contact', type: 'anchor' },
-    { name: 'About Thomaz', href: '/about-thomaz', type: 'internal' }
-  ];
 
   const handleNavClick = (href: string, type: string) => {
     if (type === 'anchor') {
