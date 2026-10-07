@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
+import {
+  Mail,
+  Phone,
+  MapPin,
   Heart,
   ArrowUp,
   Sparkles,
@@ -31,22 +31,21 @@ const Footer = () => {
   };
 
   const quickLinks = [
-    { name: 'About', href: '/#about' },
-    { name: 'Services', href: '/#services' },
-    // { name: 'Experience', href: '/#experience' },
-    // { name: 'Skills', href: '/#skills' },
-    // { name: 'Portfolio', href: '/#portfolio' },
+    { name: 'Home', href: '/' },
+    { name: 'Selected Work', href: '/#work' },
+    { name: 'Capabilities', href: '/#capabilities' },
+    { name: 'About & Experience', href: '/#about' },
     { name: 'About Thomaz', href: '/about-thomaz', type: 'internal' },
     { name: 'Contact', href: '/#contact' }
   ];
 
   const services = [
-    { name: 'Mobile App Development', href: '/#services' },
-    { name: 'Web Development', href: '/#services' },
-    { name: 'AI/ML Solutions', href: '/#services' },
-    { name: 'Cloud Services', href: '/#services' },
-    { name: 'Technical Consulting', href: '/#services' },
-    { name: 'DevOps & Deployment', href: '/#services' }
+    { name: 'Mobile App Development', href: '/#capabilities' },
+    { name: 'Web Platforms & SPAs', href: '/#capabilities' },
+    { name: 'AI & Machine Learning', href: '/#capabilities' },
+    { name: 'Backend & Microservices', href: '/#capabilities' },
+    { name: 'Cloud Infrastructure', href: '/#capabilities' },
+    { name: 'Product Ownership & PM', href: '/#capabilities' }
   ];
 
   const socialLinks = [
@@ -70,38 +69,68 @@ const Footer = () => {
     }
   ];
 
+  const footerParticles = useMemo(() => {
+    return Array.from({ length: 36 }, (_, i) => ({
+      id: i,
+      left: `${(i * 17 + 7) % 96 + 2}%`,
+      top: `${(i * 23 + 11) % 94 + 3}%`,
+      duration: 4 + (i % 5) * 0.8,
+      delay: (i % 7) * 0.4,
+      isCyan: i % 2 === 0,
+      isDual: i % 5 === 0,
+    }));
+  }, []);
+
   return (
     <footer className="relative overflow-hidden transition-colors duration-300" style={{
-      background: theme === 'dark' 
+      background: theme === 'dark'
         ? 'linear-gradient(135deg, #000000 0%, #0a0a0a 25%, #1a1a2e 50%, #16213e 75%, #0f3460 100%)'
         : 'linear-gradient(135deg, #fdfbf7 0%, #f3f4f6 100%)'
     }}>
-      {/* Animated Background Elements - Dark Mode Only or Adapted */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* Animated Background Elements - Ambient Cyan and Dark Spots */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Floating Particles */}
-        {[...Array(50)].map((_, i) => (
-          <motion.div
-            key={i}
-            className={`absolute w-1 h-1 rounded-full ${theme === 'dark' ? 'bg-cyan-400/30' : 'bg-gray-400/30'}`}
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [-20, 20, -20],
-              x: [-10, 10, -10],
-              opacity: [0.1, 0.6, 0.1],
-              scale: [0.5, 1.5, 0.5],
-            }}
-            transition={{
-              duration: 4 + Math.random() * 3,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: Math.random() * 3,
-            }}
-          />
-        ))}
-        
+        {footerParticles.map((p) => {
+          let particleClass = '';
+          if (theme === 'dark') {
+            particleClass = p.isCyan
+              ? 'w-1.5 h-1.5 bg-cyan-300/60 shadow-[0_0_8px_rgba(34,211,238,0.7)]'
+              : 'w-1 h-1 bg-cyan-400/35';
+          } else {
+            // Light Theme: Cyan and Dark Spots
+            if (p.isDual) {
+              particleClass = 'w-2 h-2 rounded-full border border-cyan-500/60 bg-slate-900/60 shadow-[0_0_6px_rgba(6,182,212,0.4)]';
+            } else if (p.isCyan) {
+              particleClass = 'w-1.5 h-1.5 bg-cyan-500/70 shadow-[0_0_6px_rgba(6,182,212,0.5)]';
+            } else {
+              particleClass = 'w-1.5 h-1.5 bg-slate-800/50';
+            }
+          }
+
+          return (
+            <motion.div
+              key={p.id}
+              className={`absolute rounded-full ${particleClass}`}
+              style={{
+                left: p.left,
+                top: p.top,
+              }}
+              animate={{
+                y: [-18, 18, -18],
+                x: [-12, 12, -12],
+                opacity: [0.2, 0.75, 0.2],
+                scale: [0.8, 1.25, 0.8],
+              }}
+              transition={{
+                duration: p.duration,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: p.delay,
+              }}
+            />
+          );
+        })}
+
         {/* Morphing Bean Shapes - Only visible in dark mode or subtle in light */}
         <motion.div
           className="absolute top-20 left-10 w-64 h-32 opacity-10"
@@ -124,7 +153,7 @@ const Footer = () => {
             ease: "easeInOut",
           }}
         />
-        
+
         {theme === 'dark' && (
           <div className="absolute inset-0 opacity-5">
             <div className="w-full h-full" style={{
@@ -149,11 +178,11 @@ const Footer = () => {
             transition={{ duration: 0.6 }}
             className="lg:col-span-1"
           >
-            <motion.div 
+            <motion.div
               className="flex items-center mb-6 group"
               whileHover={{ scale: 1.02 }}
             >
-              <motion.div 
+              <motion.div
                 className="relative w-12 h-12 rounded-2xl flex items-center justify-center mr-4 overflow-hidden"
                 style={{
                   background: 'linear-gradient(135deg, #06b6d4 0%, #8b5cf6 50%, #ec4899 100%)',
@@ -163,12 +192,12 @@ const Footer = () => {
                 transition={{ duration: 0.8 }}
               >
                 <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" />
-                <img 
-                  src="/w-logo.svg" 
-                  alt="Wynn Solutions Myanmar Logo" 
+                <img
+                  src="/w-logo.svg"
+                  alt="Wynn Solutions Myanmar Logo"
                   className="w-8 h-8 relative z-10 filter brightness-0 invert"
                 />
-                
+
                 {/* Orbiting particles */}
                 {[...Array(8)].map((_, i) => (
                   <motion.div
@@ -191,9 +220,9 @@ const Footer = () => {
                   />
                 ))}
               </motion.div>
-              
+
               <div className="flex flex-col">
-                <motion.h3 
+                <motion.h3
                   className="text-xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
                   animate={{
                     backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
@@ -208,11 +237,11 @@ const Footer = () => {
                 <span className="text-sm text-cyan-500 dark:text-cyan-300/70">Future Tech Solutions</span>
               </div>
             </motion.div>
-            
+
             <motion.div
               className="p-6 rounded-2xl mb-6 relative overflow-hidden"
               style={{
-                background: theme === 'dark' 
+                background: theme === 'dark'
                   ? 'linear-gradient(135deg, rgba(6,182,212,0.1) 0%, rgba(168,85,247,0.1) 100%)'
                   : 'rgba(255, 255, 255, 0.5)',
                 backdropFilter: 'blur(20px)',
@@ -224,28 +253,28 @@ const Footer = () => {
               }}
             >
               <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
-                Innovative software and AI solutions provider, specializing in mobile apps, 
+                Innovative software and AI solutions provider, specializing in mobile apps,
                 web development, and cutting-edge technology implementations.
               </p>
             </motion.div>
-            
+
             <div className="space-y-4">
               {[
-                { 
-                  icon: Mail, 
-                  text: 'wynnsolutionsmyanmar@gmail.com', 
+                {
+                  icon: Mail,
+                  text: 'wynnsolutionsmyanmar@gmail.com',
                   color: 'text-cyan-500 dark:text-cyan-400',
                   href: 'mailto:wynnsolutionsmyanmar@gmail.com'
                 },
-                { 
-                  icon: Phone, 
-                  text: '+95 9 971 879 637', 
+                {
+                  icon: Phone,
+                  text: '+669-557-368-03',
                   color: 'text-purple-500 dark:text-purple-400',
-                  href: 'tel:+959971879637'
+                  href: 'tel:+66955736803'
                 },
-                { 
-                  icon: MapPin, 
-                  text: 'Yangon, Myanmar', 
+                {
+                  icon: MapPin,
+                  text: 'Yangon, Myanmar',
                   color: 'text-pink-500 dark:text-pink-400',
                   href: 'https://maps.google.com/?q=Yangon,Myanmar',
                   target: '_blank'
@@ -291,7 +320,7 @@ const Footer = () => {
               <Zap className="w-5 h-5 text-cyan-400 mr-2" />
               <h4 className="text-lg font-semibold text-foreground">Quick Links</h4>
             </div>
-            
+
             <div className="space-y-3">
               {quickLinks.map((link, index) => (
                 <motion.div
@@ -317,7 +346,7 @@ const Footer = () => {
                       className="block p-3 rounded-xl text-muted-foreground hover:text-foreground transition-all duration-300 group relative overflow-hidden"
                       whileHover={{
                         x: 10,
-                        background: theme === 'dark' 
+                        background: theme === 'dark'
                           ? 'linear-gradient(135deg, rgba(6,182,212,0.1) 0%, rgba(168,85,247,0.1) 100%)'
                           : 'rgba(0,0,0,0.05)',
                       }}
@@ -344,7 +373,7 @@ const Footer = () => {
               <Sparkles className="w-5 h-5 text-purple-400 mr-2" />
               <h4 className="text-lg font-semibold text-foreground">Services</h4>
             </div>
-            
+
             <div className="space-y-3">
               {services.map((service, index) => (
                 <motion.div
@@ -385,7 +414,7 @@ const Footer = () => {
               <Heart className="w-5 h-5 text-pink-400 mr-2" />
               <h4 className="text-lg font-semibold text-foreground">Stay Connected</h4>
             </div>
-            
+
             <motion.div
               className="p-4 rounded-2xl mb-6 relative overflow-hidden"
               style={{
@@ -397,10 +426,10 @@ const Footer = () => {
               }}
             >
               <p className="text-muted-foreground text-sm mb-4">
-                Follow me on social media for the latest updates on technology trends and project insights.
+                Follow us on social media for the latest updates on engineering, products, and tech insights.
               </p>
             </motion.div>
-            
+
             {/* Social Links */}
             <div className="flex space-x-3 mb-6">
               {socialLinks.map((social, index) => (
@@ -417,8 +446,8 @@ const Footer = () => {
                     backdropFilter: 'blur(10px)',
                     border: theme === 'dark' ? '1px solid rgba(6,182,212,0.2)' : '1px solid rgba(0,0,0,0.05)',
                   }}
-                  whileHover={{ 
-                    scale: 1.1, 
+                  whileHover={{
+                    scale: 1.1,
                     y: -5,
                     boxShadow: '0 10px 30px rgba(6,182,212,0.3)',
                   }}
@@ -431,7 +460,7 @@ const Footer = () => {
             </div>
 
             {/* Newsletter Signup */}
-            <motion.div 
+            <motion.div
               className="p-4 rounded-2xl relative overflow-hidden"
               style={{
                 background: theme === 'dark'
@@ -448,29 +477,30 @@ const Footer = () => {
                 <Sparkles className="w-4 h-4 mr-2 text-cyan-400" />
                 Tech Newsletter
               </h5>
-              
-              <form onSubmit={handleSubscribe} className="flex">
+
+              <form onSubmit={handleSubscribe} className="flex items-center">
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Your email"
+                  placeholder="Your email address"
                   required
-                  className={`flex-1 min-w-0 px-3 py-2 rounded-xl sm:rounded-l-xl sm:rounded-r-none text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 placeholder-gray-400 backdrop-blur-sm ${
-                    theme === 'dark' 
-                      ? 'text-white bg-black/20 border border-cyan-500/20' 
-                      : 'text-black bg-white/50 border border-gray-200'
+                  aria-label="Email address for newsletter"
+                  className={`flex-1 min-w-0 px-3.5 py-2.5 rounded-l-xl text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 placeholder:text-muted-foreground/60 transition-colors ${
+                    theme === 'dark'
+                      ? 'text-white bg-slate-950/60 border border-cyan-500/20'
+                      : 'text-slate-900 bg-white/90 border border-slate-200'
                   }`}
                 />
-                <motion.button 
+                <motion.button
                   type="submit"
-                  className="px-4 py-2 rounded-xl sm:rounded-l-none sm:rounded-r-xl transition-all duration-300 border border-cyan-500/30 flex-shrink-0"
+                  aria-label="Submit newsletter subscription"
+                  className="px-4 py-2.5 rounded-r-xl transition-all duration-300 border border-cyan-500/30 flex-shrink-0 flex items-center justify-center text-cyan-700 dark:text-cyan-300 cursor-pointer"
                   style={{
-                    background: 'linear-gradient(135deg, rgba(6,182,212,0.3) 0%, rgba(168,85,247,0.3) 100%)',
+                    background: 'linear-gradient(135deg, rgba(6,182,212,0.25) 0%, rgba(168,85,247,0.25) 100%)',
                     backdropFilter: 'blur(10px)',
                   }}
                   whileHover={{
-                    background: 'linear-gradient(135deg, rgba(6,182,212,0.5) 0%, rgba(168,85,247,0.5) 100%)',
                     scale: 1.05,
                   }}
                   whileTap={{ scale: 0.95 }}
@@ -508,7 +538,7 @@ const Footer = () => {
               </motion.div>
               <span>in Myanmar</span>
             </motion.div>
-            
+
             <div className="flex items-center space-x-6">
               <Link
                 to="/privacy"
@@ -522,7 +552,7 @@ const Footer = () => {
               >
                 Terms of Service
               </Link>
-              
+
               <motion.button
                 onClick={scrollToTop}
                 className="relative p-3 rounded-xl transition-all duration-300 group overflow-hidden"
@@ -531,7 +561,7 @@ const Footer = () => {
                   backdropFilter: 'blur(10px)',
                   border: '1px solid rgba(6,182,212,0.3)',
                 }}
-                whileHover={{ 
+                whileHover={{
                   scale: 1.1,
                   y: -5,
                   boxShadow: '0 10px 30px rgba(6,182,212,0.3)',

@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 import SEO from './SEO';
-import { 
-  Mail, 
-  Phone, 
+import {
+  Mail,
+  Phone,
   Award,
   Code,
   Database,
@@ -28,10 +28,10 @@ const AboutThomazPage = () => {
 
   return (
     <div className="min-h-screen transition-colors duration-300">
-      <SEO 
-        title="Hein Thura Wynn - Lead Software Engineer & Project Manager | Wynn Solutions"
-        description="Hein Thura Wynn (Thomaz) is a Lead Software Engineer and PMP Candidate with expertise in Flutter, Kotlin, PHP, and AI solutions. View portfolio, skills, and experience."
-        keywords="Hein Thura Wynn, Thomaz, Software Engineer Myanmar, Project Manager PMP, Flutter Developer, AI Solutions Expert"
+      <SEO
+        title="Hein Thura Wynn - Product Owner & Rising Talent Freelancer | Wynn Solutions"
+        description="Hein Thura Wynn (Thomaz) is the Product Owner of GuanOra & Save the Date, and an Upwork Rising Talent Freelance PM and Web Developer with 10+ years of software engineering expertise."
+        keywords="Hein Thura Wynn, Thomaz, Product Owner GuanOra, Save the Date, Upwork Rising Talent, Freelance Project Manager, Web Developer Myanmar"
         url="https://wynnsolutionsmyanmar.com/about-thomaz"
         image="https://wynnsolutionsmyanmar.com/thomaz.jpeg"
       />
@@ -49,6 +49,22 @@ const AboutThomazPage = () => {
           ) : (
             <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100 opacity-80" />
           )}
+        </div>
+
+        {/* Fluently-style Morphing Gradient Blobs */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none -z-0">
+          <div
+            className="gradient-blob gradient-blob-a w-[500px] h-[500px] -top-32 -left-32 opacity-25 dark:opacity-20"
+            style={{
+              background: 'radial-gradient(circle, rgba(56,189,248,0.4) 0%, rgba(168,85,247,0.2) 60%, transparent 80%)',
+            }}
+          />
+          <div
+            className="gradient-blob gradient-blob-b w-[550px] h-[550px] -bottom-36 -right-24 opacity-25 dark:opacity-20"
+            style={{
+              background: 'radial-gradient(circle, rgba(168,85,247,0.35) 0%, rgba(236,72,153,0.2) 60%, transparent 80%)',
+            }}
+          />
         </div>
 
         {/* Floating Elements - Dark Mode Only */}
@@ -80,7 +96,7 @@ const AboutThomazPage = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-8"   
+            className="space-y-8"
           >
             {/* Profile Image */}
             <motion.div
@@ -91,14 +107,14 @@ const AboutThomazPage = () => {
             >
               <div className="w-full h-full rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 p-1">
                 <div className={`w-full h-full rounded-full overflow-hidden ${theme === 'dark' ? 'bg-gray-800' : 'bg-white'}`}>
-                  <img 
-                    src="/thomaz.jpeg" 
-                    alt="Hein Thura Wynn (Thomaz)" 
+                  <img
+                    src="/thomaz.jpeg"
+                    alt="Hein Thura Wynn (Thomaz)"
                     className="w-full h-full object-cover rounded-full"
                   />
                 </div>
               </div>
-              
+
               {/* Dark Mode Glow Effects */}
               {theme === 'dark' && (
                 <>
@@ -109,7 +125,7 @@ const AboutThomazPage = () => {
                   />
                   <motion.div
                     className="absolute -inset-6 rounded-full bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 opacity-10 blur-2xl"
-                    animate={{ 
+                    animate={{
                       scale: [1, 1.2, 1],
                       opacity: [0.1, 0.2, 0.1]
                     }}
@@ -152,26 +168,23 @@ const AboutThomazPage = () => {
               >
                 Hein Thura Wynn @ Thomaz
               </motion.h1>
-              
+
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
                 className="text-xl md:text-2xl lg:text-3xl gradient-text font-semibold"
               >
-                Lead Software Engineer & Project Manager (PMP Candidate)
+                Product Owner • Freelance PM & Web Developer (Upwork Rising Talent)
               </motion.div>
-              
+
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8 }}
                 className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed transition-colors duration-300"
               >
-                Project Manager (PMP candidate) with {yearsOfExperience}+ years of combined experience in project
-                leadership, QA governance, and software engineering. Skilled at bridging business goals and
-                technical execution in multinational and BOI corporate environments. Known for delivering
-                projects on time, improving product quality, and leading teams to high performance.
+                Product Owner for GuanOra and Save the Date (since June 2026) and Rising Talent Upwork Freelancer with {yearsOfExperience}+ years of combined experience in product management, full-stack software development, and technical leadership. Former QA Lead & Test Owner at Alex International (concluded June 2026). Dedicated to turning bold digital ideas into scalable, production-grade reality.
               </motion.p>
             </div>
 
@@ -216,8 +229,8 @@ const AboutThomazPage = () => {
                   target={social.href.startsWith('http') ? '_blank' : undefined}
                   rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                   className={`p-3 rounded-full backdrop-blur-sm border transition-all duration-300 ${
-                    theme === 'dark' 
-                      ? 'bg-white/10 border-white/20 text-gray-300 hover:text-cyan-400' 
+                    theme === 'dark'
+                      ? 'bg-white/10 border-white/20 text-gray-300 hover:text-cyan-400'
                       : 'bg-white border-gray-200 text-gray-600 hover:text-blue-600 hover:border-blue-200 shadow-sm hover:shadow-md'
                   }`}
                   whileHover={{ scale: 1.1, y: -2 }}
@@ -244,15 +257,15 @@ const AboutThomazPage = () => {
             transition={{ duration: 1 }}
             className="text-center mb-20"
           >
-            <motion.h2 
+            <motion.h2
               className="text-5xl md:text-6xl font-bold mb-6"
             >
               <span className={`bg-clip-text text-transparent ${
-                theme === 'dark' 
-                  ? 'bg-gradient-to-r from-white to-gray-300' 
+                theme === 'dark'
+                  ? 'bg-gradient-to-r from-white to-gray-300'
                   : 'bg-gradient-to-r from-gray-900 to-gray-600'
               }`}>
-                Technical 
+                Technical
               </span>
               <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent ml-2">
                 Skills
@@ -271,9 +284,9 @@ const AboutThomazPage = () => {
               {
                 title: "Leadership & Management",
                 icon: () => (
-                  <img 
-                    src="/w-logo.svg" 
-                    alt="Wynn Solutions Logo" 
+                  <img
+                    src="/w-logo.svg"
+                    alt="Wynn Solutions Logo"
                     className={`w-6 h-6 ${theme === 'dark' ? 'filter brightness-0 invert' : ''}`}
                   />
                 ),
@@ -317,7 +330,7 @@ const AboutThomazPage = () => {
                 color: "from-pink-400 to-purple-500",
                 skills: ["ERP & Mobile Solution Delivery", "Technical Expertise", "Business-Technical Alignment"]
               }
-              
+
             ].map((skill, index) => (
               <motion.div
                 key={skill.title}
@@ -325,8 +338,8 @@ const AboutThomazPage = () => {
                 whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
-                whileHover={{ 
-                  y: -10, 
+                whileHover={{
+                  y: -10,
                   rotateY: 5,
                   scale: 1.02,
                 }}
@@ -350,7 +363,7 @@ const AboutThomazPage = () => {
                   }}
                   transition={{ duration: 4, repeat: Infinity }}
                 />
-                
+
                 <div className="relative z-10">
                   <div className="flex items-center mb-6">
                     <div className={`p-3 rounded-2xl bg-gradient-to-r ${skill.color} mr-4`}>
@@ -393,11 +406,11 @@ const AboutThomazPage = () => {
           >
             <h2 className="text-5xl md:text-6xl font-bold mb-6">
               <span className={`bg-clip-text text-transparent ${
-                theme === 'dark' 
-                  ? 'bg-gradient-to-r from-white to-gray-300' 
+                theme === 'dark'
+                  ? 'bg-gradient-to-r from-white to-gray-300'
                   : 'bg-gradient-to-r from-gray-900 to-gray-600'
               }`}>
-                Professional 
+                Professional
               </span>
               <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent ml-2">
                 Training
@@ -407,44 +420,108 @@ const AboutThomazPage = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              "Agile Metrics for Success",
-              "AI in Infrastructure & Construction Projects",
-              "AWS Educate Getting Started with Serverless",
-              "AWS Educate Introduction to Generative AI",
-              "Data Landscape of GenAI for Project Managers",
-              "Generative AI Overview for Project Managers",
-              "Get Started with Looker Skill Badge",
-              "Google Project Management Professional Certificate (v2)",
-              "Introduction to Cognitive Project Management in AI (CPM-AI)™",
-              "Talking to AI: Prompt Engineering for Project Managers",
-              "Disciplined Agile Essentials",
-              "PMI® Essentials: Seven AI Project Patterns",
-              "AI in Agile Delivery"
-
+              {
+                title: "STEAM4INNOVATOR English Program",
+                issuer: "National Innovation Agency (NIA), Thailand",
+                description: "An innovation and entrepreneurship program developed under the Ministry of Higher Education, Science, Research and Innovation.",
+                verifyUrl: "https://moocs.nia.or.th/cert/vxMGd6",
+                badge: "NIA Thailand"
+              },
+              {
+                title: "Entrepreneurship and New Venture Creation",
+                issuer: "SFUx by Strategy First International College",
+                description: "Certificate program focusing on business model innovation, market opportunity assessment, and scalable venture creation.",
+                badge: "Strategy First"
+              },
+              {
+                title: "Google Project Management Professional Certificate (v2)",
+                issuer: "Google",
+                badge: "Professional Certificate"
+              },
+              {
+                title: "Introduction to Cognitive Project Management in AI (CPM-AI)™",
+                issuer: "Project Management Institute (PMI)",
+                badge: "AI & PM"
+              },
+              {
+                title: "PMI® Essentials: Seven AI Project Patterns",
+                issuer: "Project Management Institute (PMI)",
+                badge: "AI & PM"
+              },
+              {
+                title: "Disciplined Agile Essentials",
+                issuer: "Project Management Institute (PMI)",
+                badge: "AI & PM"
+              },
+              {
+                title: "AI in Agile Delivery",
+                issuer: "Project Management Institute (PMI)",
+                badge: "AI & PM"
+              },
+              {
+                title: "Agile Metrics for Success",
+                issuer: "Project Management Institute (PMI)",
+                badge: "AI & PM"
+              },
+              {
+                title: "AI in Infrastructure & Construction Projects",
+                issuer: "Project Management Institute (PMI)",
+                badge: "AI & PM"
+              },
+              {
+                title: "AWS Educate Getting Started with Serverless",
+                issuer: "Amazon Web Services (AWS)",
+                badge: "Amazon Web Services (AWS)"
+              },
+              {
+                title: "AWS Educate Introduction to Generative AI",
+                issuer: "Amazon Web Services (AWS)",
+                badge: "Amazon Web Services (AWS)"
+              },
+              {
+                title: "Data Landscape of GenAI for Project Managers",
+                issuer: "Project Management Institute (PMI)",
+                badge: "AI & PM"
+              },
+              {
+                title: "Generative AI Overview for Project Managers",
+                issuer: "Project Management Institute (PMI)",
+                badge: "AI & PM"
+              },
+              {
+                title: "Get Started with Looker Skill Badge",
+                issuer: "Google Cloud",
+                badge: "Google"
+              },
+              {
+                title: "Talking to AI: Prompt Engineering for Project Managers",
+                issuer: "Project Management Institute (PMI)",
+                badge: "AI & PM"
+              }
             ].map((training, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
                 whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                whileHover={{ 
-                  scale: 1.05, 
-                  y: -8,
-                  rotateX: 5,
+                transition={{ duration: 0.8, delay: index * 0.05 }}
+                whileHover={{
+                  scale: 1.03,
+                  y: -6,
+                  rotateX: 4,
                 }}
-                className={`group relative p-6 rounded-3xl transition-all duration-500 ${
+                className={`group fluently-card ${index % 2 === 0 ? 'bento-tilt-1' : 'bento-tilt-2'} relative p-6 rounded-3xl transition-all duration-500 flex flex-col justify-between h-full ${
                   theme === 'dark'
                     ? 'bg-white/5 backdrop-blur-2xl border border-white/10 hover:border-cyan-400/50'
                     : 'bg-white border border-gray-100 shadow-lg hover:shadow-xl hover:border-cyan-400/30'
                 }`}
                 style={{
                   transformStyle: "preserve-3d",
-                  borderRadius: `${25 + Math.random() * 15}px ${35 + Math.random() * 15}px ${30 + Math.random() * 15}px ${20 + Math.random() * 15}px`,
+                  borderRadius: `${25 + ((index * 7) % 15)}px ${35 + ((index * 5) % 15)}px ${30 + ((index * 9) % 15)}px ${20 + ((index * 6) % 15)}px`,
                 }}
               >
                 <motion.div
-                  className="absolute inset-0 rounded-3xl bg-gradient-to-br from-cyan-400/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  className="absolute inset-0 rounded-3xl bg-gradient-to-br from-cyan-400/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                   animate={{
                     background: [
                       "linear-gradient(45deg, rgba(34, 211, 238, 0.1), rgba(168, 85, 247, 0.1))",
@@ -454,15 +531,60 @@ const AboutThomazPage = () => {
                   }}
                   transition={{ duration: 3, repeat: Infinity }}
                 />
-                
-                <div className="relative z-10 flex items-center">
-                  <div className="p-3 rounded-2xl bg-gradient-to-r from-cyan-400 to-purple-500 mr-4 flex-shrink-0">
-                    <BookOpen className="h-6 w-6 text-white" />
+
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between gap-3 mb-4">
+                    <div className="p-3 rounded-2xl bg-gradient-to-r from-cyan-400 to-purple-500 flex-shrink-0 group-hover:scale-110 transition-transform duration-300 ease-[cubic-bezier(0.34,1.4,0.64,1)]">
+                      <BookOpen className="h-5 w-5 text-white" />
+                    </div>
+                    {training.badge && (
+                      <span className="text-[11px] font-mono px-2.5 py-1 rounded-full bg-cyan-400/10 text-cyan-600 dark:text-cyan-400 border border-cyan-400/20 font-medium">
+                        {training.badge}
+                      </span>
+                    )}
                   </div>
-                  <h3 className="text-lg font-bold text-foreground transition-colors leading-tight">
-                    {training}
+
+                  <h3 className="text-lg font-bold text-foreground transition-colors leading-snug group-hover:text-cyan-500 dark:group-hover:text-cyan-300">
+                    {training.title}
                   </h3>
+
+                  {training.issuer && (
+                    <p className="text-xs font-semibold text-cyan-600 dark:text-cyan-400 mt-1.5">
+                      {training.issuer}
+                    </p>
+                  )}
+
+                  {training.description && (
+                    <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
+                      {training.description}
+                    </p>
+                  )}
                 </div>
+
+                {training.verifyUrl && (
+                  <div className="relative z-10 mt-5 pt-3 border-t border-slate-200/60 dark:border-white/10 flex items-center justify-between">
+                    <a
+                      href={training.verifyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group/link inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-600 dark:text-cyan-400 hover:text-cyan-500 transition-colors"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <span className="h-[16px] overflow-hidden inline-flex flex-col">
+                        <span className="transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/link:-translate-y-full">
+                          Verify Credential
+                        </span>
+                        <span className="transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/link:-translate-y-full text-cyan-400 font-bold">
+                          Verify Credential
+                        </span>
+                      </span>
+                      <ExternalLink className="w-3.5 h-3.5 transition-transform duration-300 ease-[cubic-bezier(0.34,1.4,0.64,1)] group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                    </a>
+                    <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                      Verified
+                    </span>
+                  </div>
+                )}
               </motion.div>
             ))}
           </div>
@@ -481,11 +603,11 @@ const AboutThomazPage = () => {
           >
             <h2 className="text-5xl md:text-6xl font-bold mb-6">
               <span className={`bg-clip-text text-transparent ${
-                theme === 'dark' 
-                  ? 'bg-gradient-to-r from-white to-gray-300' 
+                theme === 'dark'
+                  ? 'bg-gradient-to-r from-white to-gray-300'
                   : 'bg-gradient-to-r from-gray-900 to-gray-600'
               }`}>
-                Work 
+                Work
               </span>
               <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent ml-2">
                 Experience
@@ -496,13 +618,27 @@ const AboutThomazPage = () => {
           <div className="relative">
             {/* Timeline Line */}
             <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-cyan-400 via-purple-500 to-pink-500 rounded-full opacity-30" />
-            
+
             <div className="space-y-16">
               {[
                 {
+                  title: "Product Owner (PO)",
+                  company: "GuanOra & Save the Date",
+                  period: "June 2026 - Present",
+                  description: "Leading end-to-end product vision, feature backlog, UX architecture, and engineering execution for GuanOra (FutureFit Ventures Business Plan Competition 2026 Innovation Award winner) and Save the Date (bespoke digital invitation studio). Managing user research, feature prioritization, architecture, and deployment.",
+                  side: "left"
+                },
+                {
+                  title: "Freelance Project Manager & Web Developer",
+                  company: "Upwork Global (Rising Talent)",
+                  period: "2022 - Present",
+                  description: "Rising Talent Freelancer on Upwork providing end-to-end Project Management and Full Stack Web Development for global luxury & enterprise clients: \n• Luxe Icone (https://luxeicone.com/): Full site renovation and customized ERP integration (Active / Ongoing).\n• Luxury With Discounts (https://luxurywithdiscounts.com/): Full site renovation and custom shipping method integration (Completed).\n• The Personal Shopper Agency (https://thepersonalshopperagency.com/): Multilingual translation system and AI integration (Completed).\n• Prior deliverables include HunterX Freelancer platform (Laravel), Uemura Travel Concierge (October CMS), and DARU Australia (WCAG WordPress).",
+                  side: "right"
+                },
+                {
                   title: "QA Lead & Test Owner",
                   company: "Alex International",
-                  period: "2024 - Present",
+                  period: "2024 - June 2026",
                   description: "Led end-to-end QA for 5+ web/mobile applications, reducing production defects by 30% through TDD, automation, and CI/CD pipeline optimizations. Established scalable QA processes from scratch, including automated regression testing (covering 85% of critical workflows) and risk-based test planning. Owned quality strategy across App Teams, collaborating with developers, Product Owner, and stakeholders to align testing with business goals.",
                   side: "left"
                 },
@@ -514,43 +650,36 @@ const AboutThomazPage = () => {
                   side: "right"
                 },
                 {
-                  title: "Senior Freelance Developer",
-                  company: "Freelancer UpWork",
-                  period: "2022 - 2024",
-                  description: "Remote working for Software Development. Laravel Developer for 'HunterX Freelancer job hunting platform' - Laravel. Full Stack Developer for 'Uemura Travel & Social Event Agency' - October CMS. Renovation of the Australia Disability Advocacy Resource Unit Website (DARU) with WordPress elementor customize plugin development.",
-                  side: "left"
-                },
-                {
                   title: "Development Team Leader",
                   company: "PRO 1 Global Home Center",
                   period: "2020 - 2022",
                   description: "Led the project involving system development and maintenance for a PRO 1 Online Store, including integration with ERP, SRP, web security, payment gateway integration, mobile APIs, microservice mobile app/inventory stock check and project management.",
-                  side: "right"
+                  side: "left"
                 },
                 {
                   title: "Senior Web Developer",
                   company: "TY Solutions",
                   period: "2018 - 2020",
                   description: "Developed new features for Myanmar's Highway Bus Operation Management System. Focused on system security, maintenance, API development, and integration with third-party payment gateways.",
-                  side: "left"
+                  side: "right"
                 },
                 {
                   title: "Web Developer",
                   company: "HTET UK Group",
                   period: "2015 - 2018",
                   description: "Contributed to projects including the development of a GYM Management System, Student Attendance System for the University of Dental Medicine, Find Property mobile application, and various portfolio websites.",
-                  side: "right"
+                  side: "left"
                 }
               ].map((job, index) => (
                 <motion.div
                   key={index}
-                  initial={{ 
-                    opacity: 0, 
+                  initial={{
+                    opacity: 0,
                     x: job.side === 'left' ? -100 : 100,
                     rotateY: job.side === 'left' ? -15 : 15
                   }}
-                  whileInView={{ 
-                    opacity: 1, 
+                  whileInView={{
+                    opacity: 1,
                     x: 0,
                     rotateY: 0
                   }}
@@ -564,7 +693,7 @@ const AboutThomazPage = () => {
                     whileInView={{ scale: [0, 1.2, 1] }}
                     transition={{ duration: 0.5, delay: index * 0.2 + 0.3 }}
                   />
-                  
+
                   {/* Content Card */}
                   <motion.div
                     className={`w-full md:w-5/12 p-6 md:p-8 rounded-3xl transition-all duration-500 group ${job.side === 'left' ? 'md:mr-auto' : 'md:ml-auto'} ${
@@ -572,8 +701,8 @@ const AboutThomazPage = () => {
                       ? 'bg-white/5 backdrop-blur-2xl border border-white/10 hover:border-cyan-400/50'
                       : 'bg-white border border-gray-100 shadow-lg hover:shadow-xl hover:border-cyan-400/30'
                   }`}
-                  whileHover={{ 
-                    scale: 1.02, 
+                  whileHover={{
+                    scale: 1.02,
                     y: -5,
                     rotateY: 0
                   }}
@@ -593,7 +722,7 @@ const AboutThomazPage = () => {
                     }}
                     transition={{ duration: 4, repeat: Infinity }}
                   />
-                  
+
                   <div className="relative z-10">
                     <div className="flex flex-col mb-4">
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
@@ -669,8 +798,8 @@ const AboutThomazPage = () => {
                 whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
-                whileHover={{ 
-                  y: -10, 
+                whileHover={{
+                  y: -10,
                   rotateY: 5,
                   scale: 1.02,
                 }}
@@ -693,7 +822,7 @@ const AboutThomazPage = () => {
                   }}
                   transition={{ duration: 4, repeat: Infinity }}
                 />
-                
+
                 <div className="relative z-10">
                   <div className="flex items-center mb-6">
                     <div className={`p-3 rounded-2xl bg-gradient-to-r ${edu.color} mr-4`}>
@@ -729,11 +858,11 @@ const AboutThomazPage = () => {
           >
             <h2 className="text-5xl md:text-6xl font-bold mb-6">
               <span className={`bg-clip-text text-transparent ${
-                theme === 'dark' 
-                  ? 'bg-gradient-to-r from-white to-gray-300' 
+                theme === 'dark'
+                  ? 'bg-gradient-to-r from-white to-gray-300'
                   : 'bg-gradient-to-r from-gray-900 to-gray-600'
               }`}>
-                Awards & 
+                Awards &
               </span>
               <span className="bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent ml-2">
                 Honors
@@ -741,28 +870,44 @@ const AboutThomazPage = () => {
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {[
               {
+                title: "FutureFit Ventures Business Plan Competition 2026",
+                subtitle: "GuanOra — AI Native Audio-First Platform",
+                achievement: "Innovation Award Winner",
+                issuer: "Issued by Strategy First International College",
+                badge: "VERIFIED COMPETITION HONOR",
+                year: "2026",
+                color: "from-amber-400 via-orange-500 to-purple-600",
+                featured: true
+              },
+              {
                 title: "Technology & Innovation Marketplace 2017",
-                subtitle: "(MyHealthcare)",
-                achievement: "(Top 6 Finalist)",
+                subtitle: "MyHealthcare",
+                achievement: "Top 6 Finalist",
                 issuer: "Issued by FHI360, USAID & Phandeeyar",
-                color: "from-yellow-400 to-orange-500"
+                year: "2017",
+                color: "from-yellow-400 to-orange-500",
+                featured: false
               },
               {
                 title: "Startup Challenge Myanmar 2015",
-                subtitle: "(UniversityLabExchangeProgram)",
-                achievement: "(Top Ten Finalist)",
+                subtitle: "University Lab Exchange Program",
+                achievement: "Top Ten Finalist",
                 issuer: "Issued by 2015 Startup Challenge Myanmar",
-                color: "from-purple-400 to-pink-500"
+                year: "2015",
+                color: "from-purple-400 to-pink-500",
+                featured: false
               },
               {
                 title: "2015 Best Student Project Award",
                 subtitle: "Technological University (Thanlyin)",
                 achievement: "The Best Student Project Award",
                 issuer: "Issued by Technological University (Thanlyin)",
-                color: "from-green-400 to-cyan-500"
+                year: "2015",
+                color: "from-green-400 to-cyan-500",
+                featured: false
               }
             ].map((award, index) => (
               <motion.div
@@ -770,54 +915,75 @@ const AboutThomazPage = () => {
                 initial={{ opacity: 0, scale: 0.8, rotateY: -15 }}
                 whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                whileHover={{ 
-                  scale: 1.05, 
-                  y: -8,
-                  rotateX: 5,
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                whileHover={{
+                  scale: 1.03,
+                  y: -6,
+                  rotateX: 3,
                 }}
-                className={`group relative p-8 rounded-3xl transition-all duration-500 ${
-                  theme === 'dark'
-                    ? 'bg-white/5 backdrop-blur-2xl border border-white/10 hover:border-yellow-400/50'
-                    : 'bg-white border border-gray-100 shadow-lg hover:shadow-xl hover:border-yellow-400/30'
+                className={`group fluently-card ${index % 2 === 0 ? 'bento-tilt-1' : 'bento-tilt-2'} relative p-8 rounded-3xl transition-all duration-500 flex flex-col justify-between h-full ${
+                  award.featured
+                    ? theme === 'dark'
+                      ? 'bg-gradient-to-br from-amber-500/10 via-purple-500/5 to-white/5 backdrop-blur-2xl border-2 border-amber-400/50 shadow-2xl shadow-amber-500/10 hover:border-amber-400'
+                      : 'bg-gradient-to-br from-amber-50/90 via-white to-white border-2 border-amber-400/60 shadow-xl shadow-amber-500/10 hover:border-amber-500'
+                    : theme === 'dark'
+                      ? 'bg-white/5 backdrop-blur-2xl border border-white/10 hover:border-cyan-400/40'
+                      : 'bg-white border border-gray-100 shadow-lg hover:shadow-xl hover:border-cyan-400/30'
                 }`}
                 style={{
                   transformStyle: "preserve-3d",
-                  borderRadius: `${30 + Math.random() * 20}px ${40 + Math.random() * 20}px ${35 + Math.random() * 20}px ${25 + Math.random() * 20}px`,
+                  borderRadius: `${28 + ((index * 7) % 15)}px ${36 + ((index * 5) % 15)}px ${32 + ((index * 9) % 15)}px ${24 + ((index * 6) % 15)}px`,
                 }}
               >
-                <motion.div
-                  className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${award.color} transition-opacity duration-500 ${
-                    theme === 'dark' ? 'opacity-0 group-hover:opacity-10' : 'opacity-0 group-hover:opacity-5'
+                <div
+                  className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${award.color} transition-opacity duration-500 pointer-events-none ${
+                    award.featured
+                      ? theme === 'dark' ? 'opacity-15 group-hover:opacity-25' : 'opacity-10 group-hover:opacity-15'
+                      : theme === 'dark' ? 'opacity-0 group-hover:opacity-10' : 'opacity-0 group-hover:opacity-5'
                   }`}
-                  animate={{
-                    background: [
-                      `linear-gradient(45deg, ${award.color.split(' ')[1]}, ${award.color.split(' ')[3]})`,
-                      `linear-gradient(225deg, ${award.color.split(' ')[3]}, ${award.color.split(' ')[1]})`,
-                      `linear-gradient(45deg, ${award.color.split(' ')[1]}, ${award.color.split(' ')[3]})`
-                    ]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity }}
                 />
-                
-                <div className="relative z-10">
-                  <div className="flex items-center mb-6">
-                    <div className={`p-3 rounded-2xl bg-gradient-to-r ${award.color} mr-4`}>
-                      <Award className="h-6 w-6 text-white" />
+
+                <div className="relative z-10 flex flex-col justify-between h-full">
+                  <div>
+                    {/* Top bar with Badges & Year */}
+                    <div className="flex items-center justify-between gap-3 mb-5">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        {award.badge && (
+                          <span className="px-3 py-1 rounded-full text-xs font-mono font-bold tracking-wider bg-amber-500/15 text-amber-600 dark:text-amber-300 border border-amber-500/30">
+                            ★ {award.badge}
+                          </span>
+                        )}
+                        <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold bg-slate-200/60 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300/40 dark:border-slate-700">
+                          {award.year}
+                        </span>
+                      </div>
+                      <div className={`p-3 rounded-2xl bg-gradient-to-r ${award.color} flex-shrink-0 shadow-md`}>
+                        <Award className="h-6 w-6 text-white" />
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-foreground transition-colors">
-                        {award.title}
-                      </h3>
-                      <p className="text-muted-foreground">{award.subtitle}</p>
-                    </div>
-                  </div>
-                  {award.achievement && (
-                    <p className={`font-semibold mb-2 bg-gradient-to-r ${award.color} bg-clip-text text-transparent`}>
+
+                    {/* Achievement Title */}
+                    <h4 className={`text-xl sm:text-2xl font-extrabold mb-2 bg-gradient-to-r ${award.color} bg-clip-text text-transparent leading-tight`}>
                       {award.achievement}
-                    </p>
-                  )}
-                  <p className="text-muted-foreground">{award.issuer}</p>
+                    </h4>
+
+                    {/* Competition Name */}
+                    <h3 className="text-lg sm:text-xl font-bold text-foreground transition-colors mb-1.5 leading-snug">
+                      {award.title}
+                    </h3>
+
+                    {/* Subtitle / Project */}
+                    {award.subtitle && (
+                      <p className="text-sm font-medium text-cyan-600 dark:text-cyan-400 mb-3">
+                        {award.subtitle}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Issuer Footer */}
+                  <div className="mt-6 pt-4 border-t border-slate-200/60 dark:border-white/10 flex items-center justify-between text-xs text-muted-foreground font-medium">
+                    <span>{award.issuer}</span>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -871,8 +1037,8 @@ const AboutThomazPage = () => {
                 whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
-                whileHover={{ 
-                  y: -10, 
+                whileHover={{
+                  y: -10,
                   rotateY: 5,
                   scale: 1.02,
                 }}
@@ -895,7 +1061,7 @@ const AboutThomazPage = () => {
                   }}
                   transition={{ duration: 4, repeat: Infinity }}
                 />
-                
+
                 <div className="relative z-10">
                   <h3 className="text-xl font-bold text-foreground mb-2">
                     {ref.name}
@@ -906,7 +1072,7 @@ const AboutThomazPage = () => {
                   <p className={`font-semibold mb-4 bg-gradient-to-r ${ref.color} bg-clip-text text-transparent`}>
                     {ref.position}
                   </p>
-                  
+
                 </div>
               </motion.div>
             ))}

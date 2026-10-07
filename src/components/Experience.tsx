@@ -10,39 +10,40 @@ const Experience: React.FC = () => {
 
   const experiences = [
     {
+      title: "Product Owner (PO)",
+      company: "GuanOra & Save the Date",
+      period: "June 2026 - Present",
+      location: "Digital Products",
+      type: "Product Leadership",
+      achievements: [
+        "Product Owner for GuanOra, winner of the FutureFit Ventures 2026 Innovation Award",
+        "Product Owner for Save the Date, luxury interactive digital invitation studio",
+        "Leading user research, feature prioritization, UX design, and agile cloud deployment"
+      ]
+    },
+    {
+      title: "Freelance Project Manager & Web Developer",
+      company: "Upwork Global (Rising Talent)",
+      period: "2022 - Present",
+      location: "Remote",
+      type: "Freelance",
+      achievements: [
+        "Rising Talent status on Upwork delivering technical project management and full-stack web applications for global clients",
+        "Luxe Icone (luxeicone.com): Full site renovation and customized ERP integration (Active / Ongoing)",
+        "Luxury With Discounts (luxurywithdiscounts.com): Full site renovation and custom shipping method integration (Completed)",
+        "The Personal Shopper Agency (thepersonalshopperagency.com): Multilingual translation system and AI integration (Completed)"
+      ]
+    },
+    {
       title: "QA Lead & Test Owner",
       company: "Alex International",
-      period: "2024 - Present",
+      period: "2024 - June 2026",
       location: "Remote",
       type: "Full-time",
       achievements: [
         "Led end-to-end QA for 5+ web/mobile applications, reducing production defects by 30%",
         "Established scalable QA processes from scratch, including automated regression testing",
         "Owned quality strategy across Agile teams, collaborating with developers and stakeholders"
-      ]
-    },
-    {
-      title: "Mobile Lead Consultant",
-      company: "Future Hub Myanmar",
-      period: "2022 - 2024",
-      location: "Myanmar",
-      type: "Consultant",
-      achievements: [
-        "Implemented and led the full lifecycle of PAS iDMS development",
-        "Utilized microservices to support distinct features on the ERP dashboard",
-        "Tailored solutions for various customer types including modern trade and standard customers"
-      ]
-    },
-    {
-      title: "Senior Freelance Developer",
-      company: "Freelancer UpWork",
-      period: "2022 - 2024",
-      location: "Remote",
-      type: "Freelance",
-      achievements: [
-        "Laravel Developer for HunterxTop Freelancer working platform",
-        "Full Stack Developer for Uemura Travel & Concierge Agency using October CMS",
-        "Renovated Australia Disability Advocacy Resource Unit Website (DARU) with WordPress"
       ]
     },
     {
@@ -138,18 +139,18 @@ const Experience: React.FC = () => {
                         {exp.location}
                       </div>
                     </div>
-                    
+
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
                       {exp.title}
                     </h3>
-                    
+
                     <div className="flex items-center mb-4">
                       <Building className="h-5 w-5 text-secondary-500 mr-2" />
                       <span className="text-lg font-semibold text-secondary-600 dark:text-secondary-400">
                         {exp.company}
                       </span>
                     </div>
-                    
+
                     <ul className="space-y-2">
                       {exp.achievements.map((achievement, achIndex) => (
                         <li key={achIndex} className="flex items-start">

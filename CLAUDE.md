@@ -58,21 +58,27 @@ No test runner is configured.
 src/
 ├── App.tsx / App.css
 ├── main.tsx
-├── index.css          # CSS custom properties, .glass, .glass-button, .gradient-text, .gradient-bg
+├── index.css          # Fluently animation keyframes, spring curves, .gradient-blob, .text-roll, .bento-tilt-1/2
 ├── vite-env.d.ts
 ├── assets/
 │   └── react.svg
 ├── components/
 │   ├── About.tsx
-│   ├── AboutThomazPage.tsx
+│   ├── AboutExperience.tsx     # Executive career timeline and dossier link
+│   ├── AboutThomazPage.tsx     # Full CV, verified certificates (STEAM4INNOVATOR, SFUx, Awards)
 │   ├── BrandIcons.tsx
+│   ├── Capabilities.tsx       # Core engineering capabilities (divided editorial row layout)
 │   ├── Contact.tsx
 │   ├── Experience.tsx
+│   ├── FinalCTA.tsx            # Project consultation closing CTA
 │   ├── Footer.tsx
-│   ├── Hero.tsx
-│   ├── Navigation.tsx
+│   ├── GuanOraShowcase.tsx     # Flagship AI audio product showcase with interactive mockup
+│   ├── Hero.tsx                # Hero section with rolling text CTA & ambient blobs
+│   ├── Navigation.tsx          # Fixed nav with rolling-text flips and theme switch
+│   ├── OtherProjects.tsx       # Client & enterprise showcase grid
 │   ├── PrivacyPolicy.tsx
-│   ├── Resume.tsx
+│   ├── Resume.tsx              # Clean printable resume with verified certificates
+│   ├── SaveTheDateShowcase.tsx # Flagship digital invitation studio showcase
 │   ├── SEO.tsx
 │   ├── ScrollToTop.tsx
 │   ├── Services.tsx
@@ -83,11 +89,18 @@ src/
 
 **Theme system:** `ThemeContext.tsx` exposes `useTheme()`. Theme persists to `localStorage`; applied as `.dark` on `<html>`. CSS custom properties in `index.css` define color tokens for both modes (light: ivory/black; dark: deep blue/black with neon cyan-magenta-yellow accents). Tailwind is configured with `darkMode: 'class'`.
 
+**Fluently Design System & Animation Engine:**
+- **Spring Curves:** Custom cubic-bezier timing curves in `index.css`:
+  - `--spring-d400-b20`: `cubic-bezier(0.34, 1.4, 0.64, 1)` (bouncy micro-jumps, icons, badge scale)
+  - `--spring-d600-b0`: `cubic-bezier(0.22, 1, 0.36, 1)` (smooth rolling text flip & translations)
+- **Rolling Text Flip:** Button & nav hover effect (`h-[18px] overflow-hidden` with `group-hover:-translate-y-[18px]`).
+- **Gradient Blobs:** Three-point moving morphing radial background glows (`.gradient-blob-a`, `.gradient-blob-b`, `.gradient-blob-c`).
+- **Bento Organic Tilts:** Subtle resting angles (`.bento-tilt-1`, `.bento-tilt-2`) that straighten on hover.
+- **Hairline Glows:** 1px subtle glowing border effects (`.gradient-hairline`).
+
 **Contact form:** `Contact.tsx` uses EmailJS browser SDK (no backend). reCAPTCHA v3 is optional — form still works without the env var.
 
 **SEO:** `SEO.tsx` manages meta tags. `index.html` includes JSON-LD structured data, Open Graph tags, security meta headers, favicons, and theme-color.
-
-**Hero performance note:** The Hero section uses 12+ animated particles/morphs via Framer Motion — be mindful of performance impact when editing it.
 
 ## Vite Config Summary
 

@@ -13,8 +13,9 @@ const Navigation = () => {
 
   const navItems = [
     { name: 'Home', href: '/', type: 'internal' },
+    { name: 'Work', href: '#work', type: 'anchor' },
+    { name: 'Capabilities', href: '#capabilities', type: 'anchor' },
     { name: 'About', href: '#about', type: 'anchor' },
-    { name: 'Services', href: '#services', type: 'anchor' },
     { name: 'Contact', href: '#contact', type: 'anchor' },
     { name: 'About Thomaz', href: '/about-thomaz', type: 'internal' }
   ];
@@ -28,7 +29,18 @@ const Navigation = () => {
         }, 100);
       }
     }
-  }, [location]);
+  }, [location.hash]);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
 
   const [activeSection, setActiveSection] = useState('');
 
@@ -54,10 +66,10 @@ const Navigation = () => {
       if (window.scrollY < 50) {
         current = '/';
       }
-      
+
       setActiveSection(current);
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -80,30 +92,6 @@ const Navigation = () => {
 
   return (
     <>
-      {/* Floating Particles Background - Visible mainly in Dark Mode */}
-      <div className="fixed inset-0 pointer-events-none z-0 opacity-0 dark:opacity-100 transition-opacity duration-300">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-cyan-400/30 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [-20, 20, -20],
-              x: [-10, 10, -10],
-              opacity: [0.3, 0.8, 0.3],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: Math.random() * 2,
-            }}
-          />
-        ))}
-      </div>
 
       <motion.nav
         initial={{ y: -100 }}
@@ -113,7 +101,7 @@ const Navigation = () => {
             ? 'backdrop-blur-xl border-b shadow-lg'
             : 'backdrop-blur-md'
         } ${
-          theme === 'dark' 
+          theme === 'dark'
             ? scrolled ? 'border-cyan-500/20 shadow-cyan-500/10' : ''
             : scrolled ? 'border-gray-200 bg-white/80 shadow-gray-200/50' : 'bg-white/50'
         }`}
@@ -173,12 +161,12 @@ const Navigation = () => {
                 }}
               >
                 <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" />
-                <img 
-                  src="/w-logo.svg" 
-                  alt="Wynn Solutions Myanmar Logo" 
+                <img
+                  src="/w-logo.svg"
+                  alt="Wynn Solutions Myanmar Logo"
                   className="w-7 h-7 relative z-10 filter brightness-0 invert"
                 />
-                
+
                 {/* Floating particles around logo */}
                 {[...Array(6)].map((_, i) => (
                   <motion.div
@@ -201,7 +189,7 @@ const Navigation = () => {
                   />
                 ))}
               </motion.div>
-              
+
               <div className="flex flex-col">
                 <motion.span
                   className="text-lg font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
@@ -220,12 +208,12 @@ const Navigation = () => {
             </motion.div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-1">
+            <div className="hidden lg:flex items-center space-x-1">
               {navItems.map((item, index) => {
-                const isActive = item.type === 'internal' 
+                const isActive = item.type === 'internal'
                   ? location.pathname === item.href
                   : activeSection === item.href && location.pathname === '/';
-                
+
                 return (
                   <motion.div
                     key={item.name}
@@ -236,71 +224,44 @@ const Navigation = () => {
                     {item.type === 'internal' ? (
                       <Link
                         to={item.href}
-                        className={`relative px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 group ${
+                        className={`relative inline-flex items-center justify-center h-9 px-3.5 rounded-xl text-sm font-medium transition-all duration-300 group overflow-hidden ${
                           isActive
-                            ? 'text-cyan-500 dark:text-cyan-300'
-                            : 'text-muted-foreground hover:text-foreground'
+                            ? 'text-cyan-600 dark:text-cyan-300 bg-cyan-500/10 dark:bg-cyan-950/60 border border-cyan-500/30'
+                            : 'text-muted-foreground hover:text-foreground border border-transparent hover:bg-slate-100 dark:hover:bg-slate-800/60'
                         }`}
-                        style={{
-                          background: isActive
-                            ? theme === 'dark' 
-                              ? 'linear-gradient(135deg, rgba(6,182,212,0.2) 0%, rgba(168,85,247,0.2) 100%)'
-                              : 'rgba(6,182,212,0.1)'
-                            : 'transparent',
-                          backdropFilter: isActive ? 'blur(10px)' : 'none',
-                          border: isActive 
-                            ? theme === 'dark' ? '1px solid rgba(6,182,212,0.3)' : '1px solid rgba(6,182,212,0.2)'
-                            : '1px solid transparent',
-                        }}
                       >
-                        {item.name}
-                        
-                        {/* Hover effect */}
-                        <motion.div
-                          className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                          style={{
-                            background: theme === 'dark'
-                              ? 'linear-gradient(135deg, rgba(6,182,212,0.1) 0%, rgba(168,85,247,0.1) 100%)'
-                              : 'rgba(0,0,0,0.05)',
-                            backdropFilter: 'blur(10px)',
-                            border: theme === 'dark' ? '1px solid rgba(6,182,212,0.2)' : '1px solid transparent',
-                          }}
-                        />
-                        
+                        <span className="relative z-10 block h-[18px] overflow-hidden">
+                          <span className="flex flex-col transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[18px]">
+                            <span className="h-[18px] flex items-center">{item.name}</span>
+                            <span className="h-[18px] flex items-center text-cyan-500 dark:text-cyan-300 font-semibold">{item.name}</span>
+                          </span>
+                        </span>
+
                         {/* Active indicator */}
                         {isActive && (
-                          <motion.div
-                            className="absolute bottom-0 left-1/2 w-1 h-1 bg-cyan-400 rounded-full"
-                            style={{ transform: 'translateX(-50%)' }}
-                            animate={{
-                              scale: [1, 1.5, 1],
-                              opacity: [0.5, 1, 0.5],
-                            }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                            }}
-                          />
+                          <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-cyan-500 shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
                         )}
                       </Link>
                     ) : (
                       <button
                         onClick={() => handleNavClick(item.href, item.type)}
-                        className="relative px-4 py-2 rounded-xl text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-300 group"
+                        className={`relative inline-flex items-center justify-center h-9 px-3.5 rounded-xl text-sm font-medium transition-all duration-300 group overflow-hidden cursor-pointer ${
+                          isActive
+                            ? 'text-cyan-600 dark:text-cyan-300 bg-cyan-500/10 dark:bg-cyan-950/60 border border-cyan-500/30'
+                            : 'text-muted-foreground hover:text-foreground border border-transparent hover:bg-slate-100 dark:hover:bg-slate-800/60'
+                        }`}
                       >
-                        {item.name}
-                        
-                        {/* Hover effect */}
-                        <motion.div
-                          className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                          style={{
-                            background: theme === 'dark'
-                              ? 'linear-gradient(135deg, rgba(6,182,212,0.1) 0%, rgba(168,85,247,0.1) 100%)'
-                              : 'rgba(0,0,0,0.05)',
-                            backdropFilter: 'blur(10px)',
-                            border: theme === 'dark' ? '1px solid rgba(6,182,212,0.2)' : '1px solid transparent',
-                          }}
-                        />
+                        <span className="relative z-10 block h-[18px] overflow-hidden">
+                          <span className="flex flex-col transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[18px]">
+                            <span className="h-[18px] flex items-center">{item.name}</span>
+                            <span className="h-[18px] flex items-center text-cyan-500 dark:text-cyan-300 font-semibold">{item.name}</span>
+                          </span>
+                        </span>
+
+                        {/* Active indicator */}
+                        {isActive && (
+                          <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-cyan-500 shadow-[0_0_8px_rgba(6,182,212,0.8)]" />
+                        )}
                       </button>
                     )}
                   </motion.div>
@@ -312,45 +273,32 @@ const Navigation = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={toggleTheme}
-                className="ml-4 p-2 rounded-xl text-muted-foreground hover:text-foreground relative overflow-hidden group transition-colors"
+                className="ml-3 p-2 rounded-xl text-muted-foreground hover:text-foreground relative overflow-hidden group transition-colors border border-transparent hover:border-slate-200 dark:hover:border-slate-800 cursor-pointer"
                 aria-label="Toggle Theme"
               >
-                {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-                <motion.div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{
-                    background: theme === 'dark' 
-                      ? 'rgba(255,255,255,0.1)' 
-                      : 'rgba(0,0,0,0.05)',
-                  }}
-                />
+                {theme === 'dark' ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5 text-slate-700" />}
               </motion.button>
             </div>
 
             {/* Mobile menu button */}
-            <div className="flex items-center md:hidden space-x-4">
+            <div className="flex items-center lg:hidden space-x-3">
               {/* Mobile Theme Toggle */}
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={toggleTheme}
-                className="p-2 rounded-xl text-muted-foreground hover:text-foreground transition-colors duration-300"
+                aria-label="Toggle Theme"
+                className="p-2 rounded-xl text-muted-foreground hover:text-foreground transition-colors duration-300 cursor-pointer"
               >
-                {theme === 'dark' ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
+                {theme === 'dark' ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5 text-slate-700" />}
               </motion.button>
 
               <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setIsOpen(!isOpen)}
-                className="p-2 rounded-xl text-muted-foreground hover:text-foreground transition-colors duration-300"
-                style={{
-                  background: theme === 'dark'
-                    ? 'linear-gradient(135deg, rgba(6,182,212,0.1) 0%, rgba(168,85,247,0.1) 100%)'
-                    : 'rgba(0,0,0,0.05)',
-                  backdropFilter: 'blur(10px)',
-                  border: theme === 'dark' ? '1px solid rgba(6,182,212,0.2)' : '1px solid transparent',
-                }}
+                aria-label={isOpen ? "Close menu" : "Open menu"}
+                className="p-2 rounded-xl text-muted-foreground hover:text-foreground transition-colors duration-300 border border-slate-200 dark:border-slate-800 bg-slate-100/50 dark:bg-slate-900/50 cursor-pointer"
               >
                 <AnimatePresence mode="wait">
                   {isOpen ? (
@@ -388,7 +336,7 @@ const Navigation = () => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden border-t"
+              className="lg:hidden border-t"
               style={{
                 background: theme === 'dark'
                   ? 'linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(6,182,212,0.1) 50%, rgba(168,85,247,0.1) 100%)'
@@ -399,10 +347,10 @@ const Navigation = () => {
             >
               <div className="px-4 py-6 space-y-3">
                 {navItems.map((item, index) => {
-                  const isActive = item.type === 'internal' 
+                  const isActive = item.type === 'internal'
                     ? location.pathname === item.href
                     : activeSection === item.href && location.pathname === '/';
-                  
+
                   return (
                     <motion.div
                       key={item.name}
@@ -426,7 +374,7 @@ const Navigation = () => {
                                 : 'rgba(6,182,212,0.1)'
                               : 'transparent',
                             backdropFilter: isActive ? 'blur(10px)' : 'none',
-                            border: isActive 
+                            border: isActive
                               ? theme === 'dark' ? '1px solid rgba(6,182,212,0.3)' : '1px solid rgba(6,182,212,0.2)'
                               : '1px solid transparent',
                           }}
@@ -447,7 +395,7 @@ const Navigation = () => {
                     </motion.div>
                   );
                 })}
-                
+
                 {/* Mobile AI Chat Button - Removed */}
               </div>
             </motion.div>
