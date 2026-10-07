@@ -26,7 +26,7 @@ const GuanOraShowcase: React.FC = () => {
             </span>
           </div>
           <a
-            href="https://guanora-mini-app.pages.dev/"
+            href="https://www.guanora.site/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-cyan-600 dark:text-cyan-400 hover:underline group"
@@ -68,7 +68,7 @@ const GuanOraShowcase: React.FC = () => {
             {/* Primary Action Button with Fluently Rolling-Text Flip */}
             <div className="pt-2 flex flex-wrap items-center justify-center gap-4">
               <a
-                href="https://guanora-mini-app.pages.dev/"
+                href="https://www.guanora.site/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-7 py-3.5 rounded-xl font-semibold text-sm sm:text-base bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-600 text-white shadow-lg hover:shadow-cyan-500/25 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 inline-flex items-center gap-2 group cursor-pointer"
