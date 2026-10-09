@@ -109,7 +109,7 @@ const GuanOraShowcase: React.FC = () => {
                   <div className="w-3 h-3 rounded-full bg-emerald-400" />
                 </div>
                 <div className="text-xs font-mono text-muted-foreground bg-white dark:bg-slate-950 px-4 py-1 rounded-md border border-slate-200/80 dark:border-slate-800 text-center max-w-xs truncate">
-                  https://guanora-mini-app.pages.dev
+                  https://www.guanora.site
                 </div>
                 <div className="flex items-center gap-1.5 text-xs text-muted-foreground font-mono">
                   <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
