@@ -9,7 +9,7 @@
 </style>
 </head>
 <body>
-<main class="card"><div class="brand">Wynn Solutions Myanmar</div><div class="label">PRIVATE CLIENT REVIEW</div><h1>KHL website proposal</h1><p>Enter your review password to view the proposal, design concepts and service agreement.</p><form id="unlock"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required autofocus aria-describedby="status"><button id="submit" type="submit">Open review</button><p id="status" role="status" aria-live="polite"></p></form><noscript><p>Please enable JavaScript to open this encrypted review.</p></noscript><p class="foot">Prepared for KAUNG HAN LINN COMPANY LIMITED</p></main>
+<main class="card"><div class="brand">Wynn Solutions Myanmar</div><div class="label">PRIVATE CLIENT REVIEW</div><h1>KHL website proposal</h1><p>Design ၄ မျိုးနဲ့ စာချုပ် PDF ကို ကြည့်ရန် password ထည့်ပေးပါ။</p><form id="unlock"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required autofocus aria-describedby="status"><button id="submit" type="submit">ဝင်ကြည့်ရန်</button><p id="status" role="status" aria-live="polite"></p></form><noscript><p>Please enable JavaScript to open this encrypted review.</p></noscript><p class="foot">Prepared for KAUNG HAN LINN COMPANY LIMITED</p></main>
 <script>
 const decode = value => Uint8Array.from(atob(value), character => character.charCodeAt(0));
 document.getElementById('unlock').addEventListener('submit', async event => {
@@ -40,7 +40,7 @@ document.getElementById('unlock').addEventListener('submit', async event => {
     document.getElementById('password').value = '';
     document.open(); document.write(html); document.close();
   } catch {
-    status.className = 'error'; status.textContent = 'Incorrect password. Please try again.';
+    status.className = 'error'; status.textContent = 'Password မမှန်ပါ။ ပြန်ထည့်ပေးပါ။';
     button.disabled = false; document.getElementById('password').focus();
   }
 });
