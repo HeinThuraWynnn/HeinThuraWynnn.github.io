@@ -29,3 +29,4 @@ dist-ssr
 
 # Unencrypted client review sources (never publish)
 .private/
+.playwright-mcp
