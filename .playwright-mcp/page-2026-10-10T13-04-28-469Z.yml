@@ -1,0 +1,108 @@
+- generic [ref=e3]:
+  - navigation [ref=e4]:
+    - generic [ref=e9]:
+      - generic [ref=e10] [cursor=pointer]:
+        - img "Wynn Solutions Myanmar Logo" [ref=e13]
+        - generic [ref=e20]:
+          - generic [ref=e21]: Wynn Solutions
+          - generic [ref=e22]: Myanmar
+      - generic [ref=e23]:
+        - link "Home Home" [ref=e25] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e27]:
+            - generic [ref=e28]: Home
+            - generic [ref=e29]: Home
+        - button "Work Work" [ref=e31] [cursor=pointer]:
+          - generic [ref=e33]:
+            - generic [ref=e34]: Work
+            - generic [ref=e35]: Work
+        - button "Capabilities Capabilities" [ref=e37] [cursor=pointer]:
+          - generic [ref=e39]:
+            - generic [ref=e40]: Capabilities
+            - generic [ref=e41]: Capabilities
+        - button "About About" [ref=e43] [cursor=pointer]:
+          - generic [ref=e45]:
+            - generic [ref=e46]: About
+            - generic [ref=e47]: About
+        - button "Contact Contact" [ref=e49] [cursor=pointer]:
+          - generic [ref=e51]:
+            - generic [ref=e52]: Contact
+            - generic [ref=e53]: Contact
+        - link "About Thomaz About Thomaz" [ref=e55] [cursor=pointer]:
+          - /url: /about-thomaz
+          - generic [ref=e57]:
+            - generic [ref=e58]: About Thomaz
+            - generic [ref=e59]: About Thomaz
+        - button "Toggle Theme" [ref=e60] [cursor=pointer]
+  - contentinfo [ref=e67]:
+    - generic [ref=e69]:
+      - generic [ref=e70]:
+        - generic [ref=e71]:
+          - img "Wynn Solutions Myanmar Logo" [ref=e74]
+          - generic [ref=e83]:
+            - heading "Wynn Solutions Myanmar" [level=3] [ref=e84]
+            - generic [ref=e85]: Future Tech Solutions
+        - paragraph [ref=e87]: Innovative software and AI solutions provider, specializing in mobile apps, web development, and cutting-edge technology implementations.
+        - generic [ref=e88]:
+          - link "wynnsolutionsmyanmar@gmail.com" [ref=e89] [cursor=pointer]:
+            - /url: mailto:wynnsolutionsmyanmar@gmail.com
+          - link "+669-557-368-03" [ref=e95] [cursor=pointer]:
+            - /url: tel:+66955736803
+          - link "Yangon, Myanmar" [ref=e100] [cursor=pointer]:
+            - /url: https://maps.google.com/?q=Yangon,Myanmar
+      - generic [ref=e106]:
+        - heading "Quick Links" [level=4] [ref=e110]
+        - generic [ref=e111]:
+          - link "Home" [ref=e113] [cursor=pointer]:
+            - /url: /
+          - link "Selected Work" [ref=e118] [cursor=pointer]:
+            - /url: /#work
+          - link "Capabilities" [ref=e123] [cursor=pointer]:
+            - /url: /#capabilities
+          - link "About & Experience" [ref=e128] [cursor=pointer]:
+            - /url: /#about
+          - link "About Thomaz" [ref=e133] [cursor=pointer]:
+            - /url: /about-thomaz
+          - link "Contact" [ref=e138] [cursor=pointer]:
+            - /url: /#contact
+      - generic [ref=e142]:
+        - heading "Services" [level=4] [ref=e147]
+        - generic [ref=e148]:
+          - link "Mobile App Development" [ref=e150] [cursor=pointer]:
+            - /url: /#capabilities
+          - link "Web Platforms & SPAs" [ref=e155] [cursor=pointer]:
+            - /url: /#capabilities
+          - link "AI & Machine Learning" [ref=e160] [cursor=pointer]:
+            - /url: /#capabilities
+          - link "Backend & Microservices" [ref=e165] [cursor=pointer]:
+            - /url: /#capabilities
+          - link "Cloud Infrastructure" [ref=e170] [cursor=pointer]:
+            - /url: /#capabilities
+          - link "Product Ownership & PM" [ref=e175] [cursor=pointer]:
+            - /url: /#capabilities
+      - generic [ref=e179]:
+        - heading "Stay Connected" [level=4] [ref=e183]
+        - paragraph [ref=e185]: Follow us on social media for the latest updates on engineering, products, and tech insights.
+        - generic [ref=e186]:
+          - link "GitHub" [ref=e187] [cursor=pointer]:
+            - /url: https://github.com/wynnsolutions
+          - link "LinkedIn" [ref=e191] [cursor=pointer]:
+            - /url: https://linkedin.com/in/wynnsolutions
+          - link "Twitter" [ref=e196] [cursor=pointer]:
+            - /url: https://twitter.com/wynnsolutions
+        - generic [ref=e199]:
+          - heading "Tech Newsletter" [level=5] [ref=e200]
+          - generic [ref=e204]:
+            - textbox "Email address for newsletter" [ref=e205]:
+              - /placeholder: Your email address
+            - button "Submit newsletter subscription" [ref=e206] [cursor=pointer]
+    - generic [ref=e212]:
+      - generic [ref=e213]:
+        - generic [ref=e214]: © 2026 Wynn Solutions Myanmar. Made with
+        - generic [ref=e218]: in Myanmar
+      - generic [ref=e219]:
+        - link "Privacy Policy" [ref=e220] [cursor=pointer]:
+          - /url: /privacy
+        - link "Terms of Service" [ref=e221] [cursor=pointer]:
+          - /url: /terms
+        - button "Scroll to top" [ref=e222] [cursor=pointer]
