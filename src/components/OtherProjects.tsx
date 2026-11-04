@@ -2,17 +2,28 @@ import React from 'react';
 import { 
   Building2, 
   ShoppingBag, 
+  Zap,
   Truck, 
   Plane, 
   Accessibility, 
   Bus, 
-  GraduationCap, 
   ExternalLink,
   Globe
 } from 'lucide-react';
 
 const OtherProjects: React.FC = () => {
   const projects = [
+    {
+      title: "KAUNG HAN LINN Bilingual Engineering Website",
+      client: "KAUNG HAN LINN COMPANY LIMITED",
+      role: "Website Design & Development",
+      period: "Launched",
+      link: "https://kaunghanlinn.com/",
+      status: "Launched",
+      icon: Zap,
+      description: "Designed and built a responsive Myanmar/English WordPress website for an electrical installation and engineering company, featuring its services, completed projects, galleries and contact information. A custom portfolio system lets the team manage services, projects and gallery content.",
+      tags: ["WordPress", "Bilingual (Myanmar / English)", "Electrical Engineering", "Project Portfolio", "Responsive Web Design"]
+    },
     {
       title: "Luxe Icone Luxury E-Commerce & ERP Integration",
       client: "Luxe Icone",
@@ -93,15 +104,6 @@ const OtherProjects: React.FC = () => {
       description: "Engineered mission-critical features for Myanmar's highway bus operations management system, focusing on real-time seat inventory reservation, API security, and local online payment gateways.",
       tags: ["Online Ticketing", "Seat Reservation", "Payment Gateways", "High Availability"]
     },
-    {
-      title: "Dental Student & Academic Management System",
-      client: "University of Dental Medicine Yangon",
-      role: "Web Developer",
-      period: "2015 - 2018",
-      icon: GraduationCap,
-      description: "Developed local web database systems including student attendance management, academic exam record tracking, and faculty timetable scheduling for the University of Dental Medicine.",
-      tags: ["PHP", "MySQL", "Attendance Tracking", "Student Database", "Scheduling"]
-    }
   ];
 
   return (
@@ -117,7 +119,7 @@ const OtherProjects: React.FC = () => {
             Proven track record across industries.
           </h2>
           <p className="text-base text-muted-foreground mt-3 leading-relaxed">
-            International luxury e-commerce, nationwide logistics ERPs, AI-powered multilingual platforms, and accessibility-certified web applications delivered for global clients.
+            Bilingual engineering websites, international luxury e-commerce, nationwide logistics ERPs, AI-powered multilingual platforms, and accessible web applications delivered for clients across industries.
           </p>
         </div>
 
