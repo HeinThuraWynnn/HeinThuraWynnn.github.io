@@ -8,7 +8,8 @@ import {
   Accessibility, 
   Bus, 
   ExternalLink,
-  Globe
+  Globe,
+  BookOpen
 } from 'lucide-react';
 
 const OtherProjects: React.FC = () => {
@@ -23,6 +24,17 @@ const OtherProjects: React.FC = () => {
       icon: Zap,
       description: "Designed and built a responsive Myanmar/English WordPress website for an electrical installation and engineering company, featuring its services, completed projects, galleries and contact information. A custom portfolio system lets the team manage services, projects and gallery content.",
       tags: ["WordPress", "Bilingual (Myanmar / English)", "Electrical Engineering", "Project Portfolio", "Responsive Web Design"]
+    },
+    {
+      title: "Phyoe Kyaw — Author Website & Online Library",
+      client: "Phyoe Kyaw (Author)",
+      role: "Website Design & Development",
+      period: "Launched",
+      link: "https://phyoekyaw.com/",
+      status: "Launched",
+      icon: BookOpen,
+      description: "Designed and built a responsive WordPress website for a Myanmar author, bringing books, chapter-by-chapter reading and blog posts together in one place. The custom reading experience includes light, sepia and dark modes, adjustable text size, bookmarks and reading progress. A dedicated publishing system lets the author import ODT/EPUB manuscripts, organize chapters and manage reader comments and ratings, with Myanmar/English interface support.",
+      tags: ["WordPress","Author Website","Online Library","Custom Theme & Plugin","Bilingual (Myanmar / English)", "Electrical Engineering", "Project Portfolio", "Responsive Web Design"]
     },
     {
       title: "Luxe Icone Luxury E-Commerce & ERP Integration",
