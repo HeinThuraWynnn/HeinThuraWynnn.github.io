@@ -70,15 +70,6 @@ const OtherProjects: React.FC = () => {
       tags: ["AI Integration", "Multilingual Translation", "Upwork Rising Talent", "Agency Platform", "API Automation"]
     },
     {
-      title: "PRO 1 Online Store & Inventory Microservices",
-      client: "PRO 1 Global Home Center",
-      role: "Development Team Leader",
-      period: "2020 - 2022",
-      icon: ShoppingBag,
-      description: "Full system development and maintenance for the flagship PRO 1 Online Store. Integrated with enterprise ERP/SRP systems, secure banking payment gateways, and high-concurrency microservice APIs for warehouse stock audits.",
-      tags: ["E-Commerce", "ERP Integration", "Payment Gateway", "Microservices", "Mobile APIs"]
-    },
-    {
       title: "PAS iDMS Distribution Management System",
       client: "Future Hub Myanmar",
       role: "Mobile Lead Consultant",
@@ -88,14 +79,13 @@ const OtherProjects: React.FC = () => {
       tags: ["Distribution ERP", "Microservices", "B2B Logistics", "Flutter", "Architecture"]
     },
     {
-      title: "Uemura Travel & Social Concierge Platform",
-      client: "Uemura Travel & Concierge Agency",
-      role: "Full Stack Developer",
-      period: "2022 - 2024",
-      link: "https://uemura-travel.com",
-      icon: Plane,
-      description: "Engineered a bespoke concierge booking and social event agency web platform using October CMS. Developed custom reporting analytics, automated customer notifications, and secure payment processing.",
-      tags: ["October CMS", "PHP", "Social Network", "Booking APIs", "Reporting"]
+      title: "PRO 1 Online Store & Inventory Microservices",
+      client: "PRO 1 Global Home Center",
+      role: "Development Team Leader",
+      period: "2020 - 2022",
+      icon: ShoppingBag,
+      description: "Full system development and maintenance for the flagship PRO 1 Online Store. Integrated with enterprise ERP/SRP systems, secure banking payment gateways, and high-concurrency microservice APIs for warehouse stock audits.",
+      tags: ["E-Commerce", "ERP Integration", "Payment Gateway", "Microservices", "Mobile APIs"]
     },
     {
       title: "DARU Accessible Web Renovation",
