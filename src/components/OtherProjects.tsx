@@ -4,7 +4,6 @@ import {
   ShoppingBag, 
   Zap,
   Truck, 
-  Plane, 
   Accessibility, 
   Bus, 
   ExternalLink,

@@ -4,9 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "prebuild": "node scripts/check-public-assets.mjs public",
     "dev": "vite",
     "build": "tsc -b && vite build && cp dist/index.html dist/404.html",
+    "postbuild": "node scripts/check-public-assets.mjs dist",
     "lint": "eslint .",
+    "test:security": "node --test scripts/check-public-assets.test.mjs",
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
@@ -19,8 +22,7 @@
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-google-recaptcha": "^3.1.0",
-    "react-google-recaptcha-v3": "^1.11.0",
-    "react-router-dom": "^7.17.0"
+    "react-router-dom": "^7.18.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",
@@ -38,6 +40,6 @@
     "terser": "^5.44.0",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.34.1",
-    "vite": "^8.0.16"
+    "vite": "~8.1.7"
   }
 }

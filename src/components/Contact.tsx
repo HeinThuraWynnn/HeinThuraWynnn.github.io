@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
-import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
+import ReCAPTCHA from 'react-google-recaptcha';
 import {
   Mail,
   Phone,
@@ -33,8 +33,14 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [captchaError, setCaptchaError] = useState<string | null>(null);
-  const { executeRecaptcha } = useGoogleReCaptcha();
-  const hasRecaptcha = Boolean(import.meta.env.VITE_RECAPTCHA_SITE_KEY);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+  // Use a separate name so an existing v3 key cannot silently become a v2 key.
+  const siteKey = import.meta.env.VITE_RECAPTCHA_V2_SITE_KEY;
+  const isConfigured = Boolean(serviceId && templateId && publicKey && siteKey);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -46,32 +52,20 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    if (isSubmitting) return;
     setSubmitStatus('idle');
     setCaptchaError(null);
+    if (!isConfigured) {
+      setCaptchaError('The contact form is temporarily unavailable. Please email wynnsolutionsmyanmar@gmail.com.');
+      return;
+    }
+    if (!captchaToken) {
+      setCaptchaError('Please complete the reCAPTCHA verification.');
+      return;
+    }
+    setIsSubmitting(true);
 
     try {
-      let captchaToken: string | undefined;
-      if (hasRecaptcha) {
-        if (!executeRecaptcha) {
-          setCaptchaError('reCAPTCHA is not ready. Please try again.');
-          setIsSubmitting(false);
-          return;
-        }
-        captchaToken = await executeRecaptcha('contact_form');
-        if (!captchaToken) {
-          setCaptchaError('Failed to verify reCAPTCHA. Please try again.');
-          setIsSubmitting(false);
-          return;
-        }
-      }
-
-      // EmailJS credentials from environment variables
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-      const autoReplyTemplateId = import.meta.env.VITE_EMAILJS_AUTO_REPLY_TEMPLATE_ID;
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
@@ -80,7 +74,7 @@ const Contact = () => {
         message: formData.message,
         project_type: formData.projectType,
         to_email: 'wynnsolutionsmyanmar@gmail.com',
-        ...(captchaToken ? { 'g-recaptcha-response': captchaToken } : {}),
+        'g-recaptcha-response': captchaToken,
         submission_date: new Date().toLocaleString('en-US', {
           year: 'numeric',
           month: 'long',
@@ -94,14 +88,8 @@ const Contact = () => {
       // Send notification email to you
       await emailjs.send(serviceId, templateId, templateParams, publicKey);
 
-      // Send auto-reply to sender (if auto-reply template is configured)
-      if (autoReplyTemplateId) {
-        try {
-          await emailjs.send(serviceId, autoReplyTemplateId, templateParams, publicKey);
-        } catch (autoReplyError) {
-          console.warn('Auto-reply failed, but main email was sent:', autoReplyError);
-        }
-      }
+      // Configure a linked Auto-Reply template in EmailJS. A CAPTCHA token is
+      // single-use, so it must not be reused in a second browser send request.
 
       // Reset form on success
       setFormData({
@@ -118,6 +106,8 @@ const Contact = () => {
       console.error('Email sending failed:', error);
       setSubmitStatus('error');
     } finally {
+      recaptchaRef.current?.reset();
+      setCaptchaToken(null);
       setIsSubmitting(false);
     }
   };
@@ -276,6 +266,7 @@ const Contact = () => {
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
+                role="alert"
                 className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-red-500 dark:text-red-400 flex items-center gap-3"
               >
                 <XCircle className="w-5 h-5 flex-shrink-0" />
@@ -417,9 +408,33 @@ const Contact = () => {
                 />
               </div>
 
+              {isConfigured ? (
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={siteKey}
+                  onChange={(token) => {
+                    setCaptchaToken(token);
+                    setCaptchaError(null);
+                  }}
+                  onExpired={() => {
+                    setCaptchaToken(null);
+                    setCaptchaError('Verification expired. Please complete reCAPTCHA again.');
+                  }}
+                  onErrored={() => {
+                    setCaptchaToken(null);
+                    setCaptchaError('Verification is unavailable. Please try again or contact us by email.');
+                  }}
+                />
+              ) : (
+                <p role="status" className="text-sm text-muted-foreground">
+                  The contact form is temporarily unavailable. Please{' '}
+                  <a href="mailto:wynnsolutionsmyanmar@gmail.com" className="underline">email us directly</a>.
+                </p>
+              )}
+
               <button
                 type="submit"
-                disabled={isSubmitting}
+                disabled={isSubmitting || !isConfigured}
                 className="w-full py-3.5 px-6 rounded-xl font-semibold text-sm bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100 transition-all duration-200 shadow-md flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
               >
                 {isSubmitting ? (

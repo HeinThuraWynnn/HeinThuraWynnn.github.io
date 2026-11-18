@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { 
   ArrowRight, 
   Download, 
-  Lock, 
-  X, 
   CheckCircle,
   Briefcase,
   ExternalLink
@@ -16,28 +13,6 @@ const AboutExperience: React.FC = () => {
   const startMonth = 11;
   const now = new Date();
   const yearsOfExperience = now.getFullYear() - startYear - (now.getMonth() < startMonth ? 1 : 0);
-
-  const [showPasswordModal, setShowPasswordModal] = useState(false);
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-
-  const handleDownload = (e: React.FormEvent) => {
-    e.preventDefault();
-    const correctPassword = import.meta.env.VITE_PORTFOLIO_PASSWORD || 'wsm2026';
-    if (password === correctPassword) {
-      const link = document.createElement('a');
-      link.href = '/portfolio.pdf';
-      link.download = 'Wynn_Solutions_Portfolio.pdf';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      setShowPasswordModal(false);
-      setPassword('');
-      setError('');
-    } else {
-      setError('Incorrect password. Please request via email.');
-    }
-  };
 
   const experienceHighlights = [
     {
@@ -180,20 +155,20 @@ const AboutExperience: React.FC = () => {
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300 ease-[cubic-bezier(0.34,1.4,0.64,1)]" />
                 </Link>
 
-                <button
-                  onClick={() => setShowPasswordModal(true)}
+                <a
+                  href="mailto:wynnsolutionsmyanmar@gmail.com?subject=Portfolio%20Request"
                   className="px-4 py-2.5 rounded-xl font-semibold text-xs border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 inline-flex items-center justify-center gap-1.5 text-muted-foreground hover:text-foreground group cursor-pointer"
                 >
                   <Download className="w-3.5 h-3.5 group-hover:-translate-y-0.5 transition-transform duration-300 ease-[cubic-bezier(0.34,1.4,0.64,1)]" />
                   <span className="block h-[16px] overflow-hidden leading-[16px]">
                     <span className="block transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[16px]">
-                      PDF Portfolio
+                      Request Portfolio
                     </span>
                     <span className="block transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-[16px]" aria-hidden="true">
-                      PDF Portfolio
+                      Request Portfolio
                     </span>
                   </span>
-                </button>
+                </a>
               </div>
 
             </div>
@@ -281,76 +256,7 @@ const AboutExperience: React.FC = () => {
 
       </div>
 
-      {/* Password Modal for Portfolio PDF */}
-      <AnimatePresence>
-        {showPasswordModal && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setShowPasswordModal(false)}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
-            />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 15 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 15 }}
-              className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[92%] sm:w-full sm:max-w-md p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl z-50"
-            >
-              <button
-                onClick={() => setShowPasswordModal(false)}
-                className="absolute top-5 right-5 text-muted-foreground hover:text-foreground cursor-pointer p-1"
-                aria-label="Close modal"
-              >
-                <X className="w-5 h-5" />
-              </button>
 
-              <div className="text-center mb-6 space-y-2">
-                <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 text-cyan-500 flex items-center justify-center mx-auto mb-3">
-                  <Lock className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-bold text-foreground">Protected Portfolio Document</h3>
-                <p className="text-xs sm:text-sm text-muted-foreground">
-                  Please enter the access password to download the confidential client portfolio.
-                </p>
-                <p className="text-[11px] text-muted-foreground/75">
-                  Need the password? Contact{' '}
-                  <a href="mailto:wynnsolutionsmyanmar@gmail.com?subject=Portfolio%20Password%20Request" className="text-cyan-600 dark:text-cyan-400 underline">
-                    wynnsolutionsmyanmar@gmail.com
-                  </a>
-                </p>
-              </div>
-
-              <form onSubmit={handleDownload} className="space-y-4">
-                <div>
-                  <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => {
-                      setPassword(e.target.value);
-                      setError('');
-                    }}
-                    placeholder="Enter password"
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60 text-foreground text-sm outline-none focus:border-cyan-500 transition-colors"
-                    autoFocus
-                  />
-                  {error && (
-                    <p className="text-xs text-rose-500 mt-1.5 font-medium">{error}</p>
-                  )}
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full py-3 rounded-xl font-semibold text-sm bg-slate-900 text-white dark:bg-white dark:text-slate-950 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors cursor-pointer"
-                >
-                  Unlock & Download
-                </button>
-              </form>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
     </section>
   );
 };

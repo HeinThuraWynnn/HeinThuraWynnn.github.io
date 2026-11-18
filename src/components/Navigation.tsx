@@ -4,21 +4,21 @@ import { Menu, X, Sun, Moon } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 
+const navItems = [
+  { name: 'Home', href: '/', type: 'internal' },
+  { name: 'Work', href: '#work', type: 'anchor' },
+  { name: 'Capabilities', href: '#capabilities', type: 'anchor' },
+  { name: 'About', href: '#about', type: 'anchor' },
+  { name: 'Contact', href: '#contact', type: 'anchor' },
+  { name: 'About Thomaz', href: '/about-thomaz', type: 'internal' }
+];
+
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
-
-  const navItems = [
-    { name: 'Home', href: '/', type: 'internal' },
-    { name: 'Work', href: '#work', type: 'anchor' },
-    { name: 'Capabilities', href: '#capabilities', type: 'anchor' },
-    { name: 'About', href: '#about', type: 'anchor' },
-    { name: 'Contact', href: '#contact', type: 'anchor' },
-    { name: 'About Thomaz', href: '/about-thomaz', type: 'internal' }
-  ];
 
   useEffect(() => {
     if (location.hash && /^#[\w-]+$/.test(location.hash)) {
@@ -42,38 +42,36 @@ const Navigation = () => {
     };
   }, [isOpen]);
 
-  const [activeSection, setActiveSection] = useState('');
+  const [activeSection, setActiveSection] = useState('/');
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
 
-      // Determine active section
-      const sections = navItems.filter(item => item.type === 'anchor').map(item => item.href.substring(1));
-      let current = '';
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
-            current = '#' + section;
-            break;
+      // Keep one selected destination, including the gaps between sections.
+      let current = '/';
+      if (location.pathname === '/') {
+        for (const item of navItems.filter(item => item.type === 'anchor')) {
+          const element = document.getElementById(item.href.slice(1));
+          if (element && element.getBoundingClientRect().top <= 100) {
+            current = item.href;
           }
         }
-      }
-
-      if (window.scrollY < 50) {
-        current = '/';
       }
 
       setActiveSection(current);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, [location.pathname]);
+
+  const activeHref = location.pathname === '/' ? activeSection : location.pathname;
 
 
   const handleNavClick = (href: string, type: string) => {
@@ -210,9 +208,7 @@ const Navigation = () => {
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-1">
               {navItems.map((item, index) => {
-                const isActive = item.type === 'internal'
-                  ? location.pathname === item.href
-                  : activeSection === item.href && location.pathname === '/';
+                const isActive = activeHref === item.href;
 
                 return (
                   <motion.div
@@ -224,6 +220,7 @@ const Navigation = () => {
                     {item.type === 'internal' ? (
                       <Link
                         to={item.href}
+                        aria-current={isActive ? 'page' : undefined}
                         className={`relative inline-flex items-center justify-center h-9 px-3.5 rounded-xl text-sm font-medium transition-all duration-300 group overflow-hidden ${
                           isActive
                             ? 'text-cyan-600 dark:text-cyan-300 bg-cyan-500/10 dark:bg-cyan-950/60 border border-cyan-500/30'
@@ -245,6 +242,7 @@ const Navigation = () => {
                     ) : (
                       <button
                         onClick={() => handleNavClick(item.href, item.type)}
+                        aria-current={isActive ? 'location' : undefined}
                         className={`relative inline-flex items-center justify-center h-9 px-3.5 rounded-xl text-sm font-medium transition-all duration-300 group overflow-hidden cursor-pointer ${
                           isActive
                             ? 'text-cyan-600 dark:text-cyan-300 bg-cyan-500/10 dark:bg-cyan-950/60 border border-cyan-500/30'
@@ -347,9 +345,7 @@ const Navigation = () => {
             >
               <div className="px-4 py-6 space-y-3">
                 {navItems.map((item, index) => {
-                  const isActive = item.type === 'internal'
-                    ? location.pathname === item.href
-                    : activeSection === item.href && location.pathname === '/';
+                  const isActive = activeHref === item.href;
 
                   return (
                     <motion.div
@@ -361,6 +357,7 @@ const Navigation = () => {
                       {item.type === 'internal' ? (
                         <Link
                           to={item.href}
+                          aria-current={isActive ? 'page' : undefined}
                           onClick={() => setIsOpen(false)}
                           className={`block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 ${
                             isActive
@@ -384,10 +381,12 @@ const Navigation = () => {
                       ) : (
                         <button
                           onClick={() => handleNavClick(item.href, item.type)}
-                          className="block w-full text-left px-4 py-3 rounded-xl text-base font-medium text-muted-foreground hover:text-foreground transition-all duration-300"
-                          style={{
-                            background: 'transparent',
-                          }}
+                          aria-current={isActive ? 'location' : undefined}
+                          className={`block w-full text-left px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 border ${
+                            isActive
+                              ? 'text-cyan-500 dark:text-cyan-300 bg-cyan-500/10 border-cyan-500/30'
+                              : 'text-muted-foreground hover:text-foreground border-transparent'
+                          }`}
                         >
                           {item.name}
                         </button>

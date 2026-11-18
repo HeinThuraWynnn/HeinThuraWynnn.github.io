@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { 
   Rocket, 
   CheckCircle, 
@@ -7,35 +7,12 @@ import {
   ArrowRight,
   Users,
   Download,
-  Lock,
-  X
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 
 const About: React.FC = () => {
   const { theme } = useTheme();
-  const [showPasswordModal, setShowPasswordModal] = useState(false);
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-
-  const handleDownload = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (password === import.meta.env.VITE_PORTFOLIO_PASSWORD) {
-      const link = document.createElement('a');
-      link.href = '/portfolio.pdf';
-      link.download = 'Wynn_Solutions_Portfolio.pdf';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      setShowPasswordModal(false);
-      setPassword('');
-      setError('');
-    } else {
-      setError('Incorrect password. Please try again.');
-    }
-  };
-
   const features = [
     {
       title: "Innovation First",
@@ -193,13 +170,13 @@ const About: React.FC = () => {
               }`}>
                 <Download className="w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-bold mb-2">Download Our Portfolio</h3>
+              <h3 className="text-2xl font-bold mb-2">Request Our Portfolio</h3>
               <p className="text-muted-foreground mb-6 max-w-md">
                 Get detailed insights into our developed websites and success stories. 
-                This document is password protected.
+                Request access to the client portfolio by email.
               </p>
-              <button
-                onClick={() => setShowPasswordModal(true)}
+              <a
+                href="mailto:wynnsolutionsmyanmar@gmail.com?subject=Portfolio%20Request"
                 className={`group relative px-8 py-3 rounded-xl font-semibold transition-all duration-300 ${
                   theme === 'dark'
                     ? 'bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white shadow-lg shadow-cyan-500/25'
@@ -207,9 +184,9 @@ const About: React.FC = () => {
                 }`}
               >
                 <span className="flex items-center gap-2">
-                  Download Portfolio <Lock className="w-4 h-4" />
+                  Request Portfolio
                 </span>
-              </button>
+              </a>
             </div>
             
             {/* Background decoration */}
@@ -221,89 +198,7 @@ const About: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Password Modal */}
-      <AnimatePresence>
-        {showPasswordModal && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setShowPasswordModal(false)}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
-            />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className={`fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] sm:w-full sm:max-w-md p-6 rounded-2xl shadow-2xl z-50 ${
-                theme === 'dark' 
-                  ? 'bg-gray-900 border border-white/10' 
-                  : 'bg-white'
-              }`}
-            >
-              <button
-                onClick={() => setShowPasswordModal(false)}
-                className="absolute top-4 right-4 text-muted-foreground hover:text-foreground"
-              >
-                <X className="w-5 h-5" />
-              </button>
-              
-              <div className="text-center mb-6">
-                <div className={`mx-auto w-12 h-12 rounded-full flex items-center justify-center mb-4 ${
-                  theme === 'dark' ? 'bg-cyan-500/10 text-cyan-400' : 'bg-cyan-50 text-cyan-600'
-                }`}>
-                  <Lock className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-bold mb-2">Protected Content</h3>
-                <p className="text-sm text-muted-foreground">
-                  Please enter the password to download our portfolio.
-                  <br />
-                  <span className="text-xs opacity-70">
-                    (Password protected. <a href="mailto:wynnsolutionsmyanmar@gmail.com?subject=Request Portfolio Password" className="underline hover:text-cyan-500">Request via email</a>)
-                  </span>
-                </p>
-              </div>
 
-              <form onSubmit={handleDownload}>
-                <div className="mb-4">
-                  <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => {
-                      setPassword(e.target.value);
-                      setError('');
-                    }}
-                    placeholder="Enter password"
-                    className={`w-full px-4 py-3 rounded-xl outline-none transition-all ${
-                      theme === 'dark'
-                        ? 'bg-gray-800 border-gray-700 focus:border-cyan-500 text-white'
-                        : 'bg-gray-50 border-gray-200 focus:border-cyan-500 text-gray-900'
-                    } border-2`}
-                    autoFocus
-                  />
-                  {error && (
-                    <p className="text-red-500 text-sm mt-2 flex items-center gap-1">
-                      <X className="w-3 h-3" /> {error}
-                    </p>
-                  )}
-                </div>
-                
-                <button
-                  type="submit"
-                  className={`w-full py-3 rounded-xl font-semibold transition-all ${
-                    theme === 'dark'
-                      ? 'bg-cyan-500 hover:bg-cyan-400 text-white'
-                      : 'bg-cyan-600 hover:bg-cyan-500 text-white'
-                  }`}
-                >
-                  Unlock & Download
-                </button>
-              </form>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
     </section>
   );
 };
